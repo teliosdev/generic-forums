@@ -1,0 +1,66 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title><%= @page.title %></title>
+  <meta name="description" content="<%= @page.description %>">
+
+  <meta name="viewport" content="width=device-width">
+
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <header>
+    <h1><%= link_to @forum.name, "/" %></h1>
+    <div id='user-body'>
+      <% if @user.id != 0 %>
+        <%= link_to user_path(@user), :id => "image-wrapper" do %>
+          <%= image_tag @user.avatar, :height => 32, :width => 32, :id => "image" %>
+        <% end -%>
+        <ul id='user-info'>
+            <li><%= link_to @user.name, user_path(@user) %></li>
+            <li><%= link_to "inbox", "#{user_path(@user)}/inbox" %></li>
+            <li><%= link_to "settings", edit_user_path(@user) %></li>
+            <li><%= button_to "logout", session_path, :method => :delete  %></li>
+        </ul>
+      <% else %>
+        <ul id='user-info'>
+
+          <li><%= link_to "login", new_session_path %></li>
+          <li><%= link_to "register", new_user_path %></li>
+        </ul>
+      <% end -%>
+    </div>
+  </header>
+  <div class='breadcrumbs'>
+    <ul class='bread-list'>
+      <% @breadcrumbs.each do |crumb| %>
+        <li class='breadcrumb'>
+          <%= link_to crumb.name, crumb.link %>
+          <span class='triangle'></span>
+          <span class='triangle-border'></span>
+        </li>
+      <% end -%>
+    </ul>
+  </div>
+  <% if flash[:error] %>
+    <div class='error'><span class='content'><%= flash[:error] %></span></div>
+  <% end -%>
+  <div role="main" id="main">
+    <%= yield %>
+  </div>
+  <footer>
+    <%= @forum.name %> version <%= @forum.version %>
+  </footer>
+
+  <!--<script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>-->
+</body>
+</html>

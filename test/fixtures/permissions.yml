@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+# group 1 (user) has read permission on
+# board 1 (primary)
+one:
+  remote_id: 1
+  permissions: R
+  group: user
+  type: BoardPermission
+
+# group 0 (guest) has read permission on
+# board 1 (primary)
+two:
+  remote_id: 1
+  permissions: R
+  group: guest
+  type: BoardPermission
+
+# group 1 (user) has read permission on
+# board 2 (secondary)
+three:
+  remote_id: 2
+  permissions: R
+  group: user
+  type: BoardPermission

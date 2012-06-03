@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+primary:
+  id: 1
+  name: Primary
+  parent_id:
+  position: 1
+  sub: primary board
+
+secondary:
+  id: 2
+  name: Secondary
+  parent_id: 1
+  position: 2
+  sub: secondary board

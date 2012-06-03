@@ -1,0 +1,26 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+guest:
+  id: 0
+  name: guest
+  password_digest:
+  email:
+  avatar:
+  points: 0.00
+  groups: guest
+
+admin:
+  name: admin
+  password_digest: $2a$10$2fnd06HMRGjWlROwd0anu.ug1ItoWJl0pzeN9oTMxJQw4wj9wBjkC # admin
+  email: system@local.host
+  avatar: /admin.png
+  points: 0.00
+  groups: guest, user
+
+user:
+  name: firstuser
+  password_digest: $2a$10$yFG6so6BDL/lOXvCRoyHkeRjVexE294tRwPNb/eDW5F.I/rG0Ijey # alpine
+  email: fake@email.com
+  avatar:
+  points: 1.12
+  groups: guest, user

@@ -1,0 +1,446 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700)
+//@import url(local.css)
+
+$blue: #0075b5
+$red: #b50000
+//$blue: $red
+//$blue: #333
+$main_font: "Open Sans"
+$background_color: #fefefe
+//$background_color: #fff
+$main_color: #444
+//$text_accent: #fff - $main_color
+$text_accent: #fff
+$body_bg: $background_color - #020202
+
+*
+  margin: 0
+  padding: 0
+  outline: none
+
+html
+  background-color: $background-color
+
+html body
+  background-color: $body_bg
+  border: 1px solid $blue
+  color: $main_color
+  font-family: $main_font
+  width: 960px
+  margin: 10px auto
+  min-height: 100%
+  box-shadow: 0 0 15px -5px transparentize($blue,.5)
+  text-shadow: 0 1px 0 $text_accent
+  filter: blur(10px)
+
+html body a
+  color: $blue
+  text-decoration: none
+  font-weight: bold
+  cursor: pointer
+
+  &:hover
+    color: darken($blue, 10%)
+    text-decoration: underline
+
+html body form.button_to
+  display: inline
+  margin: 0
+  padding: 0
+  border: none
+  outline: none
+  background-color: transparent
+
+  div
+    display: inline
+
+  input[type="submit"]
+    background-color: transparent
+    color: $blue
+    font-weight: bold
+    cursor: pointer
+    border: none
+    margin: 0
+    padding: 0
+    font-size: 10px
+    font-family: $main_font
+
+    &:hover
+      text-decoration: underline
+      color: darken($blue, 10%)
+
+
+html body header
+  height: 65px
+  width: 950px
+  border-bottom: 1px solid transparentize($blue, .5)
+  padding: 5px
+  //box-shadow: 0 1px 0 white
+
+  h1
+    line-height: 60px
+    padding-left: 5px
+    color: darken($blue, 5%)
+
+    a:hover
+      text-decoration: none
+
+  h1, div#user-body
+    display: inline-block
+
+  div#user-body
+    float: right
+
+    a#image-wrapper
+      display: block
+      float: left
+      height: 60px
+      width: 32px
+      position: relative
+      margin-left: -10px
+
+      img#image
+        position: absolute
+        top: 50%
+        margin-top: (-32px/2)
+
+    ul#user-info
+      list-style-type: none
+      display: block
+      float: right
+
+      li
+        font-size: .6em
+        display: block
+        padding:
+          left: 10px
+          top: 1px
+          bottom: 1px
+
+html body div.breadcrumbs
+  height: 25px
+  border-bottom: 1px solid transparentize($blue, .5)
+  background-color: transparentize($blue,.9)
+  //box-shadow: 0 1px 0 white
+
+  ul.bread-list
+    list-style-type: none
+    padding-left: 15px
+    overflow: hidden
+    height: 25px
+
+    li.breadcrumb
+      display: inline-block
+      font-size: 15px
+      height: 25px
+      //padding: 2.5px
+      position: relative
+      padding-right: 20px
+      margin-left: -25px
+
+      a
+        position: relative
+        height: 27px
+        padding-right: 6px
+        display: inline-block
+        top: -2px
+        line-height: 26px
+        padding-left: 25px
+
+      a:hover
+        border-bottom: none
+
+      span.triangle-border
+        border-color: transparent transparent transparent lighten($blue, .5)
+        border-style: solid
+        border-width: 13px
+        position: absolute
+        height: 0
+        width: 0
+        right: -5px
+        top: -1px
+        z-index: 5
+        //left: -22px
+        //float: right
+
+      span.triangle
+        border-color: transparent transparent transparent mix($blue, $body_bg, 10%)
+        border-style: solid
+        border-width: 13px
+        position: absolute
+        height: 0
+        width: 0
+        z-index: 6
+        right: -4px
+        top: -1px
+
+      &:hover, &.fake-hover
+        a
+          background-color: transparentize($blue, .9)
+          text-decoration: none
+
+        span.triangle
+          border-left-color: mix($blue, $body_bg, 20%)
+      //&::after
+      //  content: "/"
+      //  margin-left: 7px
+      //  color: lighten($blue, 10%)
+
+  &.expanded, &:hover
+    height: auto
+
+    ul.bread-list
+      height: auto
+
+html body div.error
+  height: 25px
+  border-bottom: 1px solid transparentize($blue, .5)
+  background-color: transparentize($blue,.9)
+  font-size: 13px
+  padding-left: 15px
+  line-height: 25px
+
+  span.content:before
+    content: "Error: "
+
+html body div#main
+  padding: 10px
+  font-size: 80%
+  line-height: 1.75em
+
+  h1, h2, h3, h4, h5, h6
+    padding-bottom: 3px
+    line-height: 2em
+    padding-left: 5px
+
+  p
+    padding: 5px
+
+  ul
+    padding-left: 7px
+    list-style-type: none
+
+    li
+      padding-left: 13px
+      margin: 5px 2px
+      margin-right: 15px
+
+      &::before
+        content: "-"
+        margin: 0 5px
+        font-weight: bold
+
+    &.board-list, &.thread-list
+      padding: 0
+      margin-left: -11px
+      width: 960px
+      margin-bottom: 5px
+
+      li
+        border-left: none
+        padding: 3px 0
+        margin: 0
+        border-bottom: 1px solid transparentize($blue, .5)
+        box-shadow: none
+
+        &::before
+          content: ""
+          margin: 0
+
+        &:first-child
+          border-bottom: 1px solid $blue
+
+        &:last-child
+          border-bottom: none
+
+        &.highlight span
+          border-right-color: transparentize($blue, .25)
+          color: $blue
+
+        &.lowlight
+          color: lighten($main_color, 25%)
+
+          span
+            border-right-color: transparentize(desaturate($blue, 100%), .5)
+
+        span
+          display: inline-block
+          min-width: 20%
+          padding: 0 15px
+          border-right: 1px solid transparentize($blue, .5)
+
+          &:last-child
+            border-right: none
+
+          &.head
+            font-weight: bold
+            color: $blue
+            border-right-color: transparentize($blue, .25)
+
+          &.size50
+            width: (950px*.50 - 12px)
+
+          &.size20
+            width: (950px*.20 - 12px)
+
+    &.user-opts
+      height: 25px
+      border-top: 1px solid transparentize($blue, .5)
+      border-bottom: 1px solid transparentize($blue, .5)
+      background-color: transparentize($blue, .9)
+      width: 943px
+      margin-left: -10px
+      padding-left: 17px
+      overflow-y: hidden
+
+      li
+        display: inline-block
+        margin: 0
+        padding: 0 10px
+        margin-right: 17px
+        border-left: 1px solid transparentize($blue, .5)
+        border-right: 1px solid transparentize($blue, .5)
+        background-color: transparentize($blue, .9)
+        height: 25px
+        line-height: 25px
+
+        &:first-child
+          margin-left: 0
+
+        &::before
+          content: ""
+          margin: 0
+
+      &.extended, &:hover
+        height: auto
+        overflow-y: inherit
+
+    &.thread-info li
+      display: inline-block
+
+      &::before
+        content: ""
+        margin: 0
+
+    &.post-list
+      padding: 0
+      margin-left: -11px
+      width: 960px
+      margin-bottom: 5px
+
+      li
+        border-top: 1px solid transparentize($blue, .5)
+        border-bottom: 1px solid transparentize($blue, .5)
+        width: 962px
+        padding: 0
+        margin: 0
+
+        &:before
+          content: ""
+          margin: 0
+
+        &.post
+          position: relative
+          min-height: 200px
+          padding-bottom: 25px
+          margin-top: 25px
+
+          &:first-child
+            margin-top: 0
+
+          div.user-data
+            display: inline-block
+            width: 200px
+            padding-left: 15px
+            position: absolute
+            span
+              display: block
+
+          div.post-body
+            display: inline-block
+            width: (960px - (200px + 20px))
+            margin-left: 215px
+
+          div.post-footer
+            background-color: transparentize($blue, .9)
+            margin-top: 10px
+            border-top: 1px solid transparentize($blue, .5)
+            padding: 0 15px
+            height: 25px
+            line-height: 25px
+            position: absolute
+            bottom: 0
+            width: 931px
+
+            span.post-time
+              font-style: Italic
+
+            span.points
+              font-size: 75%
+              margin-left: 10px
+
+            span.post-opts
+              float: right
+
+  form
+    border: 1px solid $blue
+    background-color: $background_color
+    width: 500px
+    margin: 5px auto
+    padding:
+      bottom: 5px
+      left: 5px
+      right: 5px
+      top: 0
+
+    div.gr
+      border-bottom: 1px solid transparentize($blue, .5)
+      padding-top: 5px
+      padding-bottom: 5px
+
+      input, label, textarea, select
+        width: 235px
+        display: inline-block
+        height: 25px
+        border: none
+        padding: 0 5px
+        font-family: $main_font
+
+      input, textarea, select
+        //background-color: transparentize($blue, .95)
+        border: 1px solid $blue
+        background-color: transparent
+        //box-shadow: 1px 1px 0 white
+        color: $main_color + #333
+
+        &:hover
+          border: 1px solid darken($blue, 5%)
+          //box-shadow: 0 0 5px $blue, 1px 1px 0 white
+
+        &:focus
+          color: $main_color
+          border: 1px solid darken($blue, 10%)
+          //box-shadow: 0 0 5px darken($blue,5%), 1px 1px 0 white
+
+        &[type="button"], &[type="submit"], &[type="reset"]
+          border: none
+          //background-color: transparentize($blue, .5)
+          color: darken($blue, 10%)
+          box-shadow: none
+          font-weight: bold
+          cursor: pointer
+
+
+      h1, h2, h3, h4, h5, h6
+        padding: 0 5px
+
+      &:last-child
+        border-bottom: none
+
+html body footer
+  border-top: 1px solid transparentize($blue,.5)
+  font-size: 12px
+  padding: 15px 0
+  color: lighten($blue,.5)
+  font-weight: bold
+  text-align: center

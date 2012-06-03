@@ -1,0 +1,16 @@
+<ul class='board-list'>
+  <li class='header-row'>
+    <span class='head size50'>Board Name</span>
+    <span class="head size20">Last Post</span>
+    <span class="head size20">Active Threads</span>
+  </li>
+  <% Board.find_each do |board| %>
+    <% next if board.parent_id %>
+    <% next unless resolve_board(board, @user).read? %>
+    <li class='data-row'>
+      <span class="data board-name size50"><%= board.name %></span>
+      <span class="data basic-data size20">???</span>
+      <span class="data basic-data size20">???</span>
+    </li>
+  <% end -%>
+</ul>
