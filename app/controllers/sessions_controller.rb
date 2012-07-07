@@ -15,10 +15,11 @@ class SessionsController < ApplicationController
         end
         session[:login_tries] = session[:login_tries] +1
       else
-        session[:login_tries] = 0
+        session[:login_tries] = 1
       end
       render "new" and return
     else
+      session[:login_tries] = 0
       session[:user_id] = user.id
       redirect_to "/"
     end

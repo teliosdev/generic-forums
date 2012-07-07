@@ -5,7 +5,7 @@
     <span class="head size20">Last Post</span>
     <span class="head size20">Active Threads</span>
   </li>
-  <% Board.where(:parent_id => @board.id).find_each do |board| %>
+  <% @children.find_each do |board| %>
     <li class='data-row'>
       <span class="data board-name size50"><%= board.name %></span>
       <span class="data basic-data size20">???</span>

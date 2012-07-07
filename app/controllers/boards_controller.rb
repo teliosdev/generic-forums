@@ -1,5 +1,6 @@
 class BoardsController < ApplicationController
   def index
+    @boards = Board.scoped
   end
 
   def show
@@ -8,5 +9,6 @@ class BoardsController < ApplicationController
       flash.now[:error] = "Board #{params[:id].to_s} does not exist."
       render 'error/404'
     end
+    @children = Board.where(:parent_id => @board.id)
   end
 end

@@ -4,7 +4,7 @@
     <span class="head size20">Last Post</span>
     <span class="head size20">Active Threads</span>
   </li>
-  <% Board.find_each do |board| %>
+  <% @boards.find_each do |board| %>
     <% next if board.parent_id %>
     <% next unless resolve_board(board, @user).read? %>
     <li class='data-row'>
