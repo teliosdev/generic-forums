@@ -24,7 +24,7 @@
             <li><%= link_to @user.name, user_path(@user) %></li>
             <li><%= link_to "inbox", "#{user_path(@user)}/inbox" %></li>
             <li><%= link_to "settings", edit_user_path(@user) %></li>
-            <li><%= button_to "logout", session_path, :method => :delete  %></li>
+            <li><%= link_to "logout", url_for(:controller => "sessions", :action => "delete") %></li>
         </ul>
       <% else %>
         <ul id='user-info'>

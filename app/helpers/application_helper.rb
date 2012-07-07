@@ -47,4 +47,8 @@ module ApplicationHelper
     end
     res
   end
+
+  def json_url(record)
+    polymorphic_url record, :format => :json, :routing_type => :path
+  end
 end

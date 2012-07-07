@@ -18,11 +18,9 @@ class ApplicationController < ActionController::Base
   end
 
   def user_check
-    if session[:user_id]
-      @user = User.find_by_id session[:user_id]
-    else
-      @user = User.find 0
-    end
+    @session = Session.find
+    @user    = @session.record if @session
+    @user    = User.find(0) unless @user
   end
 
   def require_login

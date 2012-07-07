@@ -4,9 +4,6 @@ ary = []
 end
 
 json.array!(ary) do |json, board|
-  #json.id        board.id
-  #json.name      board.name
-  #json.parent_id board.parent_id
-  #json.desc      board.sub
   json.(board, :id, :name, :parent_id, :sub)
+  json.url json_url(board)
 end

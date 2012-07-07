@@ -48,7 +48,8 @@ GenericForums::Application.routes.draw do
 
   resources :posts
   resources :users
-  resource :session, :only => [:new, :create, :destroy]
+  resources :sessions, :only => [:new, :create, :destroy]
+  get "sessions/delete"
 
   # Sample resource route within a namespace:
   #   namespace :admin do
