@@ -11,15 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120707012433) do
+ActiveRecord::Schema.define(:version => 20120707060233) do
 
   create_table "boards", :force => true do |t|
     t.string   "name"
     t.integer  "parent_id"
     t.integer  "position"
     t.text     "sub"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "ropes_count", :default => 0
+    t.integer  "posts_count", :default => 0
   end
 
   create_table "groups", :force => true do |t|
@@ -36,6 +38,30 @@ ActiveRecord::Schema.define(:version => 20120707012433) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "posts", :force => true do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "rope_id"
+    t.decimal  "points",     :precision => 16, :scale => 2
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
+
+  add_index "posts", ["rope_id"], :name => "index_posts_on_rope_id"
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "ropes", :force => true do |t|
+    t.string   "title"
+    t.integer  "board_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "posts_count", :default => 0
+  end
+
+  add_index "ropes", ["board_id"], :name => "index_ropes_on_board_id"
+  add_index "ropes", ["user_id"], :name => "index_ropes_on_user_id"
 
   create_table "user_groups", :force => true do |t|
     t.integer "user_id"
@@ -61,6 +87,8 @@ ActiveRecord::Schema.define(:version => 20120707012433) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
+    t.integer  "posts_count",         :default => 0
+    t.integer  "ropes_count",         :default => 0
   end
 
 end

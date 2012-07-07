@@ -41,7 +41,7 @@ module PostEvalHelper
       words.reject! do |length|
         # if it's less than two it doesnt count
         length <= 2 or length > 13
-        # if it's greater than two then it's probably someone trying
+        # if it's greater than thirteen then it's probably someone trying
         # to exploit the point system.  The actual std deviation of
         # a sample set of english words is 2, with an average of 5.
       end
@@ -49,7 +49,7 @@ module PostEvalHelper
       @data[:words][:number]        = words.length
       @data[:words][:range_set]     = [words.min || 0, words.max || 0]
       @data[:words][:range]         = @data[:words][:range_set][1] - @data[:words][:range_set][0]
-      @data[:words][:average]       = words.average || 0
+      @data[:words][:average]       = (words.inject(:+).fdiv words.size) || 0
       _generate_word_ratios
     end
 
@@ -128,9 +128,9 @@ module PostEvalHelper
       unless @data[:sentences][:ratios][:proper_to_count].finite?
         @data[:sentences][:ratios][:proper_to_count] = 0.0
       end
+      ary = [@data[:sentences][:ratios][:proper_to_count], @data[:sentences][:first_letter]]
       @data[:sentences][:ratios][:ptc_fl_avg]      =
-        [@data[:sentences][:ratios][:proper_to_count], @data[:sentences][:first_letter]].average
-
+        ary.inject(:+).fdiv ary.size
     end
 
   end

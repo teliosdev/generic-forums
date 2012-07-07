@@ -24,6 +24,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-
+    raise StandardError unless responds_to?(:permission)
   end
 end

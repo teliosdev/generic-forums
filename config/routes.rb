@@ -43,10 +43,11 @@ GenericForums::Application.routes.draw do
   #   end
 
   resources :boards, :only => [:index, :show] do
-    resources :threads, :only => [:index, :show]
+    resources :ropes, :path => "threads", :only => [:index, :show] do
+      resources :posts
+    end
   end
 
-  resources :posts
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
   get "sessions/delete"

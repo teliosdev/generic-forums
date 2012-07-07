@@ -1,0 +1,16 @@
+<h2>Threads In <%= @board.name %></h2>
+
+<ul class='thread-list'>
+  <li class='header-row'>
+    <span class='head size50'>Thread Name</span>
+    <span class="head size20">Last Post</span>
+    <span class="head size20">Posts</span>
+  </li>
+  <% @threads.find_each do |thread| %>
+    <li class='data-row'>
+      <span class="data board-name size50"><%= link_to thread.title, board_rope_posts_path(@board, thread) %></span>
+      <span class="data basic-data size20"><%= thread.posts.first || "&nbsp;".html_safe %></span>
+      <span class="data basic-data size20"><%= thread.posts.size - 1 %></span>
+    </li>
+  <% end -%>
+</ul>

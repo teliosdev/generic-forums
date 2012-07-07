@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  body: MyText
+  user: 
+  thread: 
+  points: 9.99
+
+two:
+  body: MyText
+  user: 
+  thread: 
+  points: 9.99

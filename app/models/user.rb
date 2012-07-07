@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :avatar, :password, :password_confirmation
   has_and_belongs_to_many :groups, :join_table => "user_groups"
   has_many :permissions, :through => :groups, :inverse_of => :group
+  has_many :ropes, :inverse_of => :user
+  has_many :posts, :inverse_of => :user
 
   validates :name,
     :presence => true,

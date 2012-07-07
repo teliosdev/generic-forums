@@ -4,6 +4,5 @@ ary = []
 end
 
 json.array!(ary) do |json, board|
-  json.(board, :id, :name, :parent_id, :sub)
-  json.url json_url(board)
+  json.partial! "partials/board_info", :board => board
 end

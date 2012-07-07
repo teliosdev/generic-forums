@@ -4,13 +4,12 @@
     <span class="head size20">Last Post</span>
     <span class="head size20">Active Threads</span>
   </li>
-  <% @boards.find_each do |board| %>
+  <% @boards.each do |board| %>
     <% next if board.parent_id %>
-    <% next unless resolve_board(board, @user).read? %>
     <li class='data-row'>
-      <span class="data board-name size50"><%= board.name %></span>
-      <span class="data basic-data size20">???</span>
-      <span class="data basic-data size20">???</span>
+      <span class="data board-name size50"><%= link_to board.name, board_ropes_path(board) %></span>
+      <span class="data basic-data size20"><%= board.posts.first.body[0..20] %></span>
+      <span class="data basic-data size20"><%= board.ropes.size %></span>
     </li>
   <% end -%>
 </ul>

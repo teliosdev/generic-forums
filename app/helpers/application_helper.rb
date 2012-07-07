@@ -35,11 +35,20 @@ module ApplicationHelper
     end
   end
 
-  def resolve_board board, user
-    p = board.permissions.where :group_id => user.groups.map { |x| x.id }
-    str = ""
-    p.find_each do |prm|
-      str+= prm.permissions.to_s
+  def resolve(item, user)
+    unless item.is_a?(Post)
+      p = item.permissions.where :group_id => user.groups.map { |x| x.id }
+      str = ""
+      p.find_each do |prm|
+        str+= prm.permissions.to_s
+      end
+    end
+    case item.class
+    when Board
+    when Rope
+      str+= resolve item.board, user
+    when Post
+      str+= resolve item.thread, user
     end
     str = str.split("").sort.join("")
     res = Permission.new do |p|

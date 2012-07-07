@@ -1,4 +1,5 @@
 <h1><%= @board.name %></h1>
+<div class="desc"><%= @board.sub %> &mdash; <%= link_to "threads", board_ropes_path(@board) %></div>
 <ul class='board-list'>
   <li class='header-row'>
     <span class='head size50'>Board Name</span>
@@ -7,9 +8,9 @@
   </li>
   <% @children.find_each do |board| %>
     <li class='data-row'>
-      <span class="data board-name size50"><%= board.name %></span>
+      <span class="data board-name size50"><%= link_to board.name, board %></span>
       <span class="data basic-data size20">???</span>
-      <span class="data basic-data size20">???</span>
+      <span class="data basic-data size20"><%= board.ropes.size %></span>
     </li>
   <% end -%>
 </ul>

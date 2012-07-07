@@ -1,2 +1,17 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h2>Posts In `<%= @thread.title %>`</h2>
+
+<ul class="post-list">
+  <%= @posts.find_each do |post| %>
+    <li class="post">
+      <div class="user-data">
+        <span><%= post.user.name %></span>
+        <span><%= image_tag post.user.avatar %></span>
+      </div>
+      <div class="post-body"><%= m(post.body, :smart, :filter_html, :safelink, :autolink) %></div>
+      <div class="post-footer">
+        <span class="post-time">Posted <%= time_ago_in_words post.created_at %> Ago<%= ", Updated #{time_ago_in_words post.updated_at} Ago" if post.created_at != post.updated_at %></span>
+        <span class="points">Points: <%= s(post.body) %></span>
+      </div>
+    </li>
+  <% end -%>
+</ul>
