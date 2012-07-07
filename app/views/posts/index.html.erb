@@ -2,15 +2,19 @@
 
 <ul class="post-list">
   <%= @posts.find_each do |post| %>
-    <li class="post">
+    <li class="post <%= "user_online" if post.user.logged_in? %>">
       <div class="user-data">
-        <span><%= post.user.name %></span>
+        <%= link_to post.user do %>
+          <span class="username <%= title_classes(post.user) %>"><%= post.user.name %></span>
+        <% end -%>
+        <span class="title"><%= post.user.groups.last.name %></span>
         <span><%= image_tag post.user.avatar %></span>
+        <span><%= post.user.points %> Points</span>
       </div>
       <div class="post-body"><%= m(post.body, :smart, :filter_html, :safelink, :autolink) %></div>
       <div class="post-footer">
         <span class="post-time">Posted <%= time_ago_in_words post.created_at %> Ago<%= ", Updated #{time_ago_in_words post.updated_at} Ago" if post.created_at != post.updated_at %></span>
-        <span class="points">Points: <%= s(post.body) %></span>
+        <span class="points">Points: <%= post.points %></span>
       </div>
     </li>
   <% end -%>

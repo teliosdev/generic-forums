@@ -35,7 +35,17 @@ module ApplicationHelper
     end
   end
 
+  cache = {}
+
   def resolve(item, user)
+    str = resolve_to_string(item, user)
+    res = Permission.new do |p|
+      p.permissions = str
+    end
+    res
+  end
+
+  def resolve_to_string(item, user)
     unless item.is_a?(Post)
       p = item.permissions.where :group_id => user.groups.map { |x| x.id }
       str = ""
@@ -43,18 +53,15 @@ module ApplicationHelper
         str+= prm.permissions.to_s
       end
     end
+    str = str.split("").uniq.join("")
     case item.class
     when Board
     when Rope
-      str+= resolve item.board, user
+      str+= resolve(item.board, user)
     when Post
-      str+= resolve item.thread, user
+      str+= resolve(item.thread, user)
     end
-    str = str.split("").sort.join("")
-    res = Permission.new do |p|
-      p.permissions = str.squeeze
-    end
-    res
+    str = str.split("").uniq.join("")
   end
 
   def json_url(record)

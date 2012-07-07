@@ -12,7 +12,6 @@ module PostEvalHelper
 
     def score(raw)
       @raw = ps.sanitize raw
-      p @raw
       @data = generate
       @points = ps.calculate @data
     end

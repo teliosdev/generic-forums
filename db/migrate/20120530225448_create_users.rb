@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.string :email
       t.string :avatar
-      t.decimal :points, :scale => 2, :percision => 16
+      t.decimal :points, :scale => 2, :percision => 16, :default => 0.00
 
       t.timestamps
     end

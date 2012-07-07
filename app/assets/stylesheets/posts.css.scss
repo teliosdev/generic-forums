@@ -1,3 +1,30 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+html body div#main {
+  ul.post-list {
+    li.post {
+      div.user-data {
+        span.username {
+          display: inline-block;
+          &.group_admin {
+            color: red;
+            font-size: 18px;
+            line-height: 24px;
+          }
+        }
+        span.title {
+          text-align: left;
+        }
+      }
+
+      &.user_online {
+        div.user-data span.username {
+          display: inline-block;
+          border-bottom: 3px dotted green;
+        }
+      }
+    }
+  }
+}

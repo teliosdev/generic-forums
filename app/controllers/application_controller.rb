@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :application
+  include ApplicationHelper
   before_filter :forum_info, :user_check
 
   protected

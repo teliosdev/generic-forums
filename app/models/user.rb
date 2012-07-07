@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     c.crypto_provider      Authlogic::CryptoProviders::BCrypt
   end
 
+  def logged_in?
+    (last_request_at - Time.now) < 1.hour
+  end
+
   #def self.authenticate(identifier, password)
   #  user = find_by_name(identifier) || find_by_email(identifier)
   #  user.try :authenticate, password

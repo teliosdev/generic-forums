@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(:version => 20120707060233) do
     t.text     "body"
     t.integer  "user_id"
     t.integer  "rope_id"
-    t.decimal  "points",     :precision => 16, :scale => 2
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.decimal  "points",     :precision => 16, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
   end
 
   add_index "posts", ["rope_id"], :name => "index_posts_on_rope_id"
@@ -72,16 +72,16 @@ ActiveRecord::Schema.define(:version => 20120707060233) do
     t.string   "name"
     t.string   "email"
     t.string   "avatar"
-    t.decimal  "points"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.string   "crypted_password",    :default => "", :null => false
-    t.string   "password_salt",       :default => "", :null => false
-    t.string   "persistence_token",   :default => "", :null => false
-    t.string   "single_access_token", :default => "", :null => false
-    t.string   "perishable_token",    :default => "", :null => false
-    t.integer  "login_count",         :default => 0,  :null => false
-    t.integer  "failed_login_count",  :default => 0,  :null => false
+    t.decimal  "points",              :default => 0.0
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.string   "crypted_password",    :default => "",  :null => false
+    t.string   "password_salt",       :default => "",  :null => false
+    t.string   "persistence_token",   :default => "",  :null => false
+    t.string   "single_access_token", :default => "",  :null => false
+    t.string   "perishable_token",    :default => "",  :null => false
+    t.integer  "login_count",         :default => 0,   :null => false
+    t.integer  "failed_login_count",  :default => 0,   :null => false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
