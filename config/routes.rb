@@ -1,6 +1,7 @@
 GenericForums::Application.routes.draw do
   get "home/index"
   get "home/error"
+  get "home/editor"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
