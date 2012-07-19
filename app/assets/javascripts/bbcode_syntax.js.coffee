@@ -1,11 +1,6 @@
-#= require markdown_parser.js
-
-class window.MarkdownSyntax
+class window.BbCodeSyntax
   afterConstructorCallback: (@editor)->
     @editor.info.linkIncrement = 0
-
-  render: (text)->
-    window.MarkdownParser.toHTML(text)
 
   iconList: {
     bold: "B",
@@ -15,36 +10,38 @@ class window.MarkdownSyntax
     header: "#"
   }
 
+  supportsPreview: false
+
   eventHandlers: {
     iconPress:
       bold: ((m)->
-        s = m.element.getSelection()[0];
+        s = m.element.getSelection();
         m.element.setSelection("[B]#{s}[/B]")
         cPos = m.element.getPosition()[0]
         console.log cPos
         m.element.setPosition(cPos.start-2, cPos.end-2)
       ),
       italic: ((m)->
-        s = m.element.getSelection()[0];
-        m.element.setSelection("[I]#{s}[/I]")[0]
-        cPos = m.element.getPosition()[0]
+        s = m.element.getSelection();
+        m.element.setSelection("[I]#{s}[/I]")
+        cPos = m.element.getPosition()
         console.log cPos
         m.element.setPosition(cPos.start-1, cPos.end-1)
       ),
       code: ((m)->
-        s = m.element.getSelection()[0];
+        s = m.element.getSelection()
         if s.length > 0
           m.element.setSelection("`#{s}`")
         else
           m.element.setSelection("\n[code]\ninsert code here\n[/code]")
-          pos = m.element.getPosition()[0]
+          pos = m.element.getPosition()
           m.element.setPosition(pos.start - (16+8), pos.start - 8)
       ),
       link: ((m)->
         link = prompt "Link?"
         if link.length == 0
           return
-        s = m.element.getSelection()[0];
+        s = m.element.getSelection()
         unless s.length > 0
           desc = prompt "Description?"
         else
@@ -54,9 +51,9 @@ class window.MarkdownSyntax
         m.element.setSelection("[url=#{link}]#{desc}[/url]")
       )
       header: ((m)->
-        s = m.element.getSelection()[0]
+        s = m.element.getSelection()
         if s.length == 0
-          cPos = m.element.getPosition()[0]
+          cPos = m.element.getPosition()
           m.element.setSelection("\n[h2]header text here[/h2]")
           m.element.setPosition(cPos.start+5, cPos.end+(16+5))
         else
@@ -70,12 +67,12 @@ class window.MarkdownSyntax
         if m.info.ctrlPressed
           e.preventDefault()
           console.log this
-          @eventHandler.iconPress.bold m
+          @eventHandlers.iconPress.bold m
       ),
       73: ((m, e)->
         if m.info.ctrlPressed
           e.preventDefault()
-          @eventHandler.iconPress.italic m
+          @eventHandlers.iconPress.italic m
       )
     keyDown:
       9: ((m, e)->

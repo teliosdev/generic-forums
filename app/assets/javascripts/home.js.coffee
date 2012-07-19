@@ -12,5 +12,7 @@ $( ()->
       $v = $(v)
       if $v.hasClass("editor_markdown")
         syntax = new MarkdownSyntax()
-      window.editors.push new Editor($(v), syntax)
+      else if $v.hasClass("editor_bbcode")
+        syntax = new BbCodeSyntax()
+      window.editors.push new Editor($v, syntax)
 )

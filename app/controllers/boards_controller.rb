@@ -1,18 +1,11 @@
 class BoardsController < ApplicationController
-  helper :application
-  include ApplicationHelper
+  load_and_authorize_resource
 
   def index
-    @boards = []
-    p methods
-    Board.find_in_batches do |boards|
-      boards.reject! { |b| resolve(b, @user).read? }
-      @boards.push *boards
-    end
+    p instance_variables.sort
   end
 
   def show
-    @board = Board.find params[:id]
     @children = Board.where(:parent_id => @board.id)
   end
 end

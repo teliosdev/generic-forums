@@ -45,3 +45,10 @@ We hope that your experience with these forums will be a pleasant one.  If you h
 
 Have a pleasant trip!
 BODY
+
+b.permissions.create! :action => :read, :type => "Board", :group => Group.find(1)
+b.permissions.create! :action => :read, :type => "Board", :group => Group.find(2)
+b.permissions.create! :action => :manage, :type => "Board", :group => Group.find(3)
+b.ropes.find(1).permissions.create! :action => :read, :type => "Rope", :group => Group.find(2)
+b.ropes.find(2).permissions.create! :action => :read, :type => "Rope", :group => Group.find(2)
+

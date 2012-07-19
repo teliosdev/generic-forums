@@ -11,14 +11,14 @@ class window.Editor
 
   _wrapElement: ->
     randomName = (Math.random() * 10000).toFixed()
-    @element.wrap('<div id="wrapper_'+randomName+'" class="markdown_item" />')
+    @element.wrap('<div id="wrapper_'+randomName+'" class="editor_wrapper" />')
     @wrapper = $ "#wrapper_#{randomName}"
 
   _addIcons: ->
     @wrapper.prepend("<div class='icon_container'></div>")
     @iconContainer = @wrapper.children ".icon_container"
     for name, contents of @syntax.iconList
-      @iconContainer.append "<a class='icon markdown_icon' data-name='#{name}' title='#{name.replace(/\_/g," ")}'>#{contents}</a>"
+      @iconContainer.append "<a class='icon' data-name='#{name}' title='#{name.replace(/\_/g," ")}'>#{contents}</a>"
 
   _bindElements: ->
     @iconContainer.children("a").on("click", this, (event)->
@@ -32,15 +32,18 @@ class window.Editor
     )
 
   _addOutputView: ->
+    return unless @syntax.supportsPreview
     @wrapper.append("<div>Output:</div>")
-    @wrapper.append("<div class='markdown_output'></div>")
-    @output = @wrapper.children('div.markdown_output')
+    @wrapper.append("<div class='editor_output'></div>")
+    @output = @wrapper.children('div.editor_output')
     @output.html(@render(@element.val()))
 
   updateOutput: ->
+    return unless @syntax.supportsPreview
     @output.html(@render(@element.val()))
 
   render: (text)->
+    return unless @syntax.supportsPreview
     @syntax.render(text)
     #window.MarkdownParser.toHTML(text)
 

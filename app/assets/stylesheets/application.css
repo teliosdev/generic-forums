@@ -8,6 +8,12 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ * Require all of our native stylesheets first, because they're the ones that are most important.  The
+ * plugin stylesheets come after these stylesheets, and should be located in ./plugin/.
+ *
  *= require_self
- *= require_tree .
+ *= require style
+ *= require editor
+ *= require posts
+ *= require_tree ./plugin
 */

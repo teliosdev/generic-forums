@@ -1,12 +1,8 @@
 class Permission < ActiveRecord::Base
-  attr_accessible :group_id, :remote_id, :permissions
+  attr_accessible :group_id, :remote_id, :action, :group, :type
   belongs_to :group
   has_many :users, :through => :group
-
-  validates :permissions,
-    :format   => { :with => /\A[A-Z]*\Z/ },
-    :length   => { :in   => 0..20        },
-    :presence => true
+  belongs_to :remote, :polymorphic => true
 
   validates :group_id,
     :presence     => true,
@@ -16,21 +12,6 @@ class Permission < ActiveRecord::Base
     :presence     => true,
     :numericality => true
 
-  def create?
-    permissions.include? "C"
-  end
-
-  def read?
-    permissions.include? "R"
-  end
-
-  def update?
-    permissions.include? "U"
-  end
-
-  def delete?
-    permissions.include? "D"
-  end
 end
 
 #class PostPermission < Permission

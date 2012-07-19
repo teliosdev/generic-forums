@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :application
-  include ApplicationHelper
-  before_filter :forum_info, :user_check
+  before_filter :forum_info
 
   protected
 
@@ -16,12 +15,20 @@ class ApplicationController < ActionController::Base
 
     @breadcrumbs = ApplicationHelper::BreadcrumbSet.new
     @breadcrumbs.add :name => "Home", :link => "/"
+
+    current_user
   end
 
-  def user_check
-    @session = Session.find
-    @user    = @session.record if @session
-    @user    = User.find(0) unless @user
+  def current_session
+    @session ||= Session.find
+  end
+
+  def current_user
+    @user ||= if current_session and current_session.record
+      current_session.record
+    else
+      User.find(0)
+    end
   end
 
   def require_login

@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   class Breadcrumb
     attr_accessor :name, :link, :info
 
@@ -37,34 +38,25 @@ module ApplicationHelper
 
   cache = {}
 
-  def resolve(item, user)
-    str = resolve_to_string(item, user)
-    res = Permission.new do |p|
-      p.permissions = str
-    end
-    res
-  end
-
-  def resolve_to_string(item, user)
-    unless item.is_a?(Post)
-      p = item.permissions.where :group_id => user.groups.map { |x| x.id }
-      str = ""
-      p.find_each do |prm|
-        str+= prm.permissions.to_s
-      end
-    end
-    str = str.split("").uniq.join("")
-    case item.class
-    when Board
-    when Rope
-      str+= resolve(item.board, user)
-    when Post
-      str+= resolve(item.thread, user)
-    end
-    str = str.split("").uniq.join("")
-  end
-
   def json_url(record)
     polymorphic_url record, :format => :json, :routing_type => :path
+  end
+
+  def board_breadcrumbs(board)
+    breadc = []
+    breadc.push :name => board.name, :link => url_for(board)
+    board_list(board).each do |board|
+      breadc.push :name => board.name, :link => url_for(board)
+    end
+    breadc
+  end
+
+  def board_list(board)
+    boards = []
+    boards.push board
+    while cboard = board.parent
+      boards.push cboard
+    end
+    boards
   end
 end

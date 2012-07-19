@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(:version => 20120707060233) do
 
   create_table "permissions", :force => true do |t|
     t.integer  "remote_id"
-    t.string   "permissions"
+    t.string   "action"
     t.integer  "group_id"
     t.string   "type"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "posts", :force => true do |t|

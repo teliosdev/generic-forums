@@ -3,7 +3,7 @@ class CreatePermissions < ActiveRecord::Migration
     create_table :permissions do |t|
       t.primary_key :id
       t.integer :remote_id
-      t.string :permissions
+      t.string :action
       t.integer :group_id
       t.string :type
 

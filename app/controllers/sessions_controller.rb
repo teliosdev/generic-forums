@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_load_and_authorize_resource
+
   def new
     if session[:login_ban_time] and session[:login_ban_time] > Time.now
       render "max_tries" and return
@@ -13,6 +15,9 @@ class SessionsController < ApplicationController
     else
       render :action => :new
     end
+  end
+
+  def delete
   end
 
   def destroy

@@ -1,17 +1,6 @@
-//@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700)
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700)
 //@import url(local.css)
-
-$blue: #0075b5
-$red: #b50000
-//$blue: $red
-//$blue: #333
-$main_font: "Open Sans"
-$background_color: #fefefe
-//$background_color: #fff
-$main_color: #444
-//$text_accent: #fff - $main_color
-$text_accent: #fff
-$body_bg: $background_color - #020202
+@import "_variables"
 
 *
   margin: 0
@@ -20,6 +9,14 @@ $body_bg: $background_color - #020202
 
 html
   background-color: $background-color
+
+::-moz-selection
+  background: #b3d4fc
+  text-shadow: none
+
+::selection
+  background: #b3d4fc
+  text-shadow: none
 
 html body
   background-color: $body_bg
@@ -184,7 +181,7 @@ html body div.breadcrumbs
       //&::after
       //  content: "/"
       //  margin-left: 7px
-      //  color: lighten($blue, 10%)
+      //  color: $light_blue
 
   &.expanded, &:hover
     height: auto
