@@ -53,6 +53,13 @@ GenericForums::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   get "sessions/delete"
 
+  namespace :admin do
+    root :to => "Dashboard#index"
+    get "index"      => "Dashboard#index",
+        "dash"       => "Dashboard#index",
+        "dash/index" => "Dashboard#index"
+  end
+
   # Sample resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController

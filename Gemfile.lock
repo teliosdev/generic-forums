@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/redjazz96/rbcode.git
+  revision: 306ed026d9dc5ea84c79b5931d495580fd6fd354
+  specs:
+    rbcode (1.2.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -124,6 +130,7 @@ DEPENDENCIES
   jquery-rails
   json
   rails (= 3.2.3)
+  rbcode!
   rdiscount
   sass-rails (~> 3.2.3)
   sqlite3

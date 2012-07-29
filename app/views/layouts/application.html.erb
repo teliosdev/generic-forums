@@ -3,8 +3,16 @@
 <head>
   <meta charset="utf-8">
 
-  <title><%= @page.title %></title>
-  <meta name="description" content="<%= @page.description %>">
+  <title>
+    <%- if content_for? :title -%>
+      <%= content_for :title -%> &mdash; <%= @forum.name -%>
+    <%- else -%>
+      <%= @forum.name + " / " + controller_name + " jes/ " + action_name -%>
+    <%- end -%>
+  </title>
+  <% if content_for? :desc %>
+    <meta name="description" content="<%= content_for :desc %>">
+  <% end -%>
 
   <meta name="viewport" content="width=device-width">
 
@@ -14,7 +22,7 @@
 </head>
 <body>
   <header>
-    <h1><%= link_to @forum.name, "/" %></h1>
+    <h1><%= link_to @forum.name, root_path %></h1>
     <div id='user-body'>
       <% if @user.id != 0 %>
         <%= link_to user_path(@user), :id => "image-wrapper" do %>

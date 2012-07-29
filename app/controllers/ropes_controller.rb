@@ -1,6 +1,5 @@
 class RopesController < ApplicationController
-  load_and_authorize_resource :board
-  load_and_authorize_resource
+
   include ApplicationHelper
 
   before_filter :load_board, :only => [:index, :show]

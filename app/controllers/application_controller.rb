@@ -10,9 +10,6 @@ class ApplicationController < ActionController::Base
     @forum.name    = GenericForums::Application.config.forum_name
     @forum.version = GenericForums::Application.config.forum_version
 
-    @page = OpenStruct.new
-    @page.title = @forum.name + " / " + controller_name + " / " + action_name
-
     @breadcrumbs = ApplicationHelper::BreadcrumbSet.new
     @breadcrumbs.add :name => "Home", :link => "/"
 
@@ -27,7 +24,7 @@ class ApplicationController < ActionController::Base
     @user ||= if current_session and current_session.record
       current_session.record
     else
-      User.find(0)
+      User.guest
     end
   end
 

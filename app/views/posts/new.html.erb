@@ -1,2 +1,15 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<h1>New Post</h1>
+<div class="editor_wrapper">
+	<%= form_for([:board, :rope, @post], :html => {:class => "for_editor"}) do |f| %>
+		<div class="gr">
+			<%= f.label :format %>
+			<%= f.select :format, options_for_select(GenericForums::Application.config.valid_formats, :selected => GenericForums::Application.config.default_format) %>
+		</div>
+		<div class="gr">
+			<%= f.text_area :body, :class => "editor editor_#{GenericForums::Application.config.default_format}" %>
+		</div>
+		<div class="gr">
+			<%= f.submit %>
+		</div>
+	<% end -%>
+</div>

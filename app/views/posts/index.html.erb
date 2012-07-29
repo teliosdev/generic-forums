@@ -1,5 +1,5 @@
+<ul class="user-opts"><li><a>Delete</a></li><li><a>Lock</a></li><li><a>Move</a></li></ul>
 <h2>Posts In `<%= @rope.title %>`</h2>
-
 <ul class="post-list">
   <% @posts.find_each do |post| %>
     <li class="post <%= "user_online" if post.user.logged_in? %>">
@@ -11,10 +11,11 @@
         <span><%= image_tag post.user.avatar %></span>
         <span><%= post.user.points %> Points</span>
       </div>
-      <div class="post-body"><%= m(post.body, :smart, :filter_html, :safelink, :autolink) %></div>
+      <div class="post-body"><%= p(post) %></div>
       <div class="post-footer">
         <span class="post-time">Posted <%= time_ago_in_words post.created_at %> ago<%= ", Updated #{time_ago_in_words post.updated_at} ago" if post.created_at != post.updated_at %></span>
         <span class="points">Points: <%= post.points %></span>
+        <span class="post-opts"><a>Reply</a></span>
       </div>
     </li>
   <% end -%>

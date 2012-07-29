@@ -10,6 +10,7 @@ gem 'sqlite3'
 gem 'json'
 gem 'rdiscount'
 gem 'cancan'
+gem 'rbcode', :github => "redjazz96/rbcode"
 
 # Gems used only for assets and not required
 # in production environments by default.

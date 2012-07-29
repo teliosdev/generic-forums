@@ -9,3 +9,6 @@ GenericForums::Application.config.user_options   = {
   :threads_per_page=> { :name => "Threads Per Page", :default => 20 },
   :posts_per_page  => { :name => "Posts Per Page", :default   => 20 }
 }
+
+GenericForums::Application.config.valid_formats  = ["markdown", "bbcode", "plain"]
+GenericForums::Application.config.default_format = "markdown"

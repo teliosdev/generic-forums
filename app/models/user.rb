@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     (last_request_at - Time.now) < 1.hour
   end
 
+  def self.guest
+    find 0
+  end
+
   #def self.authenticate(identifier, password)
   #  user = find_by_name(identifier) || find_by_email(identifier)
   #  user.try :authenticate, password

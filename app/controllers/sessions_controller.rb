@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  skip_load_and_authorize_resource
 
   def new
     if session[:login_ban_time] and session[:login_ban_time] > Time.now
