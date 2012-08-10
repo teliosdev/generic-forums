@@ -3,10 +3,10 @@
 	<%= form_for([:board, :rope, @post], :html => {:class => "for_editor"}) do |f| %>
 		<div class="gr">
 			<%= f.label :format %>
-			<%= f.select :format, options_for_select(GenericForums::Application.config.valid_formats, :selected => GenericForums::Application.config.default_format) %>
+			<%= f.select :format, options_for_select(AppConfig.valid_formats, :selected => AppConfig.default_format) %>
 		</div>
 		<div class="gr">
-			<%= f.text_area :body, :class => "editor editor_#{GenericForums::Application.config.default_format}" %>
+			<%= f.text_area :body, :class => "editor editor_#{AppConfig.default_format}" %>
 		</div>
 		<div class="gr">
 			<%= f.submit %>

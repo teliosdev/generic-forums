@@ -36,8 +36,6 @@ module ApplicationHelper
     end
   end
 
-  cache = {}
-
   def json_url(record)
     polymorphic_url record, :format => :json, :routing_type => :path
   end

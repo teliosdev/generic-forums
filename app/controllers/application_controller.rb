@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
 
   def forum_info
     @forum = OpenStruct.new
-    @forum.name    = GenericForums::Application.config.forum_name
-    @forum.version = GenericForums::Application.config.forum_version
+    @forum.name    = AppConfig.forum_name
+    @forum.version = AppConfig.forum_version
 
     @breadcrumbs = ApplicationHelper::BreadcrumbSet.new
     @breadcrumbs.add :name => "Home", :link => "/"
@@ -29,6 +29,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    raise StandardError unless responds_to?(:permission)
+    #raise StandardError unless responds_to?(:permission)
   end
 end

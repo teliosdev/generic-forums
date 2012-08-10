@@ -7,7 +7,7 @@
     <%- if content_for? :title -%>
       <%= content_for :title -%> &mdash; <%= @forum.name -%>
     <%- else -%>
-      <%= @forum.name + " / " + controller_name + " jes/ " + action_name -%>
+      <%= @forum.name + " / " + controller_name + " / " + action_name -%>
     <%- end -%>
   </title>
   <% if content_for? :desc %>

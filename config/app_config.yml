@@ -1,0 +1,44 @@
+# This is just basically the environment that the settings apply to.
+# It's recommended that you only modify the production settings and
+# run the application in a production environment.
+development:
+  # The name of the forum.  Kind of self-descriptive.  Appears at the
+  # top and bottom, and whenever it talks about itself.
+  forum_name: "{generic forums}"
+  # The version of the forum.  You may not want this to appear or
+  # something, so this is open to modification.  You don't need to
+  # though.
+  forum_version: 0.1.1
+  # The maximum amount of times AuthLogic will allow a user to try to
+  # login.  The timeout can be defined in app/models/user.rb.
+  max_login_tries: 5
+  # The valid post format; if generic forums doesn't know how to
+  # handle these, it'll treat them like the plain format.  Which means
+  # you'll probably need to install a plugin to handle the format.
+  valid_formats:
+    - markdown
+    - bbcode
+    - plain
+  # The default format to use.  This is recommended to stay as
+  # markdown, as the markdown parser is supposedly faster than the
+  # bbcode one.
+  default_format: markdown
+  # Default user options.
+  user_options:
+    # settings for the boards per page.
+    :boards_per_page:
+      # The name of the setting (note: should be moved to locale).
+      :name: Boards Per Page
+      # The default value of the setting.
+      :default: 20
+    # Settings for the threads per page.
+    :threads_per_page:
+      # The name of the setting (note: should be moved to locale).
+      :name: Threads Per Page
+      # The default value of the setting.
+      :default: 20
+    :posts_per_page:
+      # The name of the setting (note: should be moved to locale).
+      :name: Posts Per Page
+      # The default value of the setting.
+      :default: 20

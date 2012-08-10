@@ -7,3 +7,5 @@ GenericForums::Application.config.schema = {
     [ /\[(.+?)\](.*?)\[\/\1\]/, "" ]
   ]
 }
+
+require "#{Rails.root}/lib/app_config"
