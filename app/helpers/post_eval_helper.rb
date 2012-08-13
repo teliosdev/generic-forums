@@ -11,9 +11,10 @@ module PostEvalHelper
     end
 
     def score(raw)
-      @raw = ps.sanitize raw
+      @raw = ps.sanitize raw.dup
       @data = generate
       @points = ps.calculate @data
+      @points = 0 if @points[0].nan? or @points[1].nan?
     end
 
     def generate

@@ -30,6 +30,9 @@ html body
   text-shadow: 0 1px 0 $text_accent
   filter: blur(10px)
 
+  .gray
+    color: $gray_color
+
 html body a
   color: $blue
   text-decoration: none
@@ -362,6 +365,16 @@ html body div#main
             display: inline-block
             width: (960px - (150px + 20px))
             margin-left: (150px + 15px)
+
+            code
+              padding: 0 3px
+              font-size: 140%
+              border: 1px solid darken($body_bg, 20%)
+              background-color: darken($body_bg, 4%)
+              border-radius: 2px
+
+            pre > code
+              display: block
 
           div.post-footer
             background-color: transparentize($blue, .9)

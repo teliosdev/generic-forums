@@ -2,11 +2,15 @@ class BoardsController < ApplicationController
 
 	before_filter :load_board
 
+  before_filter :check_permissions, :only => [:show]
+
   def index
   end
 
   def show
-    @children = Board.where(:parent_id => @board.id)
+    @children = Board.where(:parent_id => @board.id).select do |c|
+      can? :read, c
+    end
   end
 
   protected
@@ -17,7 +21,13 @@ class BoardsController < ApplicationController
   	elsif params[:board_id]
   		@board = Board.find params[:board_id]
   	else
-  		@boards = Board.scoped
+  		@boards = Board.scoped.select do |b|
+        can? :read, b
+      end
   	end
+  end
+
+  def check_permissions
+    render 'error/404' unless can? :read, @board
   end
 end

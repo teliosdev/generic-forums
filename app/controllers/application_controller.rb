@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     @forum.name    = AppConfig.forum_name
     @forum.version = AppConfig.forum_version
 
-    @breadcrumbs = ApplicationHelper::BreadcrumbSet.new
+    @breadcrumbs = BreadcrumbHelper::BreadcrumbSet.new
     @breadcrumbs.add :name => "Home", :link => "/"
 
     current_user

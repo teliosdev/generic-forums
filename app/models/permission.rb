@@ -1,8 +1,10 @@
 class Permission < ActiveRecord::Base
-  attr_accessible :group_id, :remote_id, :action, :group, :type
+  attr_accessible :group_id, :remote_id, :action, :group, :type, :negate
   belongs_to :group
   has_many :users, :through => :group
   belongs_to :remote, :polymorphic => true
+
+  set_inheritance_column '_type'
 
   validates :group_id,
     :presence     => true,

@@ -6,7 +6,7 @@
     <span class="head size20">Last Post</span>
     <span class="head size20">Active Threads</span>
   </li>
-  <% @children.find_each do |board| %>
+  <% @children.each do |board| %>
     <li class='data-row'>
       <span class="data board-name size50"><%= link_to board.name, board %></span>
       <span class="data basic-data size20">???</span>

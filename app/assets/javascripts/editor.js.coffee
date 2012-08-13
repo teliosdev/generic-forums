@@ -14,16 +14,24 @@ class window.Editor
     @element.wrap('<div id="wrapper_'+randomName+'" class="editor_wrapper" />')
     @wrapper = $ "#wrapper_#{randomName}"
 
+  updateSyntax: (syntax)->
+    @syntax = syntax
+    console.log "changing syntax to", syntax
+    @_addIcons()
+    @syntax.afterConstructorCallback(this)
+
   _addIcons: ->
-    @wrapper.prepend("<div class='icon_container'></div>")
+    @wrapper.children(".icon_container").remove()
+    @wrapper.prepend "<div class='icon_container'></div>"
     @iconContainer = @wrapper.children ".icon_container"
     for name, contents of @syntax.iconList
       @iconContainer.append "<a class='icon' data-name='#{name}' title='#{name.replace(/\_/g," ")}'>#{contents}</a>"
 
-  _bindElements: ->
     @iconContainer.children("a").on("click", this, (event)->
       event.data.iconCallback $(this), event
     )
+
+  _bindElements: ->
     @element.on("keyup", this, (event)->
       event.data.keyUpCallback event
     )

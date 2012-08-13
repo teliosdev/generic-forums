@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120727023107) do
+ActiveRecord::Schema.define(:version => 20120811162448) do
 
   create_table "boards", :force => true do |t|
     t.string   "name"
@@ -35,18 +35,21 @@ ActiveRecord::Schema.define(:version => 20120727023107) do
     t.string   "action"
     t.integer  "group_id"
     t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "negate",     :default => false
   end
+
+  add_index "permissions", ["remote_id"], :name => "index_permissions_on_remote_id"
 
   create_table "posts", :force => true do |t|
     t.text     "body"
     t.integer  "user_id"
     t.integer  "rope_id"
     t.decimal  "points",     :precision => 16, :scale => 2, :default => 0.0
-    t.datetime "created_at",                                                 :null => false
-    t.datetime "updated_at",                                                 :null => false
-    t.string   "format"      :default => "markdown"
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
+    t.string   "format",                                    :default => "markdown"
   end
 
   add_index "posts", ["rope_id"], :name => "index_posts_on_rope_id"
@@ -56,9 +59,11 @@ ActiveRecord::Schema.define(:version => 20120727023107) do
     t.string   "title"
     t.integer  "board_id"
     t.integer  "user_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "posts_count", :default => 0
+    t.boolean  "is_ghost",    :default => false
+    t.text     "ghost_data"
   end
 
   add_index "ropes", ["board_id"], :name => "index_ropes_on_board_id"

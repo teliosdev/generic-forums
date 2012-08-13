@@ -10,8 +10,11 @@ development:
   # though.
   forum_version: 0.1.1
   # The maximum amount of times AuthLogic will allow a user to try to
-  # login.  The timeout can be defined in app/models/user.rb.
+  # login.  Set to 0 to disable.
   max_login_tries: 5
+  # The timeout between exceeding amount of login tries.  Set to 0 for
+  # a permanent ban.  This is in seconds.
+  exceed_login_timeout: 1800
   # The valid post format; if generic forums doesn't know how to
   # handle these, it'll treat them like the plain format.  Which means
   # you'll probably need to install a plugin to handle the format.

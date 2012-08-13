@@ -15,7 +15,7 @@
       <div class="post-footer">
         <span class="post-time">Posted <%= time_ago_in_words post.created_at %> ago<%= ", Updated #{time_ago_in_words post.updated_at} ago" if post.created_at != post.updated_at %></span>
         <span class="points">Points: <%= post.points %></span>
-        <span class="post-opts"><a>Reply</a></span>
+        <span class="post-opts"><%= link_to "Reply", new_board_rope_post_path if can? :post, @rope %></span>
       </div>
     </li>
   <% end -%>

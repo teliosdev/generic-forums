@@ -8,7 +8,12 @@ module PostsHelper
   end
 
   def b(string, *args)
-  	RBCode.new(string, *args).to_html.html_safe
+    puts "BBCODE_PARSER" + ("_" * 20)
+    puts "input : #{string}"
+  	o = RBCode.new(string, *args).to_html.html_safe
+    puts "output: #{o}"
+    puts "DONE_________" + ("_"*20)
+    o
   end
 
   def p(post)

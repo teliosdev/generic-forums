@@ -4,7 +4,8 @@ GenericForums::Application.config.schema = {
     :words   => { :ratios => { :number_to_possible => 10 } },
     :sentences => { :ratios => { :proper_to_count => 10 } }
   }, :clean => [
-    [ /\[(.+?)\](.*?)\[\/\1\]/, "" ]
+    [ /\[(.+?)\](.*?)\[\/\1\]/, "" ],
+    [ /\n=+/, "" ]
   ]
 }
 

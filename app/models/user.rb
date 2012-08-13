@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   validates :name,
     :presence => true,
-    :format => { :with => /\A[a-zA-Z0-9\-\_]+\Z/, :message => "has non-alphanumeric characters" },
+    :format => { :with => /\A[a-zA-Z0-9\-\_]+\Z/ },
     :length => { :in => 3..20 },
     :uniqueness => true
 
@@ -21,10 +21,6 @@ class User < ActiveRecord::Base
     c.logged_in_timeout    1.hour
     c.login_field          :name
     c.crypto_provider      Authlogic::CryptoProviders::BCrypt
-  end
-
-  def logged_in?
-    (last_request_at - Time.now) < 1.hour
   end
 
   def self.guest
