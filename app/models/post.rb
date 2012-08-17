@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
   include PostEvalHelper
 
   def calculate_points
-    points = Eval.new.score(body)[1].round(2)
+    points = (Eval.new.score(body) || [0,0])[1].round(2)
     write_attribute(:points, points)
     user.update_attribute(:points,
       user.points +=

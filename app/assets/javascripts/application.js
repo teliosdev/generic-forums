@@ -15,4 +15,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require jquery_fieldselection
+//= require format/formatter
+//= require home
+//= require posts
+//= require_tree ./plugin

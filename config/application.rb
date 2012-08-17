@@ -55,7 +55,7 @@ module GenericForums
     # Enable the asset pipeline
     config.assets.enabled = true
 
-    config.assets.append_path 'lib/assets/javasripts'
+    config.assets.append_path "#{Rails.root}/lib/assets/javasripts/"
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'

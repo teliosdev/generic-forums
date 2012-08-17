@@ -107,3 +107,5 @@ class window.Editor
     88: "x",
     70: "f"
   }
+
+window.Editor.version = "1.2.1"

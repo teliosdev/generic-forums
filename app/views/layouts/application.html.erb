@@ -17,7 +17,6 @@
   <meta name="viewport" content="width=device-width">
 
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -63,6 +62,8 @@
   <footer>
     <%= @forum.name %> version <%= @forum.version %>
   </footer>
+
+  <%= javascript_include_tag "application" %>
 
   <!--<script>
     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

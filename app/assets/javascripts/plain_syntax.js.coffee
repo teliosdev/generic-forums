@@ -1,3 +1,0 @@
-class window.PlainSyntax
-
-  afterConstructorCallback: ()->

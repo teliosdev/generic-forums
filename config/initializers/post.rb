@@ -9,4 +9,9 @@ GenericForums::Application.config.schema = {
   ]
 }
 
+require "#{Rails.root}/lib/formatter/formatter"
+
+Formatter::Register.register :markdown, RDiscount
+Formatter::Register.register :bbcode, RBCode
+
 require "#{Rails.root}/lib/app_config"
