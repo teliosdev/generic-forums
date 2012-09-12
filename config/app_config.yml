@@ -15,13 +15,6 @@ development:
   # The timeout between exceeding amount of login tries.  Set to 0 for
   # a permanent ban.  This is in seconds.
   exceed_login_timeout: 1800
-  # The valid post format; if generic forums doesn't know how to
-  # handle these, it'll treat them like the plain format.  Which means
-  # you'll probably need to install a plugin to handle the format.
-  valid_formats:
-    - markdown
-    - bbcode
-    - plain
   # The default format to use.  This is recommended to stay as
   # markdown, as the markdown parser is supposedly faster than the
   # bbcode one.

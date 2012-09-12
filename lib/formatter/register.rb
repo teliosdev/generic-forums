@@ -23,5 +23,9 @@ class Formatter::Register
 				@formats[format].new(text).send("to_#{output.to_s}")
 			end
 		end
+
+		def format_list
+			(@formats ||= {}).keys
+		end
 	end
 end

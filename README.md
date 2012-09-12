@@ -8,7 +8,7 @@ The coolest forums you'll ever find.
 
 to be written.
 
-## Formats ##
+### Formats ###
 
 to be written.
 

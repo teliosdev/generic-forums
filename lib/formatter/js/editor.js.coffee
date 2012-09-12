@@ -199,4 +199,7 @@
 
 	exports.Tools = new Tools()
 
+	# Just a namespace for defining all of the parsers.
+	exports.Parsers = {}
+
 )(window)

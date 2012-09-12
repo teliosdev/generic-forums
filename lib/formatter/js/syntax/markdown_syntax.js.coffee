@@ -6,7 +6,7 @@
 			@editor.info.linkIncrement = 0
 
 		render: (text)->
-			window.MarkdownParser.toHTML(text)
+			exports.Parsers.MarkdownParser.toHTML(text)
 
 		supportsPreview: true
 

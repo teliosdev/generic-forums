@@ -3,7 +3,7 @@
   # Instead of the node hirearchy in rbcode, this does a linear list
   # of the things in the string.
 
-  class exports.BBCodeParser
+  class exports.Parsers.BBCodeParser
     constructor: (@string)->
 
     addNode: (type)=>

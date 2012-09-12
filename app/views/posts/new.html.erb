@@ -3,7 +3,7 @@
 	<%= form_for([:board, :rope, @post], :html => {:class => "for_editor"}) do |f| %>
 		<div class="gr">
 			<%= f.label :format %>
-			<%= f.select :format, options_for_select(AppConfig.valid_formats, :selected => AppConfig.default_format) %>
+			<%= f.select :format, options_for_select(Formatter::Register.format_list, :selected => AppConfig.default_format) %>
 		</div>
 		<div class="gr">
 			<%= f.text_area :body, :class => "editor editor_#{AppConfig.default_format}" %>
