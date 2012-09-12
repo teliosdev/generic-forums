@@ -5,7 +5,9 @@ module PostsHelper
   end
 
   def p(post)
-    f = Formatter.new(post.body, post.format)
-    f.render
+  	puts "FORMATTER" + ("_" * 20)
+  	puts YAML.dump post
+    f = Formatter.new(post.body, post.format.to_sym)
+    f.render.html_safe
   end
 end

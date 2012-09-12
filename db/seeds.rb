@@ -15,19 +15,22 @@ Group.create! [
 guest_pass = SecureRandom.hex(5)
 User.create! :name => "guest", :password => guest_pass, :password_confirmation => guest_pass, :email => "guest@localhost.com", :avatar => "" do |u|
   u.id = 0
-  u.groups << Group.find(1)
+  u.group_ids = [1]
+  #u.groups << Group.find(1)
 end
 User.create! :name => "admin", :password => "admin", :password_confirmation => "admin", :email => "admin@localhost.com", :avatar => "/admin.png" do |u|
-  u.groups << Group.find(1)
-  u.groups << Group.find(2)
-  u.groups << Group.find(3)
+  #u.groups << Group.find(1)
+  #u.groups << Group.find(2)
+  #u.groups << Group.find(3)
+  u.group_ids = [1,2,3]
 end
 system_pass = SecureRandom.hex(5)
 User.create! :name => "system", :password => system_pass, :password_confirmation => system_pass, :email => "system@localhost.com", :avatar => "/system.png" do |u|
-  u.groups << Group.find(1)
-  u.groups << Group.find(2)
-  u.groups << Group.find(3)
-  u.groups << Group.find(4)
+  #u.groups << Group.find(1)
+  #u.groups << Group.find(2)
+  #u.groups << Group.find(3)
+  #u.groups << Group.find(4)
+  u.group_ids = [1,2,3,4]
 end
 
 Board.create! [
@@ -55,7 +58,7 @@ b.ropes.find(3).posts.create! :user => User.find(1), :format => "markdown", :bod
 # Welcome to Generic Forums! #
 We hope that your experience with these forums will be a pleasant one.  If you have any problems setting it up, you can just contact us at <redjazz96@gmail.com>.
 
-Have a pleasant trip!
+Thanks for using Generic Forums!
 BODY
 
 b.permissions.create! :action => :read, :type => "Board", :group => Group.find(1)

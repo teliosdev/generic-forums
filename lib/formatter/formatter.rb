@@ -22,7 +22,7 @@ class Formatter
 
 	def initialize(plain, format)
 		@format   = format
-		@raw      = raw
+		@raw      = plain
 		@register = ::Formatter::Register
 	end
 

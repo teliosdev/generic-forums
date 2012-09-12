@@ -1,0 +1,201 @@
+// post-specific styling
+@import "fonts"
+@import "variables"
+
+body
+	div.wrapper
+		div#main
+
+			div#location
+
+				ul#trail
+					list-style-type: none
+					padding: 0
+					margin: 0
+
+					li
+						display: inline-block
+						color: $light_gray
+
+						a
+							color: $trail_blue
+
+						&:not(:first-child):before
+							content: " \00BB "
+
+				h2
+					margin: 0
+					padding: 0
+					font-weight: normal
+					a
+						color: $blue_color
+						font-family: $title_font
+
+						&:hover
+							color: $ah_blue
+
+			div.thread_info
+				border:
+					top: 1px solid $light_blue
+					bottom: 1px solid $light_blue
+				margin-top: 15px
+
+				div.page_info
+					padding: 7px 0
+					color: $light_gray
+
+					span.dash
+						padding: 0 3px
+
+					p
+						padding: 0
+						margin: 0
+						display: inline-block
+
+					ul.linkset, ul.mod_opts
+						display: inline-block
+						list-style-type: none
+						margin: 0
+						padding: 0
+
+						li
+							display: inline
+
+							&:not(:first-child):before
+								content: "\00B7"
+								padding-left:  1px
+								padding-right: 4px
+
+					ul.mod_opts
+						float: right
+
+			ul.post_list
+				margin: 0
+				padding: 0
+				list-style-type: none
+
+				li.post
+					padding: 0
+					padding-top: 20px
+					display: block
+
+					div.user_info
+						width: 150px
+						float: left
+						padding-left: 5px
+						padding-bottom: 20px
+
+						span.username
+							font-weight: bold
+
+						div.user_image
+							margin: 10px
+							text-align: center
+
+						div.user_data
+							color: $light_gray
+
+							p
+								margin: 0
+								padding: 0
+
+					div.post_info
+						border:
+							top: 1px solid $light_blue
+							bottom: 1px solid $light_blue
+						padding: 7px 2px
+						margin-top: 20px
+						clear: both
+
+						ul.post_opts
+							list-style-type: none
+							display: inline-block
+							margin: 0
+							padding: 0
+							float: right
+
+							li
+								display: inline
+
+								&:not(:first-child):before
+									content: "\00B7"
+									padding-left:  1px
+									padding-right: 4px
+
+
+					div.post_data
+						//display: inline-block
+						padding-left: 150px
+						width: ((960px - 150px) - (10px + 10px))  - 1px
+
+.popup_container
+	.popup
+		display: none
+
+		form
+			display: none
+
+			div
+				display: none
+
+div.reply_box
+
+	div.editor_wrapper
+		border: 1px solid $trail_blue
+		padding: 10px
+		padding-top: 0
+		margin-bottom: 5px
+
+		div.high_bar
+			padding: 4px
+			padding-top: 7px
+			border-bottom: 1px solid $light_blue
+			clear: both
+			min-height: 25px
+
+			div.icon_container
+				padding-top: 2px
+				display: inline-block
+
+				a.icon
+					color: $main_color
+					padding-left: 3px
+
+			div.format_select
+				float: right
+				display: inline-block
+
+				select
+					border: 1px solid $light_blue
+					background: url(img/out.png) no-repeat right transparent
+					outline: none
+					color: $main_color
+
+		textarea
+			border: none
+			width: (960px - (2px) - (20px) - (20px))
+			min-height: 100px
+			outline: none
+			padding: 8px 5px
+			color: $main_color
+
+	div.error
+		display: inline-block
+		color: $error_red
+
+	input.submit
+		float: right
+		background: transparent
+		color: $a_blue
+		border: none
+
+		&:hover
+			color: $ah_blue
+
+html.js div.reply_box div.editor_wrapper div.output_wrapper
+	border-top: 1px solid $light_blue
+	padding: 10px 15px
+	width: 958px - (15px * 2)
+	padding-bottom: 8px - 5px
+	margin-top: 5px
+	margin-left: -10px

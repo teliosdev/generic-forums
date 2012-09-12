@@ -1,75 +1,88 @@
 <!doctype html>
-<html class="<%= controller_name %> <%= controller_name %>_<%= action_name %>" lang="en">
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js <%= controller_name %> <%= controller_name %>_<%= action_name %>" lang="en"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>
     <%- if content_for? :title -%>
       <%= content_for :title -%> &mdash; <%= @forum.name -%>
     <%- else -%>
       <%= @forum.name + " / " + controller_name + " / " + action_name -%>
-    <%- end -%>
-  </title>
+    <%- end -%></title>
+
   <% if content_for? :desc %>
     <meta name="description" content="<%= content_for :desc %>">
   <% end -%>
 
-  <meta name="viewport" content="width=device-width">
-
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tag %>
+
+  <script src="js/libs/modernizr-2.5.3.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1><%= link_to @forum.name, root_path %></h1>
-    <div id='user-body'>
-      <% if @user.id != 0 %>
-        <%= link_to user_path(@user), :id => "image-wrapper" do %>
-          <%= image_tag @user.avatar, :height => 32, :width => 32, :id => "image" %>
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  <div class="wrapper">
+    <div id="wide_border"><header class="clearfix">
+      <h1 id="title"><%= link_to @forum.name, root_path %></h1>
+      <div id="user_info">
+        <% if @user and @user.id != 0 %>
+          <div id="user_image">
+            <%= image_tag((@user.avatar || "admin.png"), :height => 32, :width => 32, :id => "image") %>
+          </div>
+          <div id="user_data">
+            <p>Howdy, <%= link_to @user.name, user_path(@user) %></p>
+            <ul id="user_opts">
+              <li><%= link_to "Inbox", "#{user_path(@user)}/inbox" %></li>
+              <li><%= link_to "Settings", edit_user_path(@user) %></li>
+              <li><%= link_to "Logout", url_for(:controller => "sessions", :action => "delete") %></li>
+            </ul>
+          </div>
+        <% else %>
+          <div id="user_data">
+            <p>Howdy, guest!</p>
+            <ul id="user_opts">
+              <li><%= link_to "Login", new_session_path %></li>
+              <li><%= link_to "Register", new_user_path %></li>
+            </ul>
+          </div>
         <% end -%>
-        <ul id='user-info'>
-            <li><%= link_to @user.name, user_path(@user) %></li>
-            <li><%= link_to "inbox", "#{user_path(@user)}/inbox" %></li>
-            <li><%= link_to "settings", edit_user_path(@user) %></li>
-            <li><%= link_to "logout", url_for(:controller => "sessions", :action => "delete") %></li>
+      </div>
+    </header></div>
+    <a name="#top"></a>
+    <div role="main" id="main">
+      <div id="location">
+        <% last_crumb = @breadcrumbs[@breadcrumbs.length-1] %>
+        <ul id="trail">
+          <% @breadcrumbs.each do |crumb| %>
+            <% next if crumb == last_crumb %>
+            <li><%= link_to crumb.name, crumb.link %></li>
+          <% end -%>
         </ul>
-      <% else %>
-        <ul id='user-info'>
+        <h2><%= link_to last_crumb.name, last_crumb.link %></h2>
+      </div>
 
-          <li><%= link_to "login", new_session_path %></li>
-          <li><%= link_to "register", new_user_path %></li>
-        </ul>
-      <% end -%>
+      <%= yield %>
     </div>
-  </header>
-  <div class='breadcrumbs'>
-    <ul class='bread-list'>
-      <% @breadcrumbs.each do |crumb| %>
-        <li class='breadcrumb'>
-          <%= link_to crumb.name, crumb.link %>
-          <span class='triangle'></span>
-          <span class='triangle-border'></span>
-        </li>
-      <% end -%>
-    </ul>
+    <footer>
+      <p><%= @forum.name %> &middot; version <%= @forum.version %> &middot; <%= link_to "About", "/home/about" %> &middot; <a href="##top">Back to top</a></p>
+    </footer>
   </div>
-  <% if flash[:error] %>
-    <div class='error'><span class='content'><%= flash[:error] %></span></div>
-  <% end -%>
-  <div role="main" id="main">
-    <%= yield %>
-  </div>
-  <footer>
-    <%= @forum.name %> version <%= @forum.version %>
-  </footer>
 
-  <%= javascript_include_tag "application" %>
 
-  <!--<script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+
+  <script src="js/plugins.js"></script>
+  <script src="js/script.js"></script>
+
+  <script>
     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
-  </script>-->
+  </script>
 </body>
 </html>

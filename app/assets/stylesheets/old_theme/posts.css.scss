@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "variables";
+
 html body div#main {
   ul.post-list {
     li.post {
@@ -22,7 +24,23 @@ html body div#main {
       &.user_online {
         div.user-data span.username {
           display: inline-block;
-          border-bottom: 3px dotted green;
+          //border-bottom: 3px dotted green;
+        }
+      }
+
+      div.post-body {
+        blockquote {
+          border-left: 1px solid $light_blue;
+          padding-left: 10px;
+          margin-top: 5px;
+        }
+
+        code {
+          padding: 2px 5px;
+          font-size: 100%;
+          border-color: $light_blue;
+          border-radius: 0;
+          font-family: Monaco, Courier, monospace;
         }
       }
     }

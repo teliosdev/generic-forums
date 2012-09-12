@@ -1,0 +1,93 @@
+@import "fonts"
+@import "variables"
+@import "normalize.css"
+
+// Main Styling
+body
+	background-color: #fff
+
+	a
+		color: $a_blue
+		text-decoration: none
+
+		&:hover
+			color: $ah_blue
+
+	div.wrapper
+		//width: 960px
+		//margin: auto
+		font-family: $main_font
+		color: $main_color
+		font-size: 13px
+
+		div#wide_border
+			border-bottom: 1px solid $light_blue
+
+		header
+			padding: 10px
+			width: 960px
+			margin: 0 auto
+
+			h1#title
+				font-family: $title_font
+				color: $blue_color
+				font-weight: normal
+				font-size: 40px
+				display: inline-block
+				margin: 0
+				padding: 0
+
+			div#user_info
+				display: inline-block
+				float: right
+
+				div#user_image
+					display: inline-block
+					vertical-align: top
+
+
+				div#user_data
+					display: inline-block
+					color: $light_gray
+					font-size: 13px
+					padding: 5px
+
+					//a
+					//	color: $header_a
+
+					p
+						padding: 0
+						margin: 0
+						display: block
+						padding-bottom: 10pxs
+
+					ul#user_opts
+						list-style-type: none
+						margin: 0
+						padding: 0
+						display: inline
+
+						li
+							display: inline-block
+							margin: 0
+							padding: 0
+
+							&:not(:first-child):before
+								content: "\00B7"
+								padding-left:  1px
+								padding-right: 4px
+
+		footer
+			color: $light_gray
+			text-align: center
+
+		div#main
+			width: 960px
+			margin: auto
+			margin-top: 30px
+
+// post Styling
+@import "posts"
+
+// clearfix, etc
+@import "clfix"

@@ -20,7 +20,7 @@ class Formatter::Register
 			if @formats[format].is_a? Proc
 				@formats[format].call(text, output)
 			else
-				@formats[format].new(text).send("to_#{output}")
+				@formats[format].new(text).send("to_#{output.to_s}")
 			end
 		end
 	end

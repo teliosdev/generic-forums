@@ -45,3 +45,10 @@ development:
       :name: Posts Per Page
       # The default value of the setting.
       :default: 20
+  # The default groups that a registering user belongs to.  This
+  # basically defines the groups that most users on the site will have
+  # (unless you use a cron or such to remove groups).
+  default_user_groups:
+    - guest # So the user inherits all of the guest properties
+            # This includes negation, so be careful!
+    - user

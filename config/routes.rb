@@ -49,7 +49,7 @@ GenericForums::Application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users, :only => [:new, :create, :show, :index, :edit]
   resources :sessions, :only => [:new, :create, :destroy]
   get "sessions/delete"
 

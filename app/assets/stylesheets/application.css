@@ -12,8 +12,6 @@
  * plugin stylesheets come after these stylesheets, and should be located in ./plugin/.
  *
  *= require_self
- *= require style
- *= require editor
- *= require posts
- *= require_tree ./plugin
+ *= require new_theme
+ *= require plugin
 */

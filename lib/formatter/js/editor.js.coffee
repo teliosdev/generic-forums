@@ -30,6 +30,7 @@
 			@_bindEvents()
 			@_addOutputView()
 			@updateOutput()
+			@hadPreviousSyntax = true
 
 		# The callback handler for the icons that are added in
 		# +_addIcons+.  Checks the syntax's eventHandlers
@@ -78,7 +79,7 @@
 			# we don't need to do anything if there is no iconList from the
 			# syntax.
 			return if @syntax["iconList"] == null
-			@wrapper.prepend "<div class='icon_container'></div>"
+			@wrapper.prepend "<div class='icon_container'></div>" unless @wrapper.children(".icon_container").length > 0
 			@iconContainer = @wrapper.children ".icon_container"
 
 			for name, contents of @syntax.iconList
@@ -101,15 +102,15 @@
 		# done more than once.
 		_wrapElement: ()->
 			randomName = (Math.random() * 10000).toFixed()
-			@element.wrap('<div id="wrapper_'+randomName+'" class="editor_wrapper" />')
-			@wrapper = $ "#wrapper_#{randomName}"
+			@element.wrap('<div class="editor_wrapper" />') unless @element.parent().hasClass("editor_wrapper")
+			@wrapper = @element.parent(".editor_wrapper")
 
 		# Adds the output view to the wrapper if its needed.  Sets
 		# +@output+ to the output view if the syntax supports output,
 		# otherwise it sets it to a non-existant element.
 		_addOutputView: ()->
 			if @syntax.supportsPreview
-				@wrapper.append "<div class=\'output_wrapper\'><p>Output:</p></div>"
+				@wrapper.append("<div class='output_wrapper'></div>") unless @wrapper.children(".output_wrapper").length > 0
 				@wrapper.children('.output_wrapper').append("<div class='editor_output'></div>")
 				@output = @wrapper.children('.output_wrapper').children('.editor_output')
 			else
@@ -129,8 +130,9 @@
 		# Clean the editor box up so another syntax can be applied.  This
 		# removes the output view, and removes the icons.
 		_cleanSyntax: ()->
-			@iconContainer.remove()
+			#@iconContainer.remove()
 			@wrapper.children(".output_wrapper").remove()
+			@iconContainer.children("a").remove()
 
 		eventHandlers:
 			iconPress:

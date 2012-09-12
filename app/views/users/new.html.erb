@@ -1,0 +1,31 @@
+<%= form_for @user do |f| %>
+<div class='gr'><h2>Login</h2></div>
+  <% if @user.errors.any? %>
+    <div class="gr error">
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end -%>
+      </ul>
+    </div>
+  <% end -%>
+  <div class="gr">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="gr">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class="gr">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="gr">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div class="gr">
+    <%= f.submit "Register" %>
+  </div>
+<% end -%>

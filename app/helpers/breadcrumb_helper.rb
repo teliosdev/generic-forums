@@ -26,6 +26,10 @@ module BreadcrumbHelper
       @_set.push value
     end
 
+    def length
+      @_set.length
+    end
+
     def add(opt)
       push Breadcrumb.new(opt[:name], opt[:link])
     end
