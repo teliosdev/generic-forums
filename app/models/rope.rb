@@ -5,6 +5,10 @@ class Rope < ActiveRecord::Base
   has_many :permissions, :foreign_key => :remote_id, :inverse_of => :remote, :conditions => { :type => "Rope" }
   attr_accessible :title, :board, :user, :board_id, :user_id
 
+  default_scope order("updated_at")
+
+  #scope
+
   serialize :ghost_data
 
   def ghost

@@ -11,7 +11,7 @@
 		# representation of the syntax to use, i.e. "bbcode" or "plain".
 		#
 		# calls +_wrapElement+ before calling +changeSyntax+.
-		constructor: (@element, @syntaxType)->
+		constructor: (@element, @syntaxType, @opts)->
 			@hadPreviousSyntax = false
 			@t = exports.Tools
 			@info = { ctrlPressed: false }
@@ -21,14 +21,16 @@
 		# change the syntax to another type.  If the editor had a previous
 		# syntax, it cleans that one up first (i.e. remove the icons bar).
 		# Calls all of the nessicary functions to change the syntax.
-		changeSyntax: (syntax)->
+		changeSyntax: (syntax, opts=@opts)->
 			if @hadPreviousSyntax
 				@_cleanSyntax()
+
+			ret = @_parseOpts(opts)
 			@syntax = exports.FormatRegister.findFormat(syntax)
 			return if @syntax == null
-			@_addIcons()
+			@_addIcons(ret)
 			@_bindEvents()
-			@_addOutputView()
+			@_addOutputView(ret)
 			@updateOutput()
 			@hadPreviousSyntax = true
 
@@ -73,14 +75,30 @@
 
 		# protected methods
 
+		# Parse the options that were passed by opts
+		_parseOpts: (opts)->
+			return {} unless opts isnt null
+			ret = {}
+			unless opts["iconContainer"] is null
+				@iconContainer = opts["iconContainer"]
+				ret["iconContainer"] = true
+
+			unless opts["output"] is null
+				@output = opts["output"]
+				ret["output"] = true
+
+			return ret
+
 		# Adds the icons and the icon bar to the top of the editor.  Takes
 		# the list from the syntax.
-		_addIcons: ()->
+		_addIcons: (ret)->
 			# we don't need to do anything if there is no iconList from the
 			# syntax.
 			return if @syntax["iconList"] == null
-			@wrapper.prepend "<div class='icon_container'></div>" unless @wrapper.children(".icon_container").length > 0
-			@iconContainer = @wrapper.children ".icon_container"
+
+			unless ret["iconContainer"]
+				@wrapper.prepend "<div class='icon_container'></div>" unless @wrapper.children(".icon_container").length > 0
+				@iconContainer = @wrapper.children ".icon_container"
 
 			for name, contents of @syntax.iconList
 				@iconContainer.append "<a class='icon' data-name='#{@t.escapeHTML(name)}' title='#{@t.escapeHTML(name.replace(/\_/g," "))}'>#{contents}</a>"
@@ -108,8 +126,11 @@
 		# Adds the output view to the wrapper if its needed.  Sets
 		# +@output+ to the output view if the syntax supports output,
 		# otherwise it sets it to a non-existant element.
-		_addOutputView: ()->
+		_addOutputView: (ret)->
 			if @syntax.supportsPreview
+				if ret["output"] or @hadPreviousSyntax
+					@output.text("")
+					return @output.show()
 				@wrapper.append("<div class='output_wrapper'></div>") unless @wrapper.children(".output_wrapper").length > 0
 				@wrapper.children('.output_wrapper').append("<div class='editor_output'></div>")
 				@output = @wrapper.children('.output_wrapper').children('.editor_output')
@@ -131,7 +152,7 @@
 		# removes the output view, and removes the icons.
 		_cleanSyntax: ()->
 			#@iconContainer.remove()
-			@wrapper.children(".output_wrapper").remove()
+			@wrapper.children(".output_wrapper").hide()
 			@iconContainer.children("a").remove()
 
 		eventHandlers:

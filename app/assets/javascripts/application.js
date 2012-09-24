@@ -16,7 +16,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery_fieldselection
-//= require format/formatter
+//= require modernizr
 //= require home
-//= require posts
-//= require_tree ./plugin
+//= require editor

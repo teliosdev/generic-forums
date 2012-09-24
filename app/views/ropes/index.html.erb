@@ -1,16 +1,36 @@
-<h2>Threads In <%= @board.name %></h2>
+<!--<h2>Threads In <%= @board.name %></h2>-->
 
-<ul class='thread-list'>
-  <li class='header-row'>
+<div class="thread_info">
+  <div class="page_info">
+    <p>Page <%= @threads.current_page %> of <%= @threads.total_pages %>
+      <%- if @threads.total_pages > 1 -%>
+        <span class="dash">&mdash;</span>
+      <%- end -%>
+    </p>
+    <%= paginate @threads %>
+    <ul class="mod_opts">
+    </ul>
+</div></div>
+<ul class='thread_list abnormal'>
+  <li class='header_row'>
     <span class='head size50'>Thread Name</span>
     <span class="head size20">Last Post</span>
     <span class="head size20">Posts</span>
   </li>
   <% @threads.each do |thread| %>
-    <li class='data-row'>
-      <span class="data board-name size50"><%= link_to thread.title, board_rope_posts_path(@board, thread) %></span>
-      <span class="data basic-data size20"><%= thread.posts.first || "&nbsp;".html_safe %></span>
-      <span class="data basic-data size20"><%= thread.posts.size - 1 %></span>
+    <% next if cannot? :read, thread %>
+    <li class='data_row'>
+      <div class="data board_name size50">
+        <span class="sup header_font"><%= link_to thread.title, board_rope_posts_path(@board, thread) %></span>
+        <span class="sub gray">Posted by <%= link_to thread.user.name, thread.user %> on <%= thread.created_at.strftime("%b %-d '%y") %></span>
+      </div>
+      <div class="data basic_data size20">
+        <span class="sup"><%= pluralize((thread.posts.size.fdiv @user.per_page(:posts)).ceil, "Page") %></span>
+        <span class="sub"><%= paginate thread.posts.page(0).per(@user.per_page(:posts)) %></span>
+      </div>
+      <div class="data basic_data size20">
+        <span class="sup"><%= pluralize(thread.posts.size-1, "post") %></span>
+      </div>
     </li>
   <% end -%>
 </ul>

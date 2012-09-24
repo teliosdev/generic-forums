@@ -53,7 +53,7 @@ body
 					padding: 5px
 
 					//a
-					//	color: $header_a
+					//  color: $header_a
 
 					p
 						padding: 0
@@ -85,9 +85,61 @@ body
 			width: 960px
 			margin: auto
 			margin-top: 30px
+			line-height: 22px
+
+			h1, h2, h3, h4, h5, h6
+				font-family: $title_font
+				font-weight: normal
+
+			code
+				font-family: $mono_font
+				padding: 0 2px
+				color: darken($main_color, 10%)
+
+				//color: $error_red
+
+			pre > code
+				border: 1px solid $light_blue
+				border-radius: 2px
+				display: block
+				padding: 5px
+
+			nav.pagination
+				display: inline-block
+				margin: 0
+				padding: 0
+				text-align: bottom
+
+				span.page
+					font-style: normal
+
+					&:not(:first-child):before
+						content: "\00B7"
+						color: $main_color
+						padding: 9 1px
+
+				span.previous:after, span.next:before
+					content: "\00B7"
+					color: $main_color
+					padding: 0 1px
+
+				span.first:after, span.last:before
+					content: "\00B7"
+
+			ul:not(.abnormal)
+				list-style-type: none
+
+				li:before
+					content: "\2014"
+					padding-right: 5px
+					margin-left: -5px
+
 
 // post Styling
 @import "posts"
+
+// thread and board styling
+@import "list"
 
 // clearfix, etc
 @import "clfix"

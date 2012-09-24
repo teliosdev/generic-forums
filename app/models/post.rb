@@ -1,22 +1,21 @@
 class Post < ActiveRecord::Base
   belongs_to :user, :inverse_of => :posts, :counter_cache => true
   belongs_to :rope, :inverse_of => :posts, :counter_cache => true
-  attr_accessible :body, :points, :rope, :rope_id, :user, :user_id, :format
-  before_save :calculate_points
+  has_many :children, :class_name => "Post", :foreign_key => :parent_id, :inverse_of => :parent
+  belongs_to :parent, :class_name => "Post", :foreign_key => :parent_id, :inverse_of => :children
+  attr_accessible :body, :format, :parent_id
 
   validates_presence_of :body, :format, :rope_id, :user_id
 
-  protected
+  default_scope order("created_at")
 
-  include PostEvalHelper
+  scope :kam_cheat do
+    include Kaminari::ActiveRecordRelationMethods
+    include Kaminari::PageScopeMethods
+  end
 
-  def calculate_points
-    points = (Eval.new.score(body) || [0,0])[1].round(2)
-    write_attribute(:points, points)
-    user.update_attribute(:points,
-      user.points +=
-      points
-    )
-    nil
+  def page(per_page = AppConfig.user_options.posts_per_page, order = :id)
+    position = self.class.where("#{order} <= ?", self.send(order)).count
+    (position.to_f/per_page).ceil
   end
 end

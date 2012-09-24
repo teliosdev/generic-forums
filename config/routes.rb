@@ -1,7 +1,5 @@
 GenericForums::Application.routes.draw do
-  get "home/index"
-  get "home/error"
-  get "home/editor"
+  get "home/index", "home/about", "home/rules"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -44,6 +42,7 @@ GenericForums::Application.routes.draw do
   #   end
 
   resources :boards, :only => [:index, :show] do
+    get "threads/:rope_id" => "Posts#index"
     resources :ropes, :path => "threads", :only => [:index, :show] do
       resources :posts
     end

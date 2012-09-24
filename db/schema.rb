@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120811162448) do
+ActiveRecord::Schema.define(:version => 20120923232938) do
 
   create_table "boards", :force => true do |t|
     t.string   "name"
@@ -46,12 +46,14 @@ ActiveRecord::Schema.define(:version => 20120811162448) do
     t.text     "body"
     t.integer  "user_id"
     t.integer  "rope_id"
-    t.decimal  "points",     :precision => 16, :scale => 2, :default => 0.0
     t.datetime "created_at",                                                        :null => false
     t.datetime "updated_at",                                                        :null => false
     t.string   "format",                                    :default => "markdown"
+    t.integer  "parent_id"
+    t.decimal  "points",     :precision => 16, :scale => 2, :default => 0.0
   end
 
+  add_index "posts", ["parent_id"], :name => "index_posts_on_parent_id"
   add_index "posts", ["rope_id"], :name => "index_posts_on_rope_id"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
@@ -78,23 +80,24 @@ ActiveRecord::Schema.define(:version => 20120811162448) do
     t.string   "name"
     t.string   "email"
     t.string   "avatar"
-    t.decimal  "points",              :default => 0.0
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.string   "crypted_password",    :default => "",  :null => false
-    t.string   "password_salt",       :default => "",  :null => false
-    t.string   "persistence_token",   :default => "",  :null => false
-    t.string   "single_access_token", :default => "",  :null => false
-    t.string   "perishable_token",    :default => "",  :null => false
-    t.integer  "login_count",         :default => 0,   :null => false
-    t.integer  "failed_login_count",  :default => 0,   :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
+    t.string   "crypted_password",                                   :default => "",  :null => false
+    t.string   "password_salt",                                      :default => "",  :null => false
+    t.string   "persistence_token",                                  :default => "",  :null => false
+    t.string   "single_access_token",                                :default => "",  :null => false
+    t.string   "perishable_token",                                   :default => "",  :null => false
+    t.integer  "login_count",                                        :default => 0,   :null => false
+    t.integer  "failed_login_count",                                 :default => 0,   :null => false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
-    t.integer  "posts_count",         :default => 0
-    t.integer  "ropes_count",         :default => 0
+    t.integer  "posts_count",                                        :default => 0
+    t.integer  "ropes_count",                                        :default => 0
+    t.text     "options"
+    t.decimal  "points",              :precision => 16, :scale => 2, :default => 0.0
   end
 
 end

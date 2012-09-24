@@ -9,33 +9,11 @@ module BreadcrumbHelper
     end
   end
 
-  class BreadcrumbSet
-    def initialize
-      @_set = []
-    end
-
-    def [](index)
-      @_set[index]
-    end
-
-    def []=(index, value)
-      @_set[index] = value
-    end
-
-    def push(value)
-      @_set.push value
-    end
-
-    def length
-      @_set.length
-    end
+  class BreadcrumbSet < Array
 
     def add(opt)
-      push Breadcrumb.new(opt[:name], opt[:link])
+      push Breadcrumb.new(opt[:name], opt[:link], opt[:info] || {})
     end
 
-    def each(&block)
-      @_set.each &block
-    end
   end
 end

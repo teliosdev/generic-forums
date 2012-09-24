@@ -7,9 +7,12 @@ class RopesController < ApplicationController
   before_filter :check_permissions, :only => [:show]
 
   def index
-    @threads = Rope.where(:board_id => @board.id).select do |thread|
-      can?(:read, thread) and not thread.is_ghost
-    end
+    puts "DEBUG" + ("_" * 20)
+    p @board.id
+    p params[:page]
+    p AppConfig.user_options.posts_per_page.default
+    @threads = Rope.where(:board_id => @board.id, :is_ghost => false)
+      .page(params[:page]).per(@user.per_page :threads) #(:page => params[:page], :per_page => @user.per_page(:threads))
   end
 
   def show
@@ -30,7 +33,7 @@ class RopesController < ApplicationController
 
   def check_permissions
     render 'error/404' unless can? :read, @board
-    render 'error/404' unless can? :read, @thread
+    render 'error/404' unless @thread and can? :read, @thread
   end
 
 end

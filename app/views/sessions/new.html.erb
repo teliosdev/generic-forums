@@ -17,11 +17,7 @@
 <div class='gr'><h2>Login</h2></div>
   <% if @session.errors.any? %>
     <div class="gr error">
-      <ul>
-        <% @session.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end -%>
-      </ul>
+      <p>Sorry, we couldn't log you in!  Maybe try again?</p>
     </div>
   <% end -%>
   <div class="gr">

@@ -1,0 +1,24 @@
+Posted <%= time_ago_in_words post.created_at %> ago<%=
+" and updated #{time_ago_in_words post.updated_at} ago" if \
+post.created_at != post.updated_at %>.
+  <%- if post.parent -%>
+      <span class="reply_to">
+        Reply to <%= link_to post.parent.id, board_rope_posts_path(@board, @rope, \
+                     :page => post.parent.page(@user.per_page(:posts)),
+                     :anchor => "post-#{post.parent.id}"
+                    ), :class => "reply_post" -%>.
+      </span>
+    <%- end -%>
+    <%- if post.children.size > 0 -%>
+      <span class="has_replies">
+        Replies:
+        <%- l = post.children.last -%>
+        <%- post.children.each do |p| -%>
+          <%= link_to p.id, board_rope_posts_path(@board, @rope, \
+                                                 :page => p.page(@user.per_page(:posts)),
+                                                 :anchor => "post-#{p.id}"
+                                                ), \
+          :class => "reply_post" -%><%= ", " if p != l -%>
+        <%- end -%>.
+      </span>
+    <%- end -%>

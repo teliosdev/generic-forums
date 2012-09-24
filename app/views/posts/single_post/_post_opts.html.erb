@@ -1,0 +1,11 @@
+<ul class="post_opts abnormal">
+  <% if can? :post, @rope %>
+    <li><%= link_to "Reply", new_board_rope_post_path(@board, @rope, :parent_id => post.id) %></li>
+  <% end -%>
+  <% if can?(:edit_post, @rope) or (post.user == @user and can?(:edit_own_post, @rope)) %>
+    <li><%= link_to "Edit", edit_board_rope_post_path(@board, @rope, post) %></li>
+  <% end -%>
+  <% if can? :delete_post, @rope %>
+    <li><%= link_to "Delete", board_rope_post_path(@board, @rope, post), :method => "delete" %></li>
+  <% end -%>
+</ul>

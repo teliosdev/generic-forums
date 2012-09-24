@@ -15,7 +15,7 @@ console.log "Hello World"
 #      else if $v.hasClass("editor_bbcode")
 #        syntax = new BbCodeSyntax()
 #      window.editors.push new Editor($v, syntax)
-( ()->
+$( ()->
 	unless $("html").hasClass("home_editor")
 		return
 	unless $(".editor").length > 0
@@ -24,4 +24,4 @@ console.log "Hello World"
 	$(".editor").each (_,v)->
 		$v = $(v)
 		window.editors.push new window.Editor($v, $v.data('format'))
-).call(this)
+)

@@ -12,6 +12,11 @@ GenericForums::Application.config.schema = {
 require "#{Rails.root}/lib/formatter/formatter"
 
 Formatter::Register.register :markdown, RDiscount
-Formatter::Register.register :bbcode, RBCode
+Formatter::Register.register :bbcode do |t|
+  RbbCode::Parser.new.parse(t)
+end
+Formatter::Register.register :plain do |t|
+  "<pre class='plain_text'><code>" + ERB::Util.html_escape(t) + "</code></pre>"
+end
 
 require "#{Rails.root}/lib/app_config"

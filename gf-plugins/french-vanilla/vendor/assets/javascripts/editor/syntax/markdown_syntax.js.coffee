@@ -23,12 +23,12 @@
 			@fromLastNewLine(text, fromPos) isnt "\n"
 
 		iconList:
-			bold: "B",
+			bold: "<span style='font-weight:bold'>B</span>",
 			italic: "<span style='font-style:italic'>I</span>",
-			code: "{}",
+			code: "<code>{}</code>",
 			link: "a",
 			horizontal_rule: "--",
-			header: "#"
+			header: "#h1"
 
 		eventHandlers: {
 			iconPress:

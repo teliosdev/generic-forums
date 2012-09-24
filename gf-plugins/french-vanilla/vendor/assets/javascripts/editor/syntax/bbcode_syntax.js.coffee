@@ -5,9 +5,9 @@
 			@editor.info.linkIncrement = 0
 
 		iconList: {
-			bold: "B",
+			bold: "<span style='font-weight:bold'>B</span>",
 			italic: "<span style='font-style:italic'>I</span>",
-			code: "{}",
+			code: "<code>{}</code>",
 			link: "a",
 			header: "#"
 		}
@@ -19,9 +19,9 @@
 				bold: ((m)->
 					s = m.element.getSelection();
 					m.element.setSelection("[B]#{s}[/B]")
-					cPos = m.element.getPosition()[0]
+					cPos = m.element.getPosition()
 					console.log cPos
-					m.element.setPosition(cPos.start-2, cPos.end-2)
+					m.element.setPosition(cPos.start-4, cPos.end-4)
 				),
 				italic: ((m)->
 					s = m.element.getSelection();

@@ -8,9 +8,13 @@ class Formatter::Register
 		# Register a new format with a handler.  You can either pass the
 		# handler as an argument, or specify a block to call.  The handler
 		# should follow the basic +Markdown+ class style interface.
-		def register(format, klass, &block)
+		def register(format, klass=Object, &block)
 			@formats ||= {}
-			@formats[format.to_sym] = klass || block
+			@formats[format.to_sym] = if klass.equal?(Object)
+				block
+			else
+			  klass
+			end
 		end
 
 		def render(text, format, output)

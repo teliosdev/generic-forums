@@ -1,0 +1,54 @@
+body
+  div.wrapper
+    div#main
+
+      ul.thread_list, ul.board_list
+        margin: 0
+          top: 25px
+
+        padding: 0
+        list-style-type: none
+
+        li
+          color: $list_color
+
+          &.header_row
+            display: none
+
+          &.data_row
+            border-bottom: 1px solid $light_blue
+            padding:
+              top: 10px
+              bottom: 10px
+
+            nav.pagination
+              display: block
+
+              span.current
+                display: none
+
+              *:nth-child(2)::before
+                content: ""
+                padding: 0
+
+            .data
+              display: inline-block
+              vertical-align: top
+
+              &.size50
+                width: ((960px/2) - 5px)
+
+              &.size20
+                width: ((960px/4) - 5px)
+
+              .header_font
+                font-family: $title_font
+
+              .gray
+                color: $light_gray
+
+              span.sup
+
+              span.sub
+                display: block
+

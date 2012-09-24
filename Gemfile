@@ -1,16 +1,25 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+group :development do
+  gem 'sqlite3'
+end
 
-gem 'authlogic'
-gem 'sqlite3'
-gem 'json'
-gem 'rdiscount'
-gem 'cancan'
-gem 'rbcode', :github => "redjazz96/rbcode"
+group :op do
+  gem 'authlogic'
+  gem 'json'
+  gem 'cancan'
+  gem 'kaminari'
+end
+
+group :post_formats do
+  gem 'rdiscount'
+  #gem 'rbcode', :github => "redjazz96/rbcode" # I'll need to rewrite this before I can use it
+  gem 'rbbcode'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.

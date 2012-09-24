@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
   #has_secure_password
-  attr_accessible :email, :name, :avatar, :password, :password_confirmation
+  attr_accessible :email, :name, :avatar, :password, :password_confirmation, :options
   has_and_belongs_to_many :groups, :join_table => "user_groups"
   has_many :permissions, :through => :groups, :inverse_of => :group
   has_many :ropes, :inverse_of => :user
   has_many :posts, :inverse_of => :user
+
+  serialize :options
 
   validates :name,
     :presence => true,
@@ -25,6 +27,14 @@ class User < ActiveRecord::Base
 
   def self.guest
     find 0
+  end
+
+  def per_page(type)
+    if read_attribute(:options) and (o = self.options["#{type}_per_page".to_sym])
+      o
+    else
+      AppConfig.user_options.send("#{type}_per_page").default
+    end
   end
 
   #def self.authenticate(identifier, password)

@@ -28,7 +28,7 @@
     <div id="wide_border"><header class="clearfix">
       <h1 id="title"><%= link_to @forum.name, root_path %></h1>
       <div id="user_info">
-        <% if @user and @user.id != 0 %>
+        <% if @user and @user.id and @user.id != 0 %>
           <div id="user_image">
             <%= image_tag((@user.avatar || "admin.png"), :height => 32, :width => 32, :id => "image") %>
           </div>
@@ -55,11 +55,11 @@
     <div role="main" id="main">
       <div id="location">
         <% last_crumb = @breadcrumbs[@breadcrumbs.length-1] %>
-        <ul id="trail">
+        <ul id="trail" class="abnormal">
           <% @breadcrumbs.each do |crumb| %>
             <% next if crumb == last_crumb %>
             <li><%= link_to crumb.name, crumb.link %></li>
-          <% end -%>
+          <% end %>
         </ul>
         <h2><%= link_to last_crumb.name, last_crumb.link %></h2>
       </div>
@@ -75,14 +75,13 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
 
-  <script src="js/plugins.js"></script>
-  <script src="js/script.js"></script>
+  <%= javascript_include_tag "application" %>
 
-  <script>
+  <!--<script>
     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
-  </script>
+  </script>-->
 </body>
 </html>

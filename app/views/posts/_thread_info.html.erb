@@ -1,0 +1,10 @@
+<div class="thread_info">
+  <div class="page_info">
+    <p>Page <%= @posts.current_page %> of <%= @posts.total_pages %>
+      <%- if @posts.total_pages > 1 -%>
+        <span class="dash">&mdash;</span>
+      <%- end -%>
+    <%= paginate @posts %>
+    <ul class="mod_opts abnormal">
+    </ul>
+</div></div>
