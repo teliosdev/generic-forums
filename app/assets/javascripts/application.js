@@ -15,7 +15,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery_fieldselection
 //= require modernizr
 //= require home
 //= require editor

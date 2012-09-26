@@ -15,6 +15,10 @@ group :op do
   gem 'kaminari'
 end
 
+#group :plugins do
+  gem 'french-vanilla', :path => "gf-plugins/french-vanilla" #:require => "french-vanilla"
+#end
+
 group :post_formats do
   gem 'rdiscount'
   #gem 'rbcode', :github => "redjazz96/rbcode" # I'll need to rewrite this before I can use it
@@ -41,6 +45,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # To use Jbuilder templates for JSON
 gem 'jbuilder'
 
+gem 'thin'
 # Use unicorn as the app server
 # gem 'unicorn'
 
