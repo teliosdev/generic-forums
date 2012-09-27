@@ -15,11 +15,13 @@ module FrenchVanilla
     end
 
     require "#{root}/app/models/post"
+    require "#{root}/app/models/user"
     require "#{root}/lib/french-vanilla/post_eval"
     require "#{root}/lib/app_schema"
 
     config.to_prepare do
       Post.send :include, PostExtensions
+      User.send :include, UserExtensions
       #GenericForums::Application.assets.append_path "#{root}/vendor/assets/javascripts"
       ApplicationController.send(:prepend_view_path, "#{FrenchVanilla::Engine.root}/app/views")
     end
