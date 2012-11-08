@@ -21,8 +21,13 @@ class RopesController < ApplicationController
     @thread.main_post.rope = @thread
     @thread.main_post.user = @user
     p @thread, @thread.main_post
-    @thread.save!
-    @thread.main_post.save!
+    unless @thread.save
+      render "new"
+    else
+      @thread.touch
+      redirect_to board_rope_posts_path(@thread.board.id, @thread.id)
+    end
+
   end
 
   def new

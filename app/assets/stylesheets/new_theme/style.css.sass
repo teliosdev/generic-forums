@@ -4,136 +4,144 @@
 
 // Main Styling
 body
-	background-color: #fff
+  background-color: #fff
 
-	a
-		color: $a_blue
-		text-decoration: none
+  a
+    color: $a_blue
+    text-decoration: none
 
-		&:hover
-			color: $ah_blue
+    &:hover
+      color: $ah_blue
 
-	div.wrapper
-		//width: 960px
-		//margin: auto
-		font-family: $main_font
-		color: $main_color
-		font-size: 13px
+  div.wrapper
+    //width: 960px
+    //margin: auto
+    font-family: $main_font
+    color: $main_color
+    font-size: 13px
 
-		div#wide_border
-			border-bottom: 1px solid $light_blue
+    div#wide_border
+      border-bottom: 1px solid $light_blue
 
-		header
-			padding: 10px
-			width: 960px
-			margin: 0 auto
+    header
+      padding: 10px
+      width: 960px
+      margin: 0 auto
 
-			h1#title
-				font-family: $title_font
-				color: $blue_color
-				font-weight: normal
-				font-size: 40px
-				display: inline-block
-				margin: 0
-				padding: 0
+      h1#title
+        font-family: $title_font
+        color: $blue_color
+        font-weight: normal
+        font-size: 40px
+        display: inline-block
+        margin: 0
+        padding: 0
 
-			div#user_info
-				display: inline-block
-				float: right
+      div#user_info
+        display: inline-block
+        float: right
 
-				div#user_image
-					display: inline-block
-					vertical-align: top
+        div#user_image
+          display: inline-block
+          vertical-align: top
 
 
-				div#user_data
-					display: inline-block
-					color: $light_gray
-					font-size: 13px
-					padding: 5px
+        div#user_data
+          display: inline-block
+          color: $light_gray
+          font-size: 13px
+          padding: 5px
 
-					//a
-					//  color: $header_a
+          //a
+          //  color: $header_a
 
-					p
-						padding: 0
-						margin: 0
-						display: block
-						padding-bottom: 10pxs
+          p
+            padding: 0
+            margin: 0
+            display: block
+            padding-bottom: 10pxs
 
-					ul#user_opts
-						list-style-type: none
-						margin: 0
-						padding: 0
-						display: inline
+          ul#user_opts
+            list-style-type: none
+            margin: 0
+            padding: 0
+            display: inline
 
-						li
-							display: inline-block
-							margin: 0
-							padding: 0
+            li
+              display: inline-block
+              margin: 0
+              padding: 0
 
-							&:not(:first-child):before
-								content: "\00B7"
-								padding-left:  1px
-								padding-right: 4px
+              &:not(:first-child):before
+                content: "\00B7"
+                padding-left:  1px
+                padding-right: 4px
 
-		footer
-			color: $light_gray
-			text-align: center
+    footer
+      color: $light_gray
+      text-align: center
 
-		div#main
-			width: 960px
-			margin: auto
-			margin-top: 30px
-			line-height: 22px
+    div#main
+      width: 960px
+      margin: auto
+      margin-top: 30px
+      line-height: 22px
 
-			h1, h2, h3, h4, h5, h6
-				font-family: $title_font
-				font-weight: normal
+      h1, h2, h3, h4, h5, h6
+        font-family: $title_font
+        font-weight: normal
 
-			code
-				font-family: $mono_font
-				padding: 0 2px
-				color: darken($main_color, 10%)
+      code
+        font-family: $mono_font
+        padding: 0 2px
+        color: darken($main_color, 10%)
 
-				//color: $error_red
+        //color: $error_red
 
-			pre > code
-				border: 1px solid $light_blue
-				border-radius: 2px
-				display: block
-				padding: 5px
+      pre > code
+        border: 1px solid $light_blue
+        border-radius: 2px
+        display: block
+        padding: 5px
 
-			nav.pagination
-				display: inline-block
-				margin: 0
-				padding: 0
-				text-align: bottom
+      nav.pagination
+        display: inline-block
+        margin: 0
+        padding: 0
+        text-align: bottom
 
-				span.page
-					font-style: normal
+        span.page
+          font-style: normal
 
-					&:not(:first-child):before
-						content: "\00B7"
-						color: $main_color
-						padding: 9 1px
+          &:not(:first-child):before
+            content: "\00B7"
+            color: $main_color
+            padding: 9 1px
 
-				span.previous:after, span.next:before
-					content: "\00B7"
-					color: $main_color
-					padding: 0 1px
+        span.previous:after, span.next:before
+          content: "\00B7"
+          color: $main_color
+          padding: 0 1px
 
-				span.first:after, span.last:before
-					content: "\00B7"
+        span.first:after, span.last:before
+          content: "\00B7"
 
-			ul:not(.abnormal)
-				list-style-type: none
+      ul:not(.abnormal)
+        list-style-type: none
 
-				li:before
-					content: "\2014"
-					padding-right: 5px
-					margin-left: -5px
+        li:before
+          content: "\2014"
+          padding-right: 5px
+          margin-left: -5px
 
+form
+  input#rope_title
+    border: 1px solid $trail_blue
+    margin: 4px 0
+    padding: 4px
+    display: block
+    width: 950px
+    outline: none
 
 // post Styling
 @import "posts"

@@ -5,15 +5,12 @@ $( ()->
   doReturn = ( ()->
     d = true
     for c in allowedClasses
-      console.log "checking class", c
       d = d and not $("html").hasClass c
-      console.log "d:", d
     d
   )()
   return if doReturn
 
   $format_selector = $ "form.for_editor div.format_select select"
-  console.log $format_selector
   $editor          = $ "form.for_editor textarea.editor"
   return if $editor.length < 0
 
@@ -28,7 +25,6 @@ $( ()->
   $editor.focus()
 
   $format_selector.on("change", editor, (event)->
-    console.log $(this).val()
     editor.changeSyntax $(this).val()
   )
 

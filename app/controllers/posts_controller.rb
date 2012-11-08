@@ -9,7 +9,8 @@ class PostsController < ApplicationController
   def index
     #puts "THREAD OUTPUT_______________________________"
     #p @thread
-    @posts   = Post.includes(:user).where(:rope_id => @rope.id).page(params[:page]).per(@user.per_page(:posts))
+    @posts   = Post.includes(:user).where(:rope_id => @rope)
+      .page(params[:page]).per(if true then 20 else @user.per_page(:posts) end)
   end
 
   def new
@@ -30,6 +31,7 @@ class PostsController < ApplicationController
     unless @post.save
       render "new"
     else
+      @rope.touch
       redirect_to board_rope_posts_path(@post.rope.board.id, @post.rope.id, \
                                         :page => @post.page(@user.per_page(:posts)),
                                         :anchor => "post-#{@post.id}"

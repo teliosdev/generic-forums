@@ -4,11 +4,13 @@ class Rope < ActiveRecord::Base
   has_many :posts, :inverse_of => :rope
   has_many :permissions, :foreign_key => :remote_id, :inverse_of => :remote, :conditions => { :type => "Rope" }
   has_one :main_post, :class_name => Post, :validate => false
+  has_and_belongs_to_many :tags
   attr_accessible :title, :board, :user, :board_id, :user_id, :main_post_attributes
 
   accepts_nested_attributes_for :main_post
 
-  default_scope order("updated_at")
+
+  default_scope order("updated_at DESC")
 
   #scope
 

@@ -6,5 +6,8 @@
       <%- end -%>
     <%= paginate @posts %>
     <ul class="mod_opts abnormal">
+    	<% if can? :post, @rope %>
+    		<li><%= link_to "Reply", new_board_rope_post_path(@board, @rope) %></li>
+    	<%- end -%>
     </ul>
 </div></div>

@@ -43,19 +43,19 @@
 		# for this class's event handlers.
 		iconCallback: (icon, event)->
 			n = icon.data('name')
-			console.log "Icon Click Event for #{n} Fired"
+			#console.log "Icon Click Event for #{n} Fired"
 			@_findAndCall([n, 'any'], @syntax.eventHandlers.iconPress, @syntax, [this, icon, event])
 			@_findAndCall([n, 'any'], @eventHandlers.iconPress, @this, [this, icon, event])
 
 		# See iconCallback.  For keyUp.
 		keyUpCallback: (event)->
-			console.log "Key Up Event For #{@t.keyMap[event.which] || event.which} Fired"
+			#console.log "Key Up Event For #{@t.keyMap[event.which] || event.which} Fired"
 			@_findAndCall([event.which, 'any'], @syntax.eventHandlers.keyUp, @syntax, [this, event])
 			@_findAndCall([event.which, 'any'], @eventHandlers.keyUp, @this, [this, event])
 
 		# See iconCallback. For keyDown.
 		keyDownCallback: (event)->
-			console.log "Key Down Event For #{@t.keyMap[event.which] || event.which} Fired"
+			#console.log "Key Down Event For #{@t.keyMap[event.which] || event.which} Fired"
 			@_findAndCall([event.which, 'any'], @syntax.eventHandlers.keyDown, @syntax, [this, event])
 			@_findAndCall([event.which, 'any'], @eventHandlers.keyDown, @this, [this, event])
 
@@ -64,7 +64,6 @@
 		updateOutput: ()->
 			return unless @syntax.supportsPreview
 			text = @render(@element.val())
-			console.log "text.length: ", text.length
 			if text.length == 0
 				text = "<p class='gray'>nothing yet...</p>"
 			@output.html(text)
@@ -182,14 +181,12 @@
 			@formats = {}
 
 		addFormat: (format, syntax)->
-			console.log "Added Format", format
 			@formats[format] = syntax
 
 		removeFormat: (format)->
 			delete @formats[format]
 
 		findFormat: (format)->
-			console.log "Finding Format", format
 			return null if @formats[format] is undefined
 			new @formats[format]()
 

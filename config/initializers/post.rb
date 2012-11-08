@@ -10,7 +10,7 @@ Formatter::Register.register :plain do |t|
 end
 
 Formatter::Register.register :markdown, :quote do |t|
-  ">" + t.gsub(/\n\>/, "").gsub(/\n/, "\n>") + "\n\n"
+  "> " + (t.gsub(/\>(.*?)\n/, "").gsub(/\n/, "\n> ")) + "\n\n"
 end
 
 Formatter::Register.register :bbcode, :quote do |t|

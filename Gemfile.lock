@@ -9,6 +9,8 @@ PATH
   remote: ~/projects/slice
   specs:
     slice (0.0.1)
+      actionpack (~> 3.2)
+      activerecord (~> 3.2)
       activesupport (~> 3.2)
 
 GEM

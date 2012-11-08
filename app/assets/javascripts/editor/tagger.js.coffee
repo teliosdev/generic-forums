@@ -45,7 +45,10 @@
 			v = @t.escapeHTML(tagvalue)
 			return if @_tagExists v
 			return unless @_validateTag v
-			@pointer.before("<span class='tag'>#{v}</span>")
+			@pointer.before("<a class='tag'>#{v}<span class='arrow arrow_bg'></span><span class='arrow'></span></a>")
+			a = @wrap.children(".tag")
+			$(a[a.length-1]).on 'click', (e)->
+				$(e).remove()
 
 		_removeTag: (tagvalue)->
 			v = @t.escapeHTML(tagvalue)
@@ -57,8 +60,7 @@
 			return false if t.length is 0
 			v = true
 			@_disallowedCharacters.forEach (c)->
-				console.log c
-				v = false and console.log("passed test", c, t) if t.search(c) > -1
+				v = false if t.search(c) > -1
 			v
 
 		_removeLastTag: ->

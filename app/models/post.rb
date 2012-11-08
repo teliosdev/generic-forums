@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   default_scope order("created_at")
 
   def page(per_page = AppConfig.user_options.posts_per_page, order = :id)
-    position = self.class.where("#{order} <= ?", self.send(order)).count
+    position = self.class.where(:rope_id => read_attribute(:rope_id)).where("#{order} <= ?", self.send(order)).count
     (position.to_f/per_page).ceil
   end
 end
