@@ -41,12 +41,13 @@ GenericForums::Application.routes.draw do
   #     end
   #   end
 
-  resources :boards, :only => [:index, :show] do
-    get "threads/:rope_id" => "Posts#index"
-    resources :ropes, :path => "threads", :only => [:index, :show] do
+  resources :boards, :only => [:index] do
+    resources :ropes, :path => "threads", :except => [:show] do
       resources :posts
     end
+    get "threads/:rope_id" => "posts#index"
   end
+  get "boards/:board_id" => "ropes#index"
 
   resources :users, :only => [:new, :create, :show, :index, :edit]
   resources :sessions, :only => [:new, :create, :destroy]

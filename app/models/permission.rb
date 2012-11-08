@@ -4,7 +4,7 @@ class Permission < ActiveRecord::Base
   has_many :users, :through => :group
   belongs_to :remote, :polymorphic => true
 
-  set_inheritance_column '_type'
+  self.inheritance_column = '_type'
 
   validates :group_id,
     :presence     => true,

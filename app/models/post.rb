@@ -9,11 +9,6 @@ class Post < ActiveRecord::Base
 
   default_scope order("created_at")
 
-  scope :kam_cheat do
-    include Kaminari::ActiveRecordRelationMethods
-    include Kaminari::PageScopeMethods
-  end
-
   def page(per_page = AppConfig.user_options.posts_per_page, order = :id)
     position = self.class.where("#{order} <= ?", self.send(order)).count
     (position.to_f/per_page).ceil

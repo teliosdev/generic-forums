@@ -29,6 +29,10 @@ class Formatter
 	def render(output=:html)
 		@register.render(@raw, @format, output)
 	end
+
+	def quote
+		@register.quote(@raw, @format)
+	end
 end
 
 require "#{Rails.root}/lib/formatter/register"

@@ -8,4 +8,9 @@ module PostsHelper
     f = Formatter.new(post.body, post.format)
     f.render.html_safe
   end
+
+  def q(post)
+    f = Formatter.new(post.body, post.format)
+    f.quote
+  end
 end

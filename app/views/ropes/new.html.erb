@@ -1,0 +1,7 @@
+<%= form_for [:board, @thread], :html => {:class => "for_editor"} do |f| %>
+	<%= f.text_field :title %>
+	<%= f.fields_for :main_post do |p| %>
+		<%= render "ropes/create_post/reply_box", :post => @post, :f => p %>
+	<% end %>
+	<%= f.submit %>
+<% end -%>

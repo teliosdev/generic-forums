@@ -4,6 +4,6 @@
 <div class="title"><%= post.user.groups.last.name %></div>
 <div class="user_image"><%= image_tag post.user.avatar %></div>
 <div class="user_data">
-  <p>Posts: <%= post.user.posts.size %></p>
-  <p>Joined: <%= post.user.created_at %></p>
+  <p><%= pluralize post.user.posts.size, "Post" %></p>
+  <p><%= post.user.created_at.strftime("%B %Y") %></p>
 </div>

@@ -16,5 +16,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require modernizr
-//= require home
 //= require editor
+//= require slice

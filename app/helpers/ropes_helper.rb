@@ -1,3 +1,0 @@
-module RopesHelper
-
-end

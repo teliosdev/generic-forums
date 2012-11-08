@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   helper :users
 
+  include PostsHelper
+
   before_filter :handle_breadcrumbs
   before_filter :check_permissions
 
@@ -13,7 +15,11 @@ class PostsController < ApplicationController
   def new
     return render "error/400" unless can?(:post, @rope)
     @post = Post.new
-    @post.parent_id = params[:parent_id] if params[:parent_id]
+    if params[:parent_id]
+      @post.parent_id = params[:parent_id]
+      @parent_post = Post.find @post.parent_id
+      @post.body = q(@parent_post)
+    end
   end
 
   def create
@@ -67,8 +73,8 @@ class PostsController < ApplicationController
   def handle_breadcrumbs
     @board   = Board.find(params[:board_id])
     @rope    = Rope.find(params[:rope_id])
-    @breadcrumbs.add :name => @board.name, :link => url_for(@board)
-    @breadcrumbs.add :name => @rope.title, :link => url_for([@board, @rope])
+    @breadcrumbs.add :name => @board.name, :link => board_ropes_path(@board)
+    @breadcrumbs.add :name => @rope.title, :link => board_rope_posts_path(@board, @rope)
   end
 
   def check_permissions

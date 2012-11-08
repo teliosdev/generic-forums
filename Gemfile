@@ -6,6 +6,7 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development do
   gem 'sqlite3'
+  gem 'slice', :path => '~/projects/slice'
 end
 
 group :op do
@@ -13,11 +14,8 @@ group :op do
   gem 'json'
   gem 'cancan'
   gem 'kaminari'
+  gem 'plugin_manager', :github => "redjazz96/plugin-manager"
 end
-
-#group :plugins do
-  gem 'french-vanilla', :path => "gf-plugins/french-vanilla" #:require => "french-vanilla"
-#end
 
 group :post_formats do
   gem 'rdiscount'
@@ -53,4 +51,4 @@ gem 'thin'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug'
+#gem 'ruby-debug'

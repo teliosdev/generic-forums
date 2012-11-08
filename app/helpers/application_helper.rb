@@ -7,7 +7,7 @@ module ApplicationHelper
     breadc = []
     #breadc.push :name => board.name, :link => url_for(board)
     board_list(board).each do |board|
-      breadc.push :name => board.name, :link => url_for(board)
+      breadc.push :name => board.name, :link => board_ropes_path(board)
     end
     breadc
   end

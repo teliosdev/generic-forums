@@ -32,6 +32,8 @@
 			@_bindEvents()
 			@_addOutputView(ret)
 			@updateOutput()
+			if @syntax.afterConstructorCallback isnt undefined
+				@syntax.afterConstructorCallback(this)
 			@hadPreviousSyntax = true
 
 		# The callback handler for the icons that are added in
@@ -47,13 +49,13 @@
 
 		# See iconCallback.  For keyUp.
 		keyUpCallback: (event)->
-			console.log "Key Up Event For #{@keyMap[event.which] || event.which} Fired"
+			console.log "Key Up Event For #{@t.keyMap[event.which] || event.which} Fired"
 			@_findAndCall([event.which, 'any'], @syntax.eventHandlers.keyUp, @syntax, [this, event])
 			@_findAndCall([event.which, 'any'], @eventHandlers.keyUp, @this, [this, event])
 
 		# See iconCallback. For keyDown.
 		keyDownCallback: (event)->
-			console.log "Key Down Event For #{@keyMap[event.which] || event.which} Fired"
+			console.log "Key Down Event For #{@t.keyMap[event.which] || event.which} Fired"
 			@_findAndCall([event.which, 'any'], @syntax.eventHandlers.keyDown, @syntax, [this, event])
 			@_findAndCall([event.which, 'any'], @eventHandlers.keyDown, @this, [this, event])
 
@@ -172,18 +174,6 @@
 					m.info.ctrlPressed = true
 				)
 
-		keyMap:
-			13: "enter",
-			9: "tab",
-			66: "b",
-			73: "i",
-			17: "ctrl",
-			84: "t",
-			8: "backspace",
-			65: "a",
-			88: "x",
-			70: "f"
-
 	exports.Editor.VERSION = "2.3.1"
 
 	class FormatRegister
@@ -192,13 +182,16 @@
 			@formats = {}
 
 		addFormat: (format, syntax)->
+			console.log "Added Format", format
 			@formats[format] = syntax
 
 		removeFormat: (format)->
 			delete @formats[format]
 
 		findFormat: (format)->
-			new @formats[format]() || null
+			console.log "Finding Format", format
+			return null if @formats[format] is undefined
+			new @formats[format]()
 
 	exports.FormatRegister = new FormatRegister()
 
@@ -209,6 +202,20 @@
 			for tag in @_htmlEntities
 				text.replace(tag[0], tag[1])
 			text
+
+		keyMap:
+			13 : "enter",
+			9  : "tab",
+			66 : "b",
+			73 : "i",
+			17 : "ctrl",
+			84 : "t",
+			8  : "backspace",
+			65 : "a",
+			88 : "x",
+			70 : "f",
+			32 : "space",
+			188: "comma"
 
 		_htmlEntities: [
 			[/&/g, "&amp;" ],

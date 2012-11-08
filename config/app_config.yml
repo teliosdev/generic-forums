@@ -45,3 +45,12 @@ development:
     - guest # So the user inherits all of the guest properties
             # This includes negation, so be careful!
     - user
+  # Markdown options for RDiscount.  Check
+  # https://github.com/rtomayko/rdiscount/ and
+  # https://github.com/rtomayko/rdiscount/blob/master/lib/rdiscount.rb
+  # for available options.
+  markdown_options:
+    - :smart
+    - :filter_html
+    - :autolink
+

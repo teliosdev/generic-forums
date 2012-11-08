@@ -1,9 +1,15 @@
-PATH
-  remote: gf-plugins/french-vanilla
+GIT
+  remote: git://github.com/redjazz96/plugin-manager.git
+  revision: fd12a49b8a55691c7899dd695a053d9880c4a87a
   specs:
-    french-vanilla (0.1.1)
-      activerecord-reputation-system
-      delayed_job_active_record
+    plugin_manager (0.1.0)
+      activesupport (>= 3.2)
+
+PATH
+  remote: ~/projects/slice
+  specs:
+    slice (0.0.1)
+      activesupport (~> 3.2)
 
 GEM
   remote: https://rubygems.org/
@@ -29,7 +35,6 @@ GEM
       activesupport (= 3.2.8)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-reputation-system (1.5.0)
     activeresource (3.2.8)
       activemodel (= 3.2.8)
       activesupport (= 3.2.8)
@@ -51,11 +56,6 @@ GEM
       execjs
     coffee-script-source (1.3.3)
     daemons (1.1.9)
-    delayed_job (3.0.3)
-      activesupport (~> 3.0)
-    delayed_job_active_record (0.3.2)
-      activerecord (> 2.1.0)
-      delayed_job (~> 3.0.0)
     erubis (2.7.0)
     eventmachine (1.0.0)
     execjs (1.4.0)
@@ -143,15 +143,16 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   cancan
   coffee-rails (~> 3.2.1)
-  french-vanilla!
   jbuilder
   jquery-rails
   json
   kaminari
+  plugin_manager!
   rails (= 3.2.8)
   rbbcode
   rdiscount
   sass-rails (~> 3.2.3)
+  slice!
   sqlite3
   therubyracer
   thin

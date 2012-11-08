@@ -18,7 +18,6 @@ post.created_at != post.updated_at %>.
                                                  :page => p.page(@user.per_page(:posts)),
                                                  :anchor => "post-#{p.id}"
                                                 ), \
-          :class => "reply_post" -%><%= ", " if p != l -%>
-        <%- end -%>.
+          :class => "reply_post" -%><%= ", " if p != l -%><%- end -%>.
       </span>
     <%- end -%>
