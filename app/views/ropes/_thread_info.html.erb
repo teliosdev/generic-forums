@@ -1,0 +1,11 @@
+<div class="thread_info">
+  <div class="page_info">
+    <p>Page <%= @threads.current_page %> of <%= @threads.total_pages %>
+      <%- if @threads.total_pages > 1 -%>
+        <span class="dash">&mdash;</span>
+      <%- end -%>
+    </p>
+    <%= paginate @threads %>
+    <ul class="mod_opts">
+    </ul>
+</div></div>

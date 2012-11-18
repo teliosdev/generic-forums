@@ -1,16 +1,6 @@
 <!--<h2>Threads In <%= @board.name %></h2>-->
 
-<div class="thread_info">
-  <div class="page_info">
-    <p>Page <%= @threads.current_page %> of <%= @threads.total_pages %>
-      <%- if @threads.total_pages > 1 -%>
-        <span class="dash">&mdash;</span>
-      <%- end -%>
-    </p>
-    <%= paginate @threads %>
-    <ul class="mod_opts">
-    </ul>
-</div></div>
+<%= render :partial => "thread_info" %>
 <ul class='thread_list abnormal'>
   <li class='header_row'>
     <span class='head size50'>Thread Name</span>
@@ -27,10 +17,11 @@
       <div class="data basic_data size20">
         <span class="sup"><%= pluralize((thread.posts.size.fdiv @user.per_page(:posts)).ceil, "Page") %></span>
         <span class="sub"><%= paginate thread.posts.page(0).per(@user.per_page(:posts)) %></span>
-      </div>
+      </div>l
       <div class="data basic_data size20">
         <span class="sup"><%= pluralize(thread.posts.size-1, "post") %></span>
       </div>
     </li>
   <% end -%>
 </ul>
+<%= render :partial => "thread_info" %>
