@@ -14,14 +14,14 @@ $( ()->
   $editor          = $ "form.for_editor textarea.editor"
   return if $editor.length < 0
 
-  window.editors ||= []
+  Generic.editors ||= []
   format = $format_selector.val()
 
-  editor = new Editor($editor, format, {
+  editor = new Generic.Editor($editor, format, {
                       "iconContainer": $editor.parent().children(".high_bar").children(".icon_container"),
                       "output": $editor.parent().children(".output_wrapper")
   })
-  window.editors.push editor
+  Generic.editors.push editor
   $editor.focus()
 
   $format_selector.on("change", editor, (event)->
@@ -29,8 +29,8 @@ $( ()->
   )
 
   if $("input#tag_input").length > 0
-    window.taggers ||= []
+    Generic.taggers ||= []
     $taginput = $ "input#tag_input"
-    window.taggers.push new Tagger($taginput, {"wrapper": $taginput.parent()})
+    Generic.taggers.push new Generic.Tagger($taginput, {"wrapper": $taginput.parent()})
 
 )

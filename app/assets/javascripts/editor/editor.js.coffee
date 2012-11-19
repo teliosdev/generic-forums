@@ -1,3 +1,5 @@
+window.Generic = {}
+
 ( (exports)->
 
 	# The editor class; creates a WYSIWYG editor from a basic text box
@@ -228,4 +230,4 @@
 	# Just a namespace for defining all of the parsers.
 	exports.Parsers = {}
 
-)(window)
+)(window.Generic)

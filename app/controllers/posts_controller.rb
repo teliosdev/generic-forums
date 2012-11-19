@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   helper :users
+  helper :posts
 
   include PostsHelper
 

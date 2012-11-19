@@ -161,7 +161,7 @@
 
 	exports.FormatRegister.addFormat "markdown", MarkdownSyntax
 
-)(window)
+)(window.Generic)
 
 # TODO:
 # - add image

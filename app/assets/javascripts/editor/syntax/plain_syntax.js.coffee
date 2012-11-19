@@ -20,4 +20,4 @@
 
 	exports.FormatRegister.addFormat "plain", PlainSyntax
 
-)(window)
+)(window.Generic)

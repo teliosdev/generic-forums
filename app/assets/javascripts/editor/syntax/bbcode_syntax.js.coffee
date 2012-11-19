@@ -1,6 +1,6 @@
 ( (exports)->
 
-	class window.BbCodeSyntax
+	class BbCodeSyntax
 		afterConstructorCallback: (@editor)->
 			@editor.info.linkIncrement = 0
 
@@ -84,7 +84,7 @@
 
 	exports.FormatRegister.addFormat "bbcode", BbCodeSyntax
 
-)(window)
+)(window.Generic)
 
 # TODO:
 # - add client-side parser

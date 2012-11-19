@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     if read_attribute(:options) and (o = self.options["#{type}_per_page".to_sym])
       o
     else
-      AppConfig.user_options.send("#{type}_per_page").default
+      AppConfig.user_options.public_send("#{type}_per_page")
     end
   end
 

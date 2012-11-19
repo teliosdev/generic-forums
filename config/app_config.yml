@@ -28,16 +28,10 @@ development:
       # The default value of the setting.
       default: 20
     # Settings for the threads per page.
-    threads_per_page:
-      # The name of the setting (note: should be moved to locale).
-      name: Threads Per Page
-      # The default value of the setting.
-      default: 20
-    posts_per_page:
-      # The name of the setting (note: should be moved to locale).
-      name: Posts Per Page
-      # The default value of the setting.
-      default: 20
+    threads_per_page: 20
+    # Settings for the posts per page.  This is the default, and will
+    # be shown to everyone on the forum as such.
+    posts_per_page: 20
   # The default groups that a registering user belongs to.  This
   # basically defines the groups that most users on the site will have
   # (unless you use a cron or such to remove groups).

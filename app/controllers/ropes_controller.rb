@@ -11,8 +11,11 @@ class RopesController < ApplicationController
     #p @board.id
     #p params[:page]
     #p AppConfig.user_options.posts_per_page.default
-    @threads = Rope.where(:board_id => @board.id, :is_ghost => false)
-      .page(params[:page]).per(@user.per_page :threads) #(:page => params[:page], :per_page => @user.per_page(:threads))
+    @threads = Rope.where(:board_id => @board.id, :is_ghost => false).select do |t|
+      can? :read, t
+    end
+    @threads = Kaminari.paginate_array(@threads)
+      .page(params[:page]).per(@user.per_page :threads)
   end
 
   def create

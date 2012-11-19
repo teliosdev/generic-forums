@@ -18,3 +18,4 @@
 //= require modernizr
 //= require editor
 //= require slice
+//= require ./client/client
