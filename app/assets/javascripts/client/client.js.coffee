@@ -12,13 +12,19 @@
 
 		getBoardThreads: @prototype.getBoard
 
-		getThread: (board, id, cb)->
-			@_ajaxCall("boards/#{board}/threads/#{id}", cb)
+		getThread: (board, id, cb, opts={})->
+			data = {}
+			data.url = "boards/#{board}/threads/#{id}"
+			data.data = opts
+			@_ajaxCall(data, cb)
 
 		getThreadPosts: @prototype.getThread
 
 		getPost: (board, thread, id, cb)->
-			@_ajaxCall("boards/#{board}/threads/#{thread}/#{id}", cb)
+			data = {}
+			data.url = "boards/#{board}/threads/#{thread}/posts/#{id}"
+			data.data = opts
+			@_ajaxCall(data, cb)
 
 		_ajaxCall: (data, callback)->
 			if typeof data == "string"

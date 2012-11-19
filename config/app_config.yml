@@ -1,6 +1,7 @@
 # This is just basically the environment that the settings apply to.
 # It's recommended that you only modify the production settings and
-# run the application in a production environment.
+# run the application in a production environment.  I recommend
+# copying over the development settings to the production settings.
 development:
   # The name of the forum.  Kind of self-descriptive.  Appears at the
   # top and bottom, and whenever it talks about itself.
@@ -22,15 +23,10 @@ development:
   # Default user options.
   user_options:
     # settings for the boards per page.
-    boards_per_page:
-      # The name of the setting (note: should be moved to locale).
-      name: Boards Per Page
-      # The default value of the setting.
-      default: 20
+    boards_per_page: 20
     # Settings for the threads per page.
     threads_per_page: 20
-    # Settings for the posts per page.  This is the default, and will
-    # be shown to everyone on the forum as such.
+    # Settings for the posts per page.
     posts_per_page: 20
   # The default groups that a registering user belongs to.  This
   # basically defines the groups that most users on the site will have
