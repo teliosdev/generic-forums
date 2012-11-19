@@ -5,8 +5,9 @@ GIT
     plugin_manager (0.1.0)
       activesupport (>= 3.2)
 
-PATH
-  remote: ~/projects/slice
+GIT
+  remote: git://github.com/redjazz96/slice.git
+  revision: 50e3ec9a5d4a0f161e457981877b0f0eaee11bba
   specs:
     slice (0.0.1)
       actionpack (~> 3.2)

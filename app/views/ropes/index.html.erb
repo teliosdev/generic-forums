@@ -1,6 +1,6 @@
 <!--<h2>Threads In <%= @board.name %></h2>-->
 
-<%= render :partial => "thread_info" %>
+<%= render :partial => "ropes/index/thread_info" %>
 <ul class='thread_list abnormal'>
   <li class='header_row'>
     <span class='head size50'>Thread Name</span>
@@ -9,19 +9,7 @@
   </li>
   <% @threads.each do |thread| %>
     <% next if cannot? :read, thread %>
-    <li class='data_row'>
-      <div class="data board_name size50">
-        <span class="sup header_font"><%= link_to thread.title, board_rope_posts_path(@board, thread) %></span>
-        <span class="sub gray">Posted by <%= link_to thread.user.name, thread.user %> on <%= thread.created_at.strftime("%b %-d '%y") %></span>
-      </div>
-      <div class="data basic_data size20">
-        <span class="sup"><%= pluralize((thread.posts.size.fdiv @user.per_page(:posts)).ceil, "Page") %></span>
-        <span class="sub"><%= paginate thread.posts.page(0).per(@user.per_page(:posts)) %></span>
-      </div>l
-      <div class="data basic_data size20">
-        <span class="sup"><%= pluralize(thread.posts.size-1, "post") %></span>
-      </div>
-    </li>
+    <%= render :partial => "ropes/index/entry", :locals => { :thread => thread } %>
   <% end -%>
 </ul>
-<%= render :partial => "thread_info" %>
+<%= render :partial => "ropes/index/thread_info" %>

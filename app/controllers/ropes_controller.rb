@@ -4,6 +4,8 @@ class RopesController < ApplicationController
   before_filter :check_permissions, :only => [:show]
   before_filter :check_create_permissions, :only => [:new, :create]
 
+  helper :posts
+
   def index
     #puts "DEBUG" + ("_" * 20)
     #p @board.id
@@ -15,7 +17,7 @@ class RopesController < ApplicationController
 
   def create
     puts "ERROR_STILL_NOT_RIGHT_" + ("_"*20) if cannot? :create, @board
-    @thread = Rope.new params[:rope]
+    @thread = Rope.new :title => params[:rope][:title], :main_post_attributes => params[:rope][:main_post_attributes]
     @thread.board = @board
     @thread.user  = @user
     @thread.main_post.rope = @thread

@@ -1,7 +1,9 @@
 jQuery.fn.extend({
-  getSelection: function(n){
-    if(n == null){ n = 0; }
-    return this.map(function(i){
+  getSelection: function (n) {
+    if (n == null)
+      n = 0;
+
+    return this.map(function (i) {
       if (document.selection) {
         this.focus();
         var sel = document.selection.createRange();
@@ -15,22 +17,24 @@ jQuery.fn.extend({
     })[n]
   },
 
-  getPosition: function(n){
-    if(n == null){ n = 0; }
-    return this.map(function(i){
+  getPosition: function (n) {
+    if(n == null)
+      n = 0;
+
+    return this.map(function (i) {
       if (document.selection) {
         this.focus();
         var sel = document.selection.createRange();
-        if ( r === null ) {
+        if ( r === null )
           return { start: 0, end: i.value.length, length: 0, text: "" }
-        }
 
         var re = i.createTextRange();
         var rc = re.duplicate();
         re.moveToBookmark(r.getBookmark());
         rc.setEndPoint('EndToStart', re);
 
-        return { start: rc.text.length, end: rc.text.length + r.text.length, length: r.text.length, text: r.text }
+        return { start: rc.text.length, end: rc.text.length + r.text.length, length: r.text.length, text: r.text };
+
       } else if (this.selectionStart || this.selectionStart == '0') {
         return { start: this.selectionStart, end: this.selectionEnd, length: this.selectionEnd - this.selectionStart, text: this.value.substring(this.selectionStart, this.selectionEnd) }
       } else {
@@ -39,8 +43,8 @@ jQuery.fn.extend({
     })[n]
   },
 
-  setSelection: function(myValue){
-    return this.each(function(i) {
+  setSelection: function (myValue) {
+    return this.each(function (i) {
       if (document.selection) {
         //For browsers like Internet Explorer
         this.focus();
@@ -65,8 +69,8 @@ jQuery.fn.extend({
     })
   },
 
-  setPosition: function(start, end) {
-    return this.each(function() {
+  setPosition: function (start, end) {
+    return this.each(function () {
       if (this.setSelectionRange) {
         this.focus();
         this.setSelectionRange(start, end);

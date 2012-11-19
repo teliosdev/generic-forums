@@ -6,6 +6,7 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development do
   gem 'sqlite3'
+  gem 'slice', :github => 'redjazz96/slice'
 end
 
 group :op do

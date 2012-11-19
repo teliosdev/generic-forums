@@ -4,9 +4,13 @@
 	class MarkdownSyntax
 		afterConstructorCallback: (@editor)->
 			@editor.info.linkIncrement = 0
+			@dialect = exports.Parsers.MarkdownParser.Markdown.dialects.Maruku
 
 		render: (text)->
-			exports.Parsers.MarkdownParser.toHTML(text)
+			try
+				exports.Parsers.MarkdownParser.toHTML(text, @dialect)
+			catch e
+				""
 
 		supportsPreview: true
 
@@ -32,6 +36,7 @@
 
 		eventHandlers: {
 			iconPress:
+
 				bold: ((m)->
 					s = m.element.getSelection()
 					m.element.setSelection("**#{s}**")
@@ -40,6 +45,7 @@
 					console.log cPos
 					m.element.setPosition(cPos.start-2, cPos.end-2)
 				),
+
 				italic: ((m)->
 					s = m.element.getSelection()
 					m.element.setSelection("_#{s}_")
@@ -48,6 +54,7 @@
 					console.log cPos
 					m.element.setPosition(cPos.start-1, cPos.end-1)
 				),
+
 				code: ((m)->
 					s = m.element.getSelection()
 					pos = m.element.getPosition()
@@ -62,6 +69,7 @@
 						m.element.setSelection("\n    insert code here")
 						m.element.setPosition(pos.start - 16, pos.start)
 				),
+
 				link: ((m)->
 					link = prompt "Link?"
 					if link.length == 0
@@ -80,9 +88,11 @@
 					m.element.setPosition(cPos.start, cPos.end)
 					m.info.linkIncrement++
 				),
+
 				horizontal_rule: ((m)->
 					m.element.setSelection("\n\n---")
 				)
+
 				header: ((m)->
 					e = m.element
 					s = e.getSelection()
@@ -96,6 +106,7 @@
 					else
 						e.setSelection("\n#{ if twoLines then "\n" else "" }## #{s} ##")
 				)
+
 			keyUp:
 				# enter
 				13: ((m)->
@@ -108,7 +119,7 @@
 
 					line = @fromLastNewLine(e.val(), lastIndex-(p.start-lastIndex))
 					console.log [line]
-					m = line.match(/^\n?((?:\s|\>)+)(?:.*?)\n?$/)
+					m = line.match(/^\n?((?:\s|\>|\-|\*|\+)+)(?:.*?)\n+?$/)
 					console.log m
 
 					if m isnt null and m[1] != "\n"

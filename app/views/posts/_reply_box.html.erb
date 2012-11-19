@@ -1,5 +1,5 @@
-<div class="reply_box">
-  <%= form_for([(unless post.rope then :board else post.rope.board end), post.rope || :rope, post], :html => {:class => "for_editor"}) do |f| %>
+<%= form_for([(unless post.rope then :board else post.rope.board end), post.rope || :rope, post], :html => {:class => "for_editor"}) do |f| %>
+  <div class="reply_box">
     <div class="editor_wrapper">
       <!--<div class="high_bar">
         <div class="icon_container"></div>
@@ -12,5 +12,5 @@
       <%= render "posts/create_post/text_box", :f => f, :post => post %>
     </div>
     <%= render "posts/create_post/submit", :f => f, :post => post %>
-  <% end -%>
-</div>
+  </div>
+<% end -%>

@@ -32,10 +32,7 @@ class PostsController < ApplicationController
       render "new"
     else
       @rope.touch
-      redirect_to board_rope_posts_path(@post.rope.board.id, @post.rope.id, \
-                                        :page => @post.page(@user.per_page(:posts)),
-                                        :anchor => "post-#{@post.id}"
-                                      ) unless request.xhr?
+      redirect_to determine_path(@post) unless request.xhr?
     end
   end
 
@@ -56,18 +53,20 @@ class PostsController < ApplicationController
     unless @post.save
       render "update"
     else
-      redirect_to board_rope_posts_path(@post.rope.board.id, @post.rope.id, \
-                                        :page => @post.page(@user.per_page(:posts)),
-                                        :anchor => "post-#{@post.id}"
-                                      ) unless request.xhr?
+      redirect_to determine_path(@post) unless request.xhr?
     end
   end
 
   def destroy
     @post = Post.find params[:id]
     return render "error/400" unless can?(:delete_post, @rope) or (@post.user == @user and can?(:edit_own_post, @rope))
-    @post.destroy
-    redirect_to board_rope_posts_path(@post.rope.board_id, @post.rope.id)
+    if @rope.posts.size == 1
+      @rope.destroy
+      redirect_to board_ropes_path(@rope.board_id)
+    else
+      @post.destroy
+      redirect_to board_rope_posts_path(@rope.board_id, @rope.id)
+    end
   end
 
   protected

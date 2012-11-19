@@ -17,6 +17,7 @@
 			@info = { ctrlPressed: false }
 			@_wrapElement()
 			@changeSyntax(@syntaxType)
+			@element.autosize({ append: "\n" })
 
 		# change the syntax to another type.  If the editor had a previous
 		# syntax, it cleans that one up first (i.e. remove the icons bar).

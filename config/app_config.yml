@@ -51,6 +51,5 @@ development:
   # for available options.
   markdown_options:
     - :smart
-    - :filter_html
     - :autolink
 

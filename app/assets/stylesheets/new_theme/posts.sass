@@ -130,14 +130,6 @@ body
             padding-left: 150px
             width: ((960px - 150px) - (10px + 10px))  - 1px
 
-            pre.plain_text > code
-              border: none
-              border-radius: 0
-              padding: 0
-
-            img
-              max-width: 750px
-
 .popup_container
   .popup
     display: none
@@ -222,21 +214,21 @@ div.reply_box
     .tag
       //background-color: $lightest_gray
       padding: 0 7px
-      color: $main_color
+      color: $a_blue
       //border: 1px solid $light_gray
       margin: 0 2px
-      background-color: $light_blue
-      border: 1px solid $blue_color
+      background-color: white
+      border: 1px solid $trail_blue
       position: relative
       -moz-border-radius: 1px
       -webkit-border-radius: 1px
       border-radius: 1px
-      margin-right: 10px
+      margin-right: 13px
 
       span.arrow
         border-top: 9px solid transparent
         border-right: 9px solid transparent
-        border-left: 9px solid $light_blue
+        border-left: 9px solid white
         border-bottom: 9px solid transparent
         _border-right-color: pink
         _border-left-color: pink
@@ -252,22 +244,25 @@ div.reply_box
         right: -18px
 
       span.arrow.arrow_bg
-        border-left-color: $blue_color
-        right: -19px
+        border-left-color: $trail_blue
+        right: -21px
+        top: -1px
+        border-top-width: 10px
+        border-right-width: 10px
+        border-left-width: 10px
+        border-bottom-width: 10px
 
 
 
-html.js div.reply_box div.editor_wrapper div.output_wrapper
-  border-top: 1px solid $light_blue
-  padding: 10px 15px
-  width: 958px - (15px * 2)
-  padding-bottom: 8px - 5px
-  margin-top: 5px
-  margin-left: -5px
+html.js div.reply_box div.editor_wrapper
 
-body div.wrapper div#main ul.post_list li.post div.post_data, html.js body div.wrapper div#main div.reply_box div.editor_wrapper div.output_wrapper
+  textarea.editor
+    resize: none
 
-  blockquote
-    margin-left: 10px
-    border-left: 3px solid $light_blue
-    padding-left: 10px
+  div.output_wrapper
+    border-top: 1px solid $light_blue
+    padding: 10px 15px
+    width: 958px - (15px * 2)
+    padding-bottom: 8px - 5px
+    margin-top: 5px
+    margin-left: -5px

@@ -69,7 +69,7 @@
     </footer>
   </div>
 
-  <%= render :partial => "slice/display" %>
+  <%= render :partial => "slice/display" if Rails.env.development? %>
 
   <%= javascript_include_tag "application" %>
 

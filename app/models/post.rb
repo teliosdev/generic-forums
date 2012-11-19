@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to :user, :inverse_of => :posts, :counter_cache => true
   belongs_to :rope, :inverse_of => :posts, :counter_cache => true
+  has_one :board, :through => :rope
   has_many :children, :class_name => "Post", :foreign_key => :parent_id, :inverse_of => :parent
   belongs_to :parent, :class_name => "Post", :foreign_key => :parent_id, :inverse_of => :children
   attr_accessible :body, :format, :parent_id
