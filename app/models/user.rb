@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
     find 0
   end
 
+  def guest?
+    id == 0
+  end
+
   def per_page(type)
     if read_attribute(:options) and (o = self.options["#{type}_per_page".to_sym])
       o

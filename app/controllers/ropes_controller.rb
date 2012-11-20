@@ -14,12 +14,10 @@ class RopesController < ApplicationController
     @threads = Rope.where(:board_id => @board.id, :is_ghost => false).select do |t|
       can? :read, t
     end
-    @threads = Kaminari.paginate_array(@threads)
-      .page(params[:page]).per(@user.per_page :threads)
+    @threads = Kaminari.paginate_array(@threads).page(params[:page]).per(@user.per_page :threads)
   end
 
   def create
-    puts "ERROR_STILL_NOT_RIGHT_" + ("_"*20) if cannot? :create, @board
     @thread = Rope.new :title => params[:rope][:title], :main_post_attributes => params[:rope][:main_post_attributes]
     @thread.board = @board
     @thread.user  = @user
@@ -36,6 +34,7 @@ class RopesController < ApplicationController
   end
 
   def new
+    puts "ERROR_STILL_NOT_RIGHT_" + ("_"*20) if cannot? :create, @board
     @thread       = Rope.new
     @thread.board = @board
     @thread.user  = @user
@@ -62,12 +61,12 @@ class RopesController < ApplicationController
   end
 
   def check_permissions
-    render 'error/404' unless can? :read, @board
-    render 'error/404' unless @thread and can? :read, @thread
+    error(404) unless can? :read, @board
+    error(404) unless @thread and can? :read, @thread
   end
 
   def check_create_permissions
-    render 'error/404' unless can? :create, @board
+    error(404) unless can? :create, @board
   end
 
 end

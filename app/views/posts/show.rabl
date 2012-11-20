@@ -9,7 +9,7 @@ node :thread_url do |p|
 end
 
 node :parsed_body do |post|
-  Formatter.new(post.body, post.format).render
+  o = Formatter.new(post.body, post.format).render
 end if params[:show_parsed_body]
 
 child :rope do

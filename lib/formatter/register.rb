@@ -16,9 +16,9 @@ class Formatter::Register
 			@quote ||= {}
 			case type
 			when :render
-				_add_to_render format, klass, *opts, block
+				_add_to_render format, klass, *opts, &block
 			when :quote
-				_add_to_quote  format, klass, *opts, block
+				_add_to_quote  format, klass, *opts, &block
 			end
 		end
 
@@ -50,7 +50,7 @@ class Formatter::Register
 
 		private
 
-		def _add_to_render(format, klass, *opts, block)
+		def _add_to_render(format, klass, *opts, &block)
 			@render[format.to_sym] = if klass
 				klass
 			else
@@ -59,7 +59,7 @@ class Formatter::Register
 			@render_opts[format.to_sym] = opts if opts.length > 0
 		end
 
-		def _add_to_quote(format, klass, *opts, block)
+		def _add_to_quote(format, klass, *opts, &block)
 			@quote[format.to_sym] = if klass
 				klass
 			else

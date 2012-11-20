@@ -52,6 +52,7 @@ GenericForums::Application.routes.draw do
   resources :users, :only => [:new, :create, :show, :index, :edit]
   resources :sessions, :only => [:new, :create, :destroy]
   get "sessions/delete"
+  get "sessions/token"
 
   namespace :admin do
     root :to => "Dashboard#index"

@@ -20,11 +20,26 @@
 
 		getThreadPosts: @prototype.getThread
 
-		getPost: (board, thread, id, cb)->
+		getPost: (board, thread, id, cb, opts={})->
 			data = {}
 			data.url = "boards/#{board}/threads/#{thread}/posts/#{id}"
 			data.data = opts
 			@_ajaxCall(data, cb)
+
+		_getToken: (auth, cb)->
+			data = { url: "sessions", type: "POST" }
+			data.data = { session: { name: auth.name, password: auth.password } }
+			@_ajaxCall data, (d)->
+				return false if d.status isnt undefined
+				console.log d
+				cb(d.token)
+
+		testToken: (auth, cb)->
+			data = { url: "boards/1/threads/new" }
+			@_getToken auth, (token)=>
+				data.data = { session: token }
+				@_ajaxCall data, (d)->
+					console.warn d
 
 		_ajaxCall: (data, callback)->
 			if typeof data == "string"

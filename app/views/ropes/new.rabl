@@ -1,0 +1,1 @@
+object @rope => :thread

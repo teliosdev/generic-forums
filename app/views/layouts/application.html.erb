@@ -22,19 +22,20 @@
 </head>
 <body>
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-  <div class="wrapper slice-hide">
+  <div class="wrapper">
+    <a name="#top"></a>
     <div id="wide_border"><header class="clearfix">
       <h1 id="title"><%= link_to @forum.name, root_path %></h1>
       <div id="user_info">
-        <% if @user and @user.id and @user.id != 0 %>
+        <% unless current_user.guest? %>
           <div id="user_image">
-            <%= image_tag((@user.avatar || "admin.png"), :height => 32, :width => 32, :id => "image") %>
+            <%= image_tag((current_user.avatar || "admin.png"), :height => 32, :width => 32, :id => "image") %>
           </div>
           <div id="user_data">
-            <p>Howdy, <%= link_to @user.name, user_path(@user) %></p>
+            <p>Howdy, <%= link_to current_user.name, user_path(current_user) %></p>
             <ul id="user_opts">
-              <li><%= link_to "Inbox", "#{user_path(@user)}/inbox" %></li>
-              <li><%= link_to "Settings", edit_user_path(@user) %></li>
+              <li><%= link_to "Inbox", "#{user_path(current_user)}/inbox" %></li>
+              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li><%= link_to "Logout", url_for(:controller => "sessions", :action => "delete") %></li>
             </ul>
           </div>
@@ -49,10 +50,9 @@
         <% end -%>
       </div>
     </header></div>
-    <a name="#top"></a>
     <div role="main" id="main">
       <div id="location">
-        <% last_crumb = @breadcrumbs[@breadcrumbs.length-1] %>
+        <% last_crumb = @breadcrumbs.last %>
         <ul id="trail" class="abnormal">
           <% @breadcrumbs.each do |crumb| %>
             <% next if crumb == last_crumb %>
@@ -61,15 +61,12 @@
         </ul>
         <h2><%= link_to last_crumb.name, last_crumb.link %></h2>
       </div>
-
       <%= yield %>
     </div>
     <footer>
       <p><%= @forum.name %> &middot; version <%= @forum.version %> &middot; <%= link_to "About", "/home/about" %> &middot; <a href="##top">Back to top</a></p>
     </footer>
   </div>
-
-  <%= render :partial => "slice/display" if Rails.env.development? %>
 
   <%= javascript_include_tag "application" %>
 

@@ -32,5 +32,4 @@ $( ()->
     Generic.taggers ||= []
     $taginput = $ "input#tag_input"
     Generic.taggers.push new Generic.Tagger($taginput, {"wrapper": $taginput.parent()})
-
 )

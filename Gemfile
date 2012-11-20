@@ -6,7 +6,6 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development do
   gem 'sqlite3'
-  gem 'slice', :github => 'redjazz96/slice'
 end
 
 group :op do
@@ -14,7 +13,7 @@ group :op do
   gem 'json'
   gem 'cancan'
   gem 'kaminari'
-  gem 'plugin_manager', :github => "redjazz96/plugin-manager"
+  gem 'plugin_manager', :path => "~/projects/plugin-manager" #:github => "redjazz96/plugin-manager"
 end
 
 group :post_formats do
@@ -42,7 +41,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # For the public API
 gem 'rabl'
-gem 'bson'
+gem 'yajl-ruby', :require => "yajl"
 
 gem 'thin'
 # Use unicorn as the app server

@@ -28,6 +28,6 @@ class BoardsController < ApplicationController
   end
 
   def check_permissions
-    render 'error/404' unless can? :read, @board
+    error(404) unless can? :read, @board
   end
 end

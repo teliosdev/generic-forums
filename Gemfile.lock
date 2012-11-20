@@ -1,18 +1,8 @@
-GIT
-  remote: git://github.com/redjazz96/plugin-manager.git
-  revision: fd12a49b8a55691c7899dd695a053d9880c4a87a
+PATH
+  remote: ~/projects/plugin-manager
   specs:
     plugin_manager (0.1.0)
       activesupport (>= 3.2)
-
-GIT
-  remote: git://github.com/redjazz96/slice.git
-  revision: 50e3ec9a5d4a0f161e457981877b0f0eaee11bba
-  specs:
-    slice (0.0.1)
-      actionpack (~> 3.2)
-      activerecord (~> 3.2)
-      activesupport (~> 3.2)
 
 GEM
   remote: https://rubygems.org/
@@ -49,7 +39,6 @@ GEM
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
     bcrypt-ruby (3.0.1)
-    bson (1.7.1)
     builder (3.0.4)
     cancan (1.6.8)
     coffee-rails (3.2.2)
@@ -108,7 +97,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
-    rake (10.0.1)
+    rake (10.0.2)
     rbbcode (1.0.2)
       sanitize
       treetop
@@ -142,6 +131,7 @@ GEM
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
@@ -149,7 +139,6 @@ PLATFORMS
 DEPENDENCIES
   authlogic
   bcrypt-ruby (~> 3.0.0)
-  bson
   cancan
   coffee-rails (~> 3.2.1)
   jquery-rails
@@ -161,8 +150,8 @@ DEPENDENCIES
   rbbcode
   rdiscount
   sass-rails (~> 3.2.3)
-  slice!
   sqlite3
   therubyracer
   thin
   uglifier (>= 1.0.3)
+  yajl-ruby

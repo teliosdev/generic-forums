@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
   helper :application
-  before_filter :forum_info
+  before_filter :forum_info, :check_content
+  helper_method :current_user
 
   protected
 
@@ -15,8 +16,11 @@ class ApplicationController < ActionController::Base
 
     @breadcrumbs = BreadcrumbHelper::BreadcrumbSet.new
     @breadcrumbs.add :name => "Home", :link => "/"
+  end
 
-    current_user
+  def error(number)
+    response.status = number
+    render "error/#{number}"
   end
 
   def current_session
@@ -29,6 +33,12 @@ class ApplicationController < ActionController::Base
     else
       User.guest
     end
+  end
+
+  def check_content
+    return unless params[:format]
+    c = Mime::Type.lookup_by_extension params[:format]
+    request.headers["Content-Type"] = c.to_s
   end
 
   def require_login

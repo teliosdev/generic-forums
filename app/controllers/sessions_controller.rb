@@ -8,12 +8,27 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @session = Session.new(params[:session])
-    if @session.save
-      redirect_to "/"
+    @s = Session.new(params[:session])
+    puts "REQUEST_XHR", params[:format]
+    unless params[:format]
+      if @s.save
+        redirect_to "/"
+      else
+        render :action => :new
+      end
     else
-      render :action => :new
+      puts "HANDLE_BY_TOKEN"
+      unless @s.save
+        flash.now[:errors] = @session[:errors]
+        error(400)
+      else
+        render "token"
+      end
     end
+  end
+
+  def token
+
   end
 
   def delete
