@@ -13,7 +13,7 @@ group :op do
   gem 'json'
   gem 'cancan'
   gem 'kaminari'
-  gem 'plugin_manager', :path => "~/projects/plugin-manager" #:github => "redjazz96/plugin-manager"
+  gem 'plugin_manager', :github => "redjazz96/plugin-manager"
 end
 
 group :post_formats do
