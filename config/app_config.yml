@@ -2,7 +2,7 @@
 # It's recommended that you only modify the production settings and
 # run the application in a production environment.  I recommend
 # copying over the development settings to the production settings.
-development:
+development: &default
   # The name of the forum.  Kind of self-descriptive.  Appears at the
   # top and bottom, and whenever it talks about itself.
   forum_name: "{generic forums}"
@@ -43,3 +43,4 @@ development:
     - :smart
     - :autolink
 
+production: *default
