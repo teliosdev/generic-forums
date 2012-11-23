@@ -1,5 +1,6 @@
-PATH
-  remote: ~/projects/plugin-manager
+GIT
+  remote: git://github.com/redjazz96/plugin-manager.git
+  revision: 1482ae810945ee0d14954353500a5002be7ce5bb
   specs:
     plugin_manager (0.1.0)
       activesupport (>= 3.2)
