@@ -42,5 +42,15 @@ development: &default
   markdown_options:
     - :smart
     - :autolink
+  # Allow parameterization of board/thread/post urls.  This makes them
+  # look pretty; for example, with the board "primary" and the thread
+  # "thread", the url would look like
+  #   /boards/1-primary/threads/2-thread/posts
+  # With both enabled.
+  parameterization:
+    # Allow it for threads.
+    thread: true
+    # Allow it for boards.
+    board: true
 
 production: *default

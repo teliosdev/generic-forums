@@ -3,7 +3,7 @@ require "#{Rails.root}/lib/app_config"
 
 Formatter::Register.register :markdown, :render, RDiscount, *AppConfig.markdown_options
 Formatter::Register.register :bbcode do |t|
-  RbbCode::Parser.new.parse(t)
+  RbbCode.new.convert(t)
 end
 Formatter::Register.register :plain do |t|
   "<pre class='plain_text'><code>" + ERB::Util.html_escape(t) + "</code></pre>"

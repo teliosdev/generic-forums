@@ -26,4 +26,9 @@ class Rope < ActiveRecord::Base
         :ghost_data => (read_attribute(:ghost_data) || {})
       }).first || self
   end
+
+  def to_param
+    return super unless AppConfig.parameterization.thread
+    "#{id}-#{title.parameterize}"
+  end
 end
