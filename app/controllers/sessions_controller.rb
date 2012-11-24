@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    @session.destroy
+    current_session.destroy
     redirect_to "/"
   end
 end
