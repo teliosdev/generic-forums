@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
 
 	def new
-		@user = User.new
+		@new_user = User.new
 	end
 
 	def create
-		@user = User.new
-		@user.name     = params[:user][:name    ]
-		@user.email    = params[:user][:email   ]
-		@user.password = params[:user][:password]
-		@user.password_confirmation = params[:user][:password_confirmation]
+		@new_user = User.new
+		@new_user.name     = params[:user][:name    ]
+		@new_user.email    = params[:user][:email   ]
+		@new_user.password = params[:user][:password]
+		@new_user.password_confirmation = params[:user][:password_confirmation]
 		groups = []
 		opts = {}
 
@@ -17,16 +17,16 @@ class UsersController < ApplicationController
 			opts[k.intern] = AppConfig.user_options[k][:default]
 		end
 
-		@user.options = opts
+		@new_user.options = opts
 
 		AppConfig.default_user_groups.each do |gr|
 			groups << Group.find_by_name(gr)
 		end
-		@user.groups   = groups
-		unless @user.valid?
+		@new_user.groups   = groups
+		unless @new_user.valid?
 			render "new" and return
 		else
-			@user.save!
+			@new_user.save!
 			redirect_to root_path
 		end
 	end

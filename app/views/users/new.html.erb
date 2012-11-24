@@ -1,9 +1,9 @@
-<%= form_for @user do |f| %>
+<%= form_for @new_user do |f| %>
 <div class='gr'><h2>Login</h2></div>
-  <% if @user.errors.any? %>
+  <% if @new_user.errors.any? %>
     <div class="gr error">
       <ul>
-        <% @user.errors.full_messages.each do |msg| %>
+        <% @new_user.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end -%>
       </ul>
