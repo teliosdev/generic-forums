@@ -21,6 +21,7 @@ class PostsController < ApplicationController
       @post.parent_id = params[:parent_id]
       @parent_post = Post.find @post.parent_id
       @post.body = q(@parent_post)
+      @post.format = @parent_post.format
     end
   end
 
