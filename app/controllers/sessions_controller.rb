@@ -14,12 +14,13 @@ class SessionsController < ApplicationController
       if @s.save
         redirect_to "/"
       else
+        @session = @s
         render :action => :new
       end
     else
       puts "HANDLE_BY_TOKEN"
       unless @s.save
-        flash.now[:errors] = @session[:errors]
+        flash.now[:errors] = @s[:errors]
         error(400)
       else
         render "token"

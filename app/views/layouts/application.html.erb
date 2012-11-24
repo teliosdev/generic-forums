@@ -29,7 +29,7 @@
       <div id="user_info">
         <% unless current_user.guest? %>
           <div id="user_image">
-            <%= image_tag((current_user.avatar || "admin.png"), :height => 32, :width => 32, :id => "image") %>
+            <%= image_tag(("/user.png"), :height => 32, :width => 32, :id => "image") %>
           </div>
           <div id="user_data">
             <p>Howdy, <%= link_to current_user.name, user_path(current_user) %></p>
