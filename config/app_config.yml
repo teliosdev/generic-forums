@@ -9,7 +9,7 @@ development: &default
   # The version of the forum.  You may not want this to appear or
   # something, so this is open to modification.  You don't need to
   # though.
-  forum_version: 0.1.1
+  forum_version: 0.1.21
   # The maximum amount of times AuthLogic will allow a user to try to
   # login.  Set to 0 to disable.
   max_login_tries: 5
@@ -35,6 +35,9 @@ development: &default
     - guest # So the user inherits all of the guest properties
             # This includes negation, so be careful!
     - user
+  # The primary group of a user is where the title name and the
+  # username's color comes from, as well as avatar size.
+  default_primary_group: user
   # Markdown options for RDiscount.  Check
   # https://github.com/rtomayko/rdiscount/ and
   # https://github.com/rtomayko/rdiscount/blob/master/lib/rdiscount.rb
@@ -52,5 +55,16 @@ development: &default
     thread: true
     # Allow it for boards.
     board: true
+  # Some settings for avatars.
+  avatars:
+    # The maximum size that avatars are allowed for.  This is in bytes.
+    # Don't ask me why.
+    max_size: 104857
+    # The allowed content types for avatars.  This can be a single
+    # string or an array of content types.
+    allowed_content_types:
+      - image/jpeg
+      - image/png
+      - image/gif
 
 production: *default

@@ -9,7 +9,8 @@ class UsersController < ApplicationController
 		@new_user.name     = params[:user][:name    ]
 		@new_user.email    = params[:user][:email   ]
 		@new_user.password = params[:user][:password]
-		@new_user.password_confirmation = params[:user][:password_confirmation]
+		@new_user.password_confirmation =
+			params[:user][:password_confirmation]
 		groups = []
 		opts = {}
 
@@ -23,6 +24,8 @@ class UsersController < ApplicationController
 			groups << Group.find_by_name(gr)
 		end
 		@new_user.groups   = groups
+		@new_user.primary_group =
+			Group.find_by_name(AppConfig.default_primary_group)
 		unless @new_user.valid?
 			render "new" and return
 		else

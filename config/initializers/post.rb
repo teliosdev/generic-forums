@@ -16,3 +16,7 @@ end
 Formatter::Register.register :bbcode, :quote do |t|
   "[quote]" + t + "[/quote]"
 end
+
+Formatter::Register.register :plain, :quote do |t|
+  "\t" + t.gsub(/\n/, "\n\t") + "\n\n"
+end

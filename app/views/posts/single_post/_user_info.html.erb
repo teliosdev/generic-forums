@@ -2,7 +2,7 @@
   <span class="username <%= title_classes(post.user) %>"><%= post.user.name %></span>
 <% end -%>
 <div class="title"><%= post.user.groups.last.name %></div>
-<div class="user_image"><%= image_tag "/user.png" %></div>
+<div class="user_image"><%= image_tag post.user.avatar.url %></div>
 <div class="user_data">
   <p><%= pluralize post.user.posts.size, "Post" %></p>
   <p><%= post.user.created_at.strftime("%B %Y") %></p>

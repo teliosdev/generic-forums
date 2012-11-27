@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121108153935) do
+ActiveRecord::Schema.define(:version => 20121126134824) do
 
   create_table "boards", :force => true do |t|
     t.string   "name"
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(:version => 20121108153935) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "avatar_size"
   end
 
   create_table "permissions", :force => true do |t|
@@ -87,7 +88,6 @@ ActiveRecord::Schema.define(:version => 20121108153935) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "avatar"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.string   "crypted_password",    :default => "", :null => false
@@ -105,6 +105,11 @@ ActiveRecord::Schema.define(:version => 20121108153935) do
     t.integer  "posts_count",         :default => 0
     t.integer  "ropes_count",         :default => 0
     t.text     "options"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.integer  "primary_group_id"
   end
 
 end

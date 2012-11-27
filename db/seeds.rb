@@ -7,30 +7,34 @@
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
 Group.create! [
-  {:name => "guest" },
-  {:name => "user"  },
-  {:name => "admin" },
-  {:name => "system"}
+  {:name => "guest", :avatar_size => "0"        },
+  {:name => "user" , :avatar_size => "80x80>"   },
+  {:name => "admin", :avatar_size => "100x100>" },
+  {:name => "system",:avatar_size => "100%"     }
 ]
 guest_pass = SecureRandom.hex(5)
-User.create! :name => "guest", :password => guest_pass, :password_confirmation => guest_pass, :email => "guest@localhost.com", :avatar => "" do |u|
+User.create!(:name => "guest",
+             :password => guest_pass,
+             :password_confirmation => guest_pass,
+             :email => "guest@localhost.com") do |u|
   u.id = 0
   u.group_ids = [1]
-  #u.groups << Group.find(1)
+  u.primary_group_id = 1
 end
-User.create! :name => "admin", :password => "admin", :password_confirmation => "admin", :email => "admin@localhost.com", :avatar => "/admin.png" do |u|
-  #u.groups << Group.find(1)
-  #u.groups << Group.find(2)
-  #u.groups << Group.find(3)
+User.create!(:name => "admin",
+             :password => "admin",
+             :password_confirmation => "admin",
+             :email => "admin@localhost.com") do |u|
   u.group_ids = [1,2,3]
+  u.primary_group_id = 3
 end
 system_pass = SecureRandom.hex(5)
-User.create! :name => "system", :password => system_pass, :password_confirmation => system_pass, :email => "system@localhost.com", :avatar => "/system.png" do |u|
-  #u.groups << Group.find(1)
-  #u.groups << Group.find(2)
-  #u.groups << Group.find(3)
-  #u.groups << Group.find(4)
+User.create!(:name => "system",
+             :password => system_pass,
+             :password_confirmation => system_pass,
+             :email => "system@localhost.com") do |u|
   u.group_ids = [1,2,3,4]
+  u.primary_group_id = 4
 end
 
 Board.create! [

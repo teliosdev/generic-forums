@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :avatar_size
   has_and_belongs_to_many :users, :join_table => "user_groups"
   has_many :permissions, :inverse_of => :group
 

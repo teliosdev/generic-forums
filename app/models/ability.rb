@@ -19,16 +19,7 @@ class Ability
           can_result ||= true
         end
       end
-      #if subject.respond_to?(:ghost)
-      #  can_result = subject.ghost.permissions.where({
-      #    :action   => action,
-      #    :type     => subject_class.to_s,
-      #    :group_id => user.group_ids
-      #  }).any? do |permission|
-      #    negated = true if permission.negate
-      #    can_result ||= true
-      #  end
-      #end
+
       can_result and not negated
     end
   end
@@ -39,10 +30,10 @@ class Ability
     aliases = [action]
     aliases << :manage
     case action
-    when :edit_own_post
-      aliases << :edit_post
-    when :delete_own_post
-      aliases << :delete_post
+    when :edit_post
+      aliases << :edit_own_post
+    when :delete_post
+      aliases << :delete_own_post
     end
     aliases
   end
