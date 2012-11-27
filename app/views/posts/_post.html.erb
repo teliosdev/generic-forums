@@ -5,6 +5,9 @@
   </div>
   <div class="post_data">
     <%= format(post) %>
+    <% content_for :desc do -%>
+      <%= post.body %>
+    <%- end %>
   </div>
   <div class="post_info">
     <%= render "posts/single_post/post_info", :post => post %>

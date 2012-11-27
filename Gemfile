@@ -7,6 +7,10 @@ gem 'rails', '3.2.8'
 
 gem 'pg'
 
+group :development do
+  gem 'sqlite3'
+end
+
 group :op do
   gem 'authlogic'
   gem 'json'

@@ -9,7 +9,7 @@ development: &default
   # The version of the forum.  You may not want this to appear or
   # something, so this is open to modification.  You don't need to
   # though.
-  forum_version: 0.1.21
+  forum_version: 0.1.24
   # The maximum amount of times AuthLogic will allow a user to try to
   # login.  Set to 0 to disable.
   max_login_tries: 5
@@ -28,6 +28,8 @@ development: &default
     threads_per_page: 20
     # Settings for the posts per page.
     posts_per_page: 20
+    # This is whether or not a user wants to show up as 'online'.
+    show_online: true
   # The default groups that a registering user belongs to.  This
   # basically defines the groups that most users on the site will have
   # (unless you use a cron or such to remove groups).
@@ -38,6 +40,9 @@ development: &default
   # The primary group of a user is where the title name and the
   # username's color comes from, as well as avatar size.
   default_primary_group: user
+  # The amount, in seconds, from a user's last request that a user is
+  # still considered 'online'.
+  online: 600
   # Markdown options for RDiscount.  Check
   # https://github.com/rtomayko/rdiscount/ and
   # https://github.com/rtomayko/rdiscount/blob/master/lib/rdiscount.rb
@@ -67,4 +72,5 @@ development: &default
       - image/png
       - image/gif
 
-production: *default
+production:
+  <<: *default

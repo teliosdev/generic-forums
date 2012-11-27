@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     c.session_class        Session
     c.validate_email_field true
     c.email_field          :email
-    c.logged_in_timeout    1.hour
+    c.logged_in_timeout    AppConfig.online
     c.login_field          :name
     c.crypto_provider      Authlogic::CryptoProviders::BCrypt
   end
@@ -57,10 +57,35 @@ class User < ActiveRecord::Base
   end
 
   def per_page(type)
-    if read_attribute(:options) and (o = self.options["#{type}_per_page".to_sym])
-      o
+    self.options[:"#{type}_per_page"]
+  end
+
+  def options
+    @_opts ||= OptionsAccessor.new read_attribute(:options), self
+  end
+
+  def options= op
+    @_opts = nil
+    super
+  end
+end
+
+class OptionsAccessor
+  def initialize(opts, user)
+    @opts  = opts
+    @_user = user
+  end
+
+  def [] name
+    if @opts and @opts[name]
+      @opts[name]
     else
-      AppConfig.user_options.public_send("#{type}_per_page")
+      AppConfig.user_options.public_send(name)
     end
+  end
+
+  def []= name, value
+    @opts[name] = value
+    user.update_attribute(:options, @opts)
   end
 end

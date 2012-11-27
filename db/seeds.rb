@@ -77,11 +77,12 @@ BODY
   p.user_id = 1
 end
 
-b.permissions.create! :action => :read, :type => "Board", :group_id => 1
+b.permissions.create! :action => :read,   :type => "Board", :group_id => 1
+b.permissions.create! :action => :create, :type => "Board", :group_id => 2
 b.permissions.create! :action => :manage, :type => "Board", :group_id => 3
+
 [:read, :post, :edit_own_post].each do |p|
     b.ropes.find(1).permissions.create! :action => p, :type => "Rope", :group_id => 2
 end
-
-b.ropes.find(1).permissions.create! :action => :read, :type => "Rope", :group_id => 1
+b.ropes.find(1).permissions.create! :action => :read,   :type => "Rope", :group_id => 1
 b.ropes.find(1).permissions.create! :action => :manage, :type => "Rope", :group_id => 3

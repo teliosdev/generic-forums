@@ -62,5 +62,3 @@ module GenericForums
     config.assets.version = '1.0'
   end
 end
-
-#require "#{Rails.root}/config/extras/plugin"

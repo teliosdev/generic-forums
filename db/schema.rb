@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126134824) do
+ActiveRecord::Schema.define(:version => 20121127134014) do
 
   create_table "boards", :force => true do |t|
     t.string   "name"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(:version => 20121126134824) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "avatar_size"
+    t.string   "title"
+    t.string   "name_color"
   end
 
   create_table "permissions", :force => true do |t|
@@ -110,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20121126134824) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "primary_group_id"
+    t.string   "title"
   end
 
 end

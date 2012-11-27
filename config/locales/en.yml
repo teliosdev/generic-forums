@@ -6,3 +6,8 @@ en:
     previous_label: "&laquo; Previous"
     next_label: "Next &raquo;"
     page_gap: "&middot;"
+  forum_greeting:
+    - Howdy
+    - What's up
+    - Hello
+    - Hi there

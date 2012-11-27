@@ -32,7 +32,7 @@
             <%= image_tag(current_user.avatar.url, :height => 32, :width => 32, :id => "image") %>
           </div>
           <div id="user_data">
-            <p>Howdy, <%= link_to current_user.name, user_path(current_user) %></p>
+            <p><%= t('forum_greeting')[Random.rand(t('forum_greeting').length)] %>, <%= link_to current_user.name, user_path(current_user) %></p>
             <ul id="user_opts">
               <li><%= link_to "Inbox", "#{user_path(current_user)}/inbox" %></li>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
