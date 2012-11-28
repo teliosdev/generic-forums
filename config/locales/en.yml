@@ -6,8 +6,68 @@ en:
     previous_label: "&laquo; Previous"
     next_label: "Next &raquo;"
     page_gap: "&middot;"
+
   forum_greeting:
     - Howdy
     - What's up
     - Hello
     - Hi there
+  boards: &thread
+    name: Board Name
+    last_post: Last Post
+    active_threads: Active Threads
+    no_post: No Recorded Post
+
+  home:
+    messages: Inbox
+    settings: Settings
+    logout: Logout
+    about: About
+    top: Back to top
+    login: Login
+    register: Register
+    version: version
+    home: Home
+
+  posts:
+    reply: Reply
+    new_post: New Post
+    ago: "Posted %{time} ago"
+# "
+    updated: "and updated %{time} ago"
+    replies: Replies
+    post: Post
+    reply_box: Reply Box
+    page: Page
+
+  threads:
+    <<: *thread
+    name: Thread Name
+    posts: Posts
+    latest_post: "Latest post by %{name}"
+    go: "Go &raquo;"
+    created_by: "Posted by %{name} on %{time}"
+    create: Create Thread
+    page: "Page %{number} of %{total}"
+
+  session:
+    logout: Logout
+    logout_warning: This will log you out of the forums.  Are you sure?
+    oops: Oops!
+    maximum_login_tries: "It seems you exceeded the maximum amount of login tries.  Maybe if you try again in %{time}, you'll be able to log in again."
+    no_login: "Sorry, we couldn't log you in!  Maybe try again?"
+
+  form:
+    read_rules:
+    errors: There were errors with your submission.
+
+  activerecord:
+    attributes:
+      user:
+        name: Handle
+        password_confirmation: Password Confirmation
+
+  authlogic:
+    error_messages:
+      # this is only one of three authlogic messages that end with a period, what's up with that?
+      email_invalid: should look like an email address

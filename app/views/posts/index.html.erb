@@ -1,11 +1,11 @@
 <%= render "thread_info" %>
 <ul class="post_list abnormal">
-  <% for post in @posts %>
-    <%= render "post", :post => post %>
-  <% end -%>
+	<% for post in @posts %>
+		<%= render "post", :post => post %>
+	<% end -%>
 </ul>
 <% if can? :post, @rope %>
-  <p>Reply</p>
-  <%= render "reply_box", :post => Post.new %>
+	<p><%= t('posts.reply') %></p>
+	<%= render "reply_box", :post => Post.new %>
 <% end %>
 <%= render "thread_info" %>

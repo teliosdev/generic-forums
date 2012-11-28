@@ -1,5 +1,5 @@
 ### Generic Forums ###
-Generic Forums is an open-source forum project, targeting simplicity.  As it is, generic forums was built on these technologies:
+Generic Forums is an open-source forum project, targeting simplicity.	As it is, generic forums was built on these technologies:
 
 - [`Ruby on Rails`][rails] (v3.2.3)
 - [`AuthLogic`][authlogic] (v3.1.3)
@@ -7,6 +7,7 @@ Generic Forums is an open-source forum project, targeting simplicity.  As it is,
 - [`Kaminari`][kaminari] (v0.14.1)
 - [`RDiscount`][rdiscount] (v1.6.8)
 - [`JBuilder`][jbuilder] (v0.6.0)
+- [`Rabl`][rabl] (0.7.6)
 
 Generic Forums has contributions from the following people:
 
@@ -22,4 +23,5 @@ Generic Forums can be found [on github][gf].
 [kaminari]: https://github.com/amatsuda/kaminari
 [rdiscount]: https://github.com/rtomayko/rdiscount
 [jbuilder]: https://github.com/rails/jbuilder
+[rabl]: https://github.com/nesquena/rabl
 [gf]: https://github.com/redjazz96/generic-forums

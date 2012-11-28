@@ -1,14 +1,22 @@
 <li class='data_row'>
-  <div class="data board_name size50">
-    <span class="sup header_font"><%= link_to thread.title, board_rope_posts_path(@board, thread) %></span>
-    <span class="sub gray">Posted by <%= link_to thread.user.name, thread.user %> on <%= thread.created_at.strftime("%b %-d '%y") %></span>
-  </div>
-  <div class="data basic_data size20">
-    <span class="sup"><%= pluralize((thread.posts.size.fdiv @user.per_page(:posts)).ceil, "Page") %></span>
-    <span class="sub"><%= paginate thread.posts.page(0).per(@user.per_page(:posts)) if thread.posts.size > @user.per_page(:posts) %></span>
-  </div>
-  <div class="data basic_data size20">
-    <span class="sup"><%= pluralize(thread.posts.size-1, "post") %></span>
-    <span class="sub">Latest post by <%= link_to thread.posts.last.user.name, thread.posts.last.user %> <span class="sepdot">&#x00B7;</span> <%= link_to "Go &raquo;".html_safe, determine_path(thread.posts.last) %></span>
-  </div>
+	<div class="data board_name size50">
+		<span class="sup header_font"><%= link_to thread.title, board_rope_posts_path(@board, thread) %></span>
+		<span class="sub gray">
+			<%= t('threads.created_by', :name => link_to(thread.user.name, thread.user), :time => thread.created_at.strftime("%b %-d '%y")).html_safe %>
+			</span>
+	</div>
+	<div class="data basic_data size20">
+		<span class="sup"><%= pluralize((thread.posts.size.fdiv @user.per_page(:posts)).ceil, t('posts.page')) %></span>
+		<span class="sub"><%= paginate thread.posts.page(0).per(@user.per_page(:posts)) if thread.posts.size > @user.per_page(:posts) %></span>
+	</div>
+	<div class="data basic_data size20">
+		<span class="sup">
+			<%= pluralize(thread.posts.size-1, t('posts.page')) %>
+		</span>
+		<span class="sub">
+			<%= t('threads.latest_post', :name => link_to(thread.posts.last.user.name, thread.posts.last.user)).html_safe %>
+			<span class="sepdot">&#x00B7;</span>
+			<%= link_to t('threads.go').html_safe, determine_path(thread.posts.last) %>
+		</span>
+	</div>
 </li>

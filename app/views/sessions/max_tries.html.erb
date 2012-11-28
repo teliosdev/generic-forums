@@ -1,3 +1,5 @@
 <h1>Oops!</h1>
 
-<p>It seems you exceeded the maximum amount of login tries.  Maybe if you try again in <%= time_ago_in_words(session[:login_ban_time]) %>, you'll be able to log in again.</p>
+<p>
+	<%= t 'session.maximum_login_tries', :time => time_ago_in_words(session[:login_ban_time) %>
+</p>

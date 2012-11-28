@@ -1,0 +1,8 @@
+<div id="user_info">
+	<% if current_user.guest? %>
+		<%= render "layouts/header/login_area" %>
+	<% else %>
+		<%= render "layouts/header/user_image" %>
+		<%= render "layouts/header/user_info" %>
+	<% end  %>
+</div>

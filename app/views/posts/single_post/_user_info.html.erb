@@ -1,11 +1,11 @@
 <%= link_to post.user do %>
-  <span class="username <%= title_classes(post.user) %>"
-  	style="color: <%= post.user.primary_group.name_color || "" %>;"
-  ><%= post.user.name %></span>
+	<span class="username <%= title_classes(post.user) %>"
+		style="color: <%= post.user.primary_group.name_color || "" %>;"
+	><%= post.user.name %></span>
 <% end -%>
 <div class="title"><%= post.user.title || post.user.primary_group.title %></div>
 <div class="user_image"><%= image_tag post.user.avatar.url %></div>
 <div class="user_data">
-  <p><%= pluralize post.user.posts.size, "Post" %></p>
-  <p><%= post.user.created_at.strftime("%B %Y") %></p>
+	<p><%= pluralize post.user.posts.size, t('posts.post') %></p>
+	<p><%= post.user.created_at.strftime("%B %Y") %></p>
 </div>

@@ -1,16 +1,9 @@
 <%= form_for([(unless post.rope then :board else post.rope.board end), post.rope || :rope, post], :html => {:class => "for_editor"}) do |f| %>
-  <div class="reply_box">
-    <div class="editor_wrapper">
-      <!--<div class="high_bar">
-        <div class="icon_container"></div>
-        <div class="format_select">
-          <%#= f.label :format %>
-          <%#= f.select :format, options_for_select(Formatter::Register.format_list, :selected => AppConfig.default_format) %>
-        </div>
-      </div>-->
-      <%= render "posts/create_post/high_bar", :f => f, :post => post %>
-      <%= render "posts/create_post/text_box", :f => f, :post => post %>
-    </div>
-    <%= render "posts/create_post/submit", :f => f, :post => post %>
-  </div>
+	<div class="reply_box">
+		<div class="editor_wrapper">
+			<%= render "posts/create_post/high_bar", :f => f, :post => post %>
+			<%= render "posts/create_post/text_box", :f => f, :post => post %>
+		</div>
+		<%= render "posts/create_post/submit", :f => f, :post => post %>
+	</div>
 <% end -%>

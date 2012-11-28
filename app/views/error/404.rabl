@@ -1,3 +1,3 @@
 node :status do
-  response.status
+	response.status
 end

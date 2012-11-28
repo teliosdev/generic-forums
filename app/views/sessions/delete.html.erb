@@ -1,5 +1,5 @@
 <%= form_tag session_path(1), :method => :DELETE do %>
-  <div class="gr"><h2>Logout</h2></div>
-  <div class="gr"><p>This will log you out of the forums.  Are you sure?</p></div>
-  <div class="gr"><%= submit_tag "Logout" %></div>
+	<div class="gr"><h2><%= t 'session.logout' %></h2></div>
+	<div class="gr"><p><%= t 'session.logout_warning' %></p></div>
+	<div class="gr"><%= submit_tag t('session.logout') %></div>
 <% end -%>

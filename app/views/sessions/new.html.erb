@@ -1,34 +1,19 @@
-<!--<%# form_tag "/session" do %>
-  <div class='gr'><h2>Login</h2></div>
-  <div class='gr'>
-    <%# label_tag 'name', "Username:" %>
-    <%# text_field_tag 'name', nil, :maxlength => 20, :placeholder => 'username', :required => "required" %>
-  </div>
-  <div class='gr'>
-    <%# label_tag 'password', "Password:" %>
-    <%# password_field_tag 'password', nil, :placeholder => 'password', :required => "required" %>
-  </div>
-  <div class='gr'>
-    <%# submit_tag "Login" %>
-  </div>
-<%# end %>-->
-
 <%= form_for @session do |f| %>
 <div class='gr'><h2>Login</h2></div>
-  <% if @session.errors.any? %>
-    <div class="gr error">
-      <p>Sorry, we couldn't log you in!  Maybe try again?</p>
-    </div>
-  <% end -%>
-  <div class="gr">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="gr">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="gr">
-    <%= f.submit "Login" %>
-  </div>
+	<% @session.errors.to_a.any? do |error| %>
+		<div class="gr error">
+			<p><%= error %></p>
+		</div>
+	<% end -%>
+	<div class="gr">
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</div>
+	<div class="gr">
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+	</div>
+	<div class="gr">
+		<%= f.submit "Login" %>
+	</div>
 <% end -%>

@@ -1,0 +1,12 @@
+<%= form_for Session.new do |f| %>
+	<div class="line">
+		<%= f.label :name,      :class => "part" %>
+		<%= f.text_field :name, :class => "part", :tabindex => 1 %>
+		<%= link_to t('home.register'), new_user_path, :class => "last-part" %>
+	</div>
+	<div class="line">
+		<%= f.label :password,          :class => "part" %>
+		<%= f.password_field :password, :class => "part", :tabindex => 2 %>
+		<%= f.submit t('home.login'),   :class => "as-link last-part", :tabindex => 3 %>
+	</div>
+<% end %>

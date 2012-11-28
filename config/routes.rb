@@ -49,7 +49,10 @@ GenericForums::Application.routes.draw do
   end
   get "boards/:board_id" => "ropes#index"
 
-  resources :users, :only => [:new, :create, :show, :index, :edit]
+  resources :users, :except => [:destroy] do
+    resources :messages
+  end
+
   resources :sessions, :only => [:new, :create, :destroy]
   get "sessions/delete"
   get "sessions/token"

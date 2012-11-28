@@ -1,0 +1,16 @@
+<div id="user_data">
+	<p>
+		<%= t('forum_greeting')[Random.rand(t('forum_greeting').length)] %>, <%= link_to current_user.name, user_path(current_user) %>
+	</p>
+	<ul id="user_opts">
+		<li>
+			<%= link_to t('home.messages'), user_messages_path(current_user) %>
+		</li>
+		<li>
+			<%= link_to t('home.settings'), edit_user_path(current_user) %>
+		</li>
+		<li>
+			<%= link_to t('home.logout'), url_for(:controller => "sessions", :action => "delete") %>
+		</li>
+	</ul>
+</div>

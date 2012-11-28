@@ -77,6 +77,44 @@ body
                 padding-left:  1px
                 padding-right: 4px
 
+        form#new_session
+          display: inline-block
+          margin-top: -5px
+
+          div.line
+            padding-top: 5px
+
+            .part
+              display: inline-block
+              width: 65px
+              outline: none
+              color: $light_gray
+
+            input.part
+              border: 1px solid $light_blue
+              width: 95px
+              padding: 2px 3px
+              margin-right: 5px
+              color: $main_color
+
+            .as-link
+              background-color: transparent
+              border: none
+              display: inline
+              color: $a_blue
+              text-align: left
+              padding: 0
+
+              &:hover
+                color: $ah_blue
+
+              &:focus
+                outline: thin dotted
+
+            .last-part
+              text-align: right
+              margin-left: 20px
+
     footer
       color: $light_gray
       text-align: center
@@ -133,6 +171,37 @@ body
           content: "\2014"
           padding-right: 5px
           margin-left: -5px
+
+      form
+        div.gr
+          margin-top: 10px
+
+          label
+            display: inline-block
+            width: 205px
+
+          input
+            border: 1px solid $light_blue
+            outline: none
+            padding: 2px 5px
+            color: $main_color
+
+            &.as-link
+              background-color: transparent
+              border: none
+              color: $a_blue
+              padding: 0
+              text-align: left
+
+              &:focus
+                outline: thin dotted
+
+              &:hover
+                color: $ah_blue
+
+          span.error
+            color: $error_red
+            margin-left: 5px
 
 form
   input#rope_title

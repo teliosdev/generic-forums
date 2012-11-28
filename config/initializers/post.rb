@@ -20,3 +20,7 @@ end
 Formatter::Register.register :plain, :quote do |t|
   "\t" + t.gsub(/\n/, "\n\t") + "\n\n"
 end
+
+ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+  html_tag
+end

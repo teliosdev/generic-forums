@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
   helper :application
-  before_filter :forum_info, :check_content
+  before_filter :forum_info, :check_content, :set_locale
   helper_method :current_user
 
   protected
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     @forum.version = AppConfig.forum_version
 
     @breadcrumbs = BreadcrumbHelper::BreadcrumbSet.new
-    @breadcrumbs.add :name => "Home", :link => "/"
+    @breadcrumbs.add :name => t('home.home'), :link => "/"
   end
 
   def error(number)
@@ -41,7 +41,15 @@ class ApplicationController < ActionController::Base
     request.headers["Content-Type"] = c.to_s
   end
 
-  def require_login
-    #raise StandardError unless responds_to?(:permission)
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def default_url_options(options={})
+    if I18n.locale != I18n.default_locale
+      { :locale => I18n.locale }
+    else
+      {}
+    end
   end
 end

@@ -1,3 +1,3 @@
 node :token do
-  @s.record.single_access_token
+	@s.record.single_access_token
 end

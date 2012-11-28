@@ -1,16 +1,28 @@
 <h1><%= @board.name %></h1>
 <div class="desc"><%= @board.sub %> &mdash; <%= link_to "threads", board_ropes_path(@board) %></div>
 <ul class='board_list'>
-  <li class='header_row'>
-    <span class='head size50'>Board Name</span>
-    <span class="head size20">Last Post</span>
-    <span class="head size20">Active Threads</span>
-  </li>
-  <% @children.each do |board| %>
-    <li class='data_row'>
-      <span class="data board_name size50"><%= link_to board.name, board %></span>
-      <span class="data basic_data size20">???</span>
-      <span class="data basic_data size20"><%= board.ropes.size %></span>
-    </li>
-  <% end -%>
+	<li class='header_row'>
+		<span class='head size50'>
+      <%= t 'boards.name' %>
+    </span>
+		<span class="head size20">
+      <%= t 'boards.last_post' %>
+    </span>
+		<span class="head size20">
+      <%= t 'boards.active_threads' %>
+    </span>
+	</li>
+	<% @children.each do |board| %>
+		<li class='data_row'>
+			<span class="data board_name size50">
+        <%= link_to board.name, board %>
+      </span>
+			<span class="data basic_data size20">
+        ???
+      </span>
+			<span class="data basic_data size20">
+        <%= board.ropes.size %>
+      </span>
+		</li>
+	<% end -%>
 </ul>

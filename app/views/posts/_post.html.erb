@@ -1,15 +1,15 @@
 <li class="post <%= "user_online" if post.user.logged_in? %>">
-  <a name="post-<%= post.id %>"></a>
-  <div class="user_info">
-    <%= render "posts/single_post/user_info", :post => post %>
-  </div>
-  <div class="post_data">
-    <%= format(post) %>
-    <% content_for :desc do -%>
-      <%= post.body %>
-    <%- end %>
-  </div>
-  <div class="post_info">
-    <%= render "posts/single_post/post_info", :post => post %>
-  </div>
+	<a name="post-<%= post.id %>"></a>
+	<div class="user_info">
+		<%= render "posts/single_post/user_info", :post => post %>
+	</div>
+	<div class="post_data">
+		<%= format(post) %>
+		<% content_for :desc do -%>
+			<%= post.body %>
+		<%- end %>
+	</div>
+	<div class="post_info">
+		<%= render "posts/single_post/post_info", :post => post %>
+	</div>
 </li>

@@ -1,7 +1,7 @@
 <div class="high_bar">
-  <div class="icon_container"></div>
-  <div class="format_select">
-    <%= f.label :format %>
-    <%= f.select :format, options_for_select(Formatter::Register.format_list, :selected => post.format || AppConfig.default_format), :class => "post_format" %>
-  </div>
+	<div class="icon_container"></div>
+	<div class="format_select">
+		<%= f.label :format %>
+		<%= f.select :format, options_for_select(Formatter::Register.format_list, :selected => post.format || AppConfig.default_format), :class => "post_format" %>
+	</div>
 </div>
