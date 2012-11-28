@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
     puts "REQUEST_XHR", params[:format]
     unless params[:format]
       if @s.valid?
+        @s.save
         redirect_to "/"
       else
         @session = @s

@@ -19,9 +19,13 @@
 
 		blurCallback: ->
 			v = @input.val()
-			v = v.replace(/\s*$/, "").replace(/^\s*/, "")
+			v = v.replace(/\s*$/, "")
+				.replace(/^\s*/, "")
+				.split(/(?:\s|\,)/g)
+			console.log v
 			return if v.length is 0
-			@_createNewTag v
+			for tag in v
+				@_createNewTag tag
 			@input.val("")
 
 		formSubmitCallback: ->
@@ -29,6 +33,7 @@
 			tagRender = []
 			@wrap.children('.tag').each (_,e)->
 				tagRender.push $(e).text()
+			@input.css('color', 'transparent')
 			@input.val tagRender.join(',')
 
 		_wrapInput: ->
@@ -42,6 +47,7 @@
 			@pointer = @wrap.children('span.pointer')
 
 		_createNewTag: (tagvalue)->
+			return if tagvalue.length is 0
 			v = @t.escapeHTML(tagvalue)
 			return if @_tagExists v
 			return unless @_validateTag v
@@ -86,7 +92,7 @@
 			)
 			if @config.form
 				@config.form.on("submit", this, (event)->
-					tagRender
+					event.data.formSubmitCallback()
 				)
 
 		_disallowedCharacters: [',', /[^A-Za-z\-\_0-9\.]/]

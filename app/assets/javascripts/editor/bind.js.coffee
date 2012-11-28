@@ -31,5 +31,6 @@ $( ()->
   if $("input#tag_input").length > 0
     Generic.taggers ||= []
     $taginput = $ "input#tag_input"
-    Generic.taggers.push new Generic.Tagger($taginput, {"wrapper": $taginput.parent()})
+    $form     = $ "form.for_editor"
+    Generic.taggers.push new Generic.Tagger($taginput, {"wrapper": $taginput.parent(), "form": $form })
 )

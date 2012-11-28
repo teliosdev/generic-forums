@@ -6,7 +6,7 @@ class Rope < ActiveRecord::Base
   has_many :posts, :inverse_of => :rope, :dependent => :destroy
   has_many :permissions, :foreign_key => :remote_id, :inverse_of => :remote,
            :conditions => { :type => "Rope" }, :dependent => :destroy
-  has_one :main_post, :class_name => Post, :validate => false
+  has_one :main_post, :class_name => "Post", :validate => false
   has_and_belongs_to_many :tags
 
   # Others
@@ -14,7 +14,8 @@ class Rope < ActiveRecord::Base
   accepts_nested_attributes_for :main_post
   serialize :ghost_data
 
-  validates :title, :presence => true
+  validates :title, :presence => true, :length => { :minimum => 3 }
+  validate :number_of_tags, :on => :save
 
   # Scope
   default_scope order("updated_at DESC")
@@ -25,6 +26,13 @@ class Rope < ActiveRecord::Base
         :is_ghost => true,
         :ghost_data => (read_attribute(:ghost_data) || {})
       }).first || self
+  end
+
+  # assumes it's being passed an array
+  def set_tags(tags)
+    self.tags = tags.map.each do |tag|
+      Tag.find_or_create_by_name tag
+    end
   end
 
   def to_param

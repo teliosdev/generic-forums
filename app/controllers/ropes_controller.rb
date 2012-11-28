@@ -21,6 +21,9 @@ class RopesController < ApplicationController
     @thread = Rope.new :title => params[:rope][:title], :main_post_attributes => params[:rope][:main_post_attributes]
     @thread.board = @board
     @thread.user  = @user
+    @thread.set_tags params[:rope][:tags].split(/(?:\s|\,)/).reject { |tag|
+      tag.length > 3
+    }
     @thread.main_post.rope = @thread
     @thread.main_post.user = @user
     p @thread, @thread.main_post

@@ -1,7 +1,12 @@
 <%= form_for [:board, @thread], :html => {:class => "for_editor"} do |f| %>
+	<% @thread.errors.to_a.any? do |error| %>
+		<div class="gr error">
+			<p><%= error %></p>
+		</div>
+	<% end %>
 	<%= f.text_field :title %>
 	<%= f.fields_for :main_post do |p| %>
-		<%= render "ropes/create_post/reply_box", :post => @post, :f => p %>
+		<%= render "ropes/create_post/reply_box", :post => @post, :f => f, :p => p %>
 	<% end %>
 	<%= f.submit %>
 <% end -%>

@@ -1,4 +1,4 @@
-<%= t 'posts.ago',  :time => time_ago_in_words(post.created_at) %>
+<%= t 'posts.ago',  :time => time_ago_in_words(post.created_at) -%>
 <%=
 t 'posts.updated',  :time => time_ago_in_words(post.updated_at) if \
 post.created_at != post.updated_at %>.
