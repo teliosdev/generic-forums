@@ -41,6 +41,10 @@ class ApplicationController < ActionController::Base
     request.headers["Content-Type"] = c.to_s
   end
 
+  def api_request?
+    params[:format] and params[:format] != "html"
+  end
+
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end

@@ -9,8 +9,7 @@ class SessionsController < ApplicationController
 
   def create
     @s = Session.new(params[:session])
-    puts "REQUEST_XHR", params[:format]
-    unless params[:format] or params[:format] != "html"
+    unless api_request?
       if @s.valid?
         @s.save
         redirect_to "/"
@@ -21,7 +20,7 @@ class SessionsController < ApplicationController
     else
       puts "HANDLE_BY_TOKEN"
       unless @s.save
-        flash.now[:errors] = @s[:errors]
+        flash.now[:errors] = @s.errors
         error(400)
       else
         render "token"
