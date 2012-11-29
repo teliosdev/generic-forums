@@ -21,8 +21,6 @@ end
 
 group :post_formats do
   gem 'rdiscount'
-  #gem 'rbcode', :github => "redjazz96/rbcode" # I'll need to rewrite this before I can use it
-  gem 'rbbcode'
   gem 'paperclip'
 end
 
