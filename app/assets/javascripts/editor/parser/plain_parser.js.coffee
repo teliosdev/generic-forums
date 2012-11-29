@@ -5,4 +5,4 @@
     toHTML: (text)->
       "<pre>"+exports.Tools.escapeHTML(text)+"</pre>"
 
-)(window.Generic)
+)(window.Generic.Lib)

@@ -1,3 +1,5 @@
+// This one was customized way byond the original...
+
 jQuery.fn.extend({
   getSelection: function (n) {
     if (n == null)

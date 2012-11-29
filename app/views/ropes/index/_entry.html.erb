@@ -11,7 +11,7 @@
 	</div>
 	<div class="data basic_data size20">
 		<span class="sup">
-			<%= pluralize(thread.posts.size-1, t('posts.page')) %>
+			<%= pluralize(thread.posts.size-1, t('posts.reply')) %>
 		</span>
 		<span class="sub">
 			<%= t('threads.latest_post', :name => link_to(thread.posts.last.user.name, thread.posts.last.user)).html_safe %>

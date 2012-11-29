@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :name, :avatar, :password, :password_confirmation, :options
   serialize :options
+  default_scope order("created_at DESC")
 
   # Relationships
   has_and_belongs_to_many :groups, :join_table => "user_groups"
@@ -28,6 +29,7 @@ class User < ActiveRecord::Base
     c.logged_in_timeout    AppConfig.online
     c.login_field          :name
     c.crypto_provider      Authlogic::CryptoProviders::BCrypt
+    c.merge_validates_uniqueness_of_login_field_options :case_sensitive => true
   end
 
   # Paperclip

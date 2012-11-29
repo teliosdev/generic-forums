@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   def create
     @s = Session.new(params[:session])
     puts "REQUEST_XHR", params[:format]
-    unless params[:format]
+    unless params[:format] or params[:format] != "html"
       if @s.valid?
         @s.save
         redirect_to "/"

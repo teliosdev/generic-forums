@@ -97,4 +97,4 @@
 
 		_disallowedCharacters: [',', /[^A-Za-z\-\_0-9\.]/]
 
-)(window.Generic)
+)(window.Generic.Lib)

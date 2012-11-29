@@ -57,3 +57,20 @@ body
                     display: none
 
 
+      ul.board_list li.header_row
+        border:
+          top: 1px solid $light_blue
+          bottom: 1px solid $light_blue
+        margin-top: 15px
+        padding: 7px 0
+        color: $light_gray
+        display: block
+
+        span
+          display: inline-block
+
+          &.size50
+            width: ((960px/2) - 5px)
+
+          &.size20
+            width: ((960px/4) - 5px)

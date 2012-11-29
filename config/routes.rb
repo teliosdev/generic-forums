@@ -48,6 +48,7 @@ GenericForums::Application.routes.draw do
     get "threads/:rope_id" => "posts#index"
   end
   get "boards/:board_id" => "ropes#index"
+  resources :tags
 
   resources :users, :except => [:destroy] do
     resources :messages

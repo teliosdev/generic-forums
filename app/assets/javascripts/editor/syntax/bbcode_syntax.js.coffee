@@ -84,7 +84,7 @@
 
 	exports.FormatRegister.addFormat "bbcode", BbCodeSyntax
 
-)(window.Generic)
+)(window.Generic.Lib)
 
 # TODO:
 # - add client-side parser

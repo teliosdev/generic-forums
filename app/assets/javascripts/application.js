@@ -16,5 +16,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require modernizr
-//= require editor
-//= require ./client/client
+//= require Generic

@@ -70,4 +70,7 @@ en:
   authlogic:
     error_messages:
       # this is only one of three authlogic messages that end with a period, what's up with that?
-      email_invalid: should look like an email address
+      email_invalid: should be an email address
+    attributes:
+      session:
+        name: Handle

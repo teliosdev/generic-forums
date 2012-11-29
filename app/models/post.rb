@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :body, :format, :rope_id, :user_id
 
-  default_scope order("created_at")
+  default_scope order("created_at DESC")
 
   def page(per_page = AppConfig.user_options.posts_per_page, order = :id)
     position = self.class.where(:rope_id => read_attribute(:rope_id)).where("#{order} <= ?", self.send(order)).count
