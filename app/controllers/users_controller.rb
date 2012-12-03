@@ -47,11 +47,15 @@ class UsersController < ApplicationController
 	protected
 
 	def current_user?
-		@user == current_user
+		@view_user == current_user
+	end
+
+	def user
+		@view_user
 	end
 
 	def find_user
-		@user = User.find(params[:id])
+		@view_user = User.find(params[:id])
 	end
 
 end
