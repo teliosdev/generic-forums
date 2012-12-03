@@ -37,17 +37,17 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		unless @user.options[:public_profile] or current_user?
+		unless user.options[:public_profile] or current_user?
 			error(404) and return
 		end
 		@breadcrumbs.add :name => t('users.users'), :link => users_path
-		@breadcrumbs.add :name => @user.name,       :link =>  user_path(@user)
+		@breadcrumbs.add :name => user.name,       :link =>  user_path(user)
 	end
 
 	protected
 
 	def current_user?
-		@view_user == current_user
+		user == current_user
 	end
 
 	def user
