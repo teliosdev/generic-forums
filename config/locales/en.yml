@@ -17,6 +17,8 @@ en:
     last_post: Last Post
     active_threads: Active Threads
     no_post: No Recorded Post
+    latest_post: "In %{thread} by %{user}"
+    go: "Go &raquo;"
 
   home:
     messages: Inbox
@@ -45,7 +47,6 @@ en:
     name: Thread Name
     posts: Posts
     latest_post: "Latest post by %{name}"
-    go: "Go &raquo;"
     created_by: "Posted by %{name} on %{time}"
     create: Create Thread
     page: "Page %{number} of %{total}"
@@ -60,6 +61,9 @@ en:
   form:
     read_rules:
     errors: There were errors with your submission.
+
+  users:
+    users: Users
 
   activerecord:
     attributes:

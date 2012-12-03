@@ -7,11 +7,13 @@ class Post < ActiveRecord::Base
   attr_accessible :body, :format, :parent_id
 
   validates_presence_of :body, :format, :rope_id, :user_id
+  validates :format, :inclusion => { :in => ::Formatter::Register.format_list.map { |x| x.to_s } }
 
-  default_scope order("created_at DESC")
+  default_scope order("created_at ASC")
 
   def page(per_page = AppConfig.user_options.posts_per_page, order = :id)
     position = self.class.where(:rope_id => read_attribute(:rope_id)).where("#{order} <= ?", self.send(order)).count
     (position.to_f/per_page).ceil
   end
+
 end

@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
 
   def options= op
     @_opts = nil
-    super
+    write_attribute(:options, op)
   end
 end
 

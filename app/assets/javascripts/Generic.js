@@ -1,5 +1,6 @@
 //= require_self
 //= require_tree ./editor
+//= require client/client
 
 /*global window: false, document: false */
 
@@ -11,7 +12,8 @@ var Generic = Generic || (function ($) {
     Events  = {}, // Event-based Actions
     Routes  = {}, // Your Page Specific Logic
     App     = {}, // Your Global Logic and Initializer
-    Public  = {}; // Your Public Functions
+    Public  = {}, // Your Public Functions
+    _log;
 
   Utils = {
     settings: {
@@ -24,10 +26,12 @@ var Generic = Generic || (function ($) {
       },
       init: function () {
 
-        Utils.settings.meta.controller = $('meta[name="controller"]').attr("content");
+        Utils.settings.meta.controller = $('meta[name="controller"]')
+          .attr("content");
         Utils.settings.meta.action = $('meta[name="action"]').attr("content");
 
-        Utils.settings.meta.currentUser = $('meta[name="userid"]').attr("content");
+        Utils.settings.meta.currentUser = $('meta[name="userid"]')
+          .attr("content");
         Utils.settings.meta.homeURL = $('meta[name="url"]').attr("content");
 
       }
@@ -37,28 +41,28 @@ var Generic = Generic || (function ($) {
       document: document
     },
     home_url: function (path) {
-      if (typeof path === "undefined") {
+      if (path === undefined) {
         path = '';
       }
       return Utils.settings.meta.homeURL + path + '/';
     },
     log: function (what) {
       if (Utils.settings.debug) {
-        console.log(what);
+        window.console.log(what);
       }
     },
     route: function () {
 
-      var controller = Utils.settings.meta.controller;
-      var action = Utils.settings.meta.action;
+      var controller = Utils.settings.meta.controller,
+        action = Utils.settings.meta.action;
 
-      if (typeof Routes[controller] !== 'undefined') {
-        if (typeof Routes[controller].init !== 'undefined') {
+      if (Routes[controller] !== undefined) {
+        if (Routes[controller].init !== undefined) {
 
           Routes[controller].init.call();
         }
 
-        if (typeof Routes[controller][action] !== 'undefined') {
+        if (Routes[controller][action] !== undefined) {
 
           Routes[controller][action].call();
         }
@@ -68,10 +72,23 @@ var Generic = Generic || (function ($) {
     Editors: [],
     Taggers: []
   };
-  var _log = Utils.log;
+
+  _log = Utils.log;
 
   Ajax = {
-
+    Client: null,
+    init: function () {
+      Ajax.Client = new Public.Lib.Client();
+      Ajax.Client.mapResources(Ajax.resourceMap);
+    },
+    resourceMap: {
+      boards: "/",
+      threads: "/:boards",
+      posts: "/:boards/:threads",
+      users: "/",
+      messages: "/:users",
+      api: "/api"
+    }
   };
 
   Events = {
@@ -103,7 +120,9 @@ var Generic = Generic || (function ($) {
           }
         ));
 
-        formatSelector.on('change', editor, Events.endpoints.formatSelectorChange);
+        formatSelector.on('change',
+          editor,
+          Events.endpoints.formatSelectorChange);
 
         if ($("input#tag_input").length > 0) {
           form = $("form.for_editor");
@@ -125,9 +144,17 @@ var Generic = Generic || (function ($) {
     logic: {},
     init: function () {
 
+      Ajax.init();
       Utils.settings.init();
       Utils.route();
 
+    },
+
+    test: function () {
+      Ajax.Client.getToken("Ac1dL3ak", "pyong");
+      Ajax.Client.apiRequest("whoami", function (d) {
+        console.warn(d);
+      });
     }
   };
 
@@ -141,6 +168,7 @@ var Generic = Generic || (function ($) {
     Public.Routes = Routes;
     Public.Events = Events;
     Public.App    = App;
+    Public.Ajax   = Ajax;
   }
 
   return Public;

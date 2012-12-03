@@ -15,7 +15,7 @@
 		</span>
 		<span class="sub">
 			<%= t('threads.latest_post', :name => link_to(thread.posts.last.user.name, thread.posts.last.user)).html_safe %>
-			<span class="sepdot">&#x00B7;</span>
+			<span class="sepdot"><!--&#x00B7;-->&middot;</span>
 			<%= link_to t('threads.go').html_safe, determine_path(thread.posts.last) %>
 		</span>
 	</div>

@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       end
     else
       puts "HANDLE_BY_TOKEN"
-      unless @s.save
+      unless @s.valid?
         flash.now[:errors] = @s.errors
         error(400)
       else

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+	before_filter :find_user, :only => [:show]
+
 	def new
 		@new_user = User.new
 	end
@@ -32,6 +34,24 @@ class UsersController < ApplicationController
 			@new_user.save!
 			redirect_to root_path
 		end
+	end
+
+	def show
+		unless @user.options[:public_profile] or current_user?
+			error(404) and return
+		end
+		@breadcrumbs.add :name => t('users.users'), :link => users_path
+		@breadcrumbs.add :name => @user.name,       :link =>  user_path(@user)
+	end
+
+	protected
+
+	def current_user?
+		@user == current_user
+	end
+
+	def find_user
+		@user = User.find(params[:id])
 	end
 
 end

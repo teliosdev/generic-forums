@@ -17,7 +17,17 @@
 				<%= link_to board.name, board_ropes_path(board) %>
 			</span>
 			<span class="data basic_data size20 <%= "gray" unless board.posts.first %>">
-				<%= board.posts.first ? board.posts.first.body[0..20] : t('boards.no_post') %>
+				<% latest_post = board.posts.last %>
+				<% if latest_post %>
+					<%= t('boards.latest_post',
+						  :thread => link_to(latest_post.rope.title, board_rope_path(board, latest_post.rope)),
+						  :user   => link_to(latest_post.user.name,  latest_post.user),
+						 ).html_safe %> <span class="middot">&middot;</span> <%=
+							link_to t('boards.go').html_safe, determine_path(latest_post)
+					%>
+				<% else
+			  	t('boards.no_post')
+			  end %>
 			</span>
 			<span class="data basic_data size20">
 				<%= board.ropes.size %>

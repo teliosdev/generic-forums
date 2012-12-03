@@ -1,4 +1,4 @@
-/*global location: false, Generic: false, jQuery: false */
+/*global location: false, Generic: false, jQuery: false, console: false */
 /*jslint maxlen: 80 */
 
 // Client is a resource client, which follows the CRUD rules as well
@@ -103,10 +103,8 @@
       buf.push(shortName, id.shift());
     }
 
-    console.log(resourceType, path, dependencies, id);
-
     buf.push(resourceType);
-    if (id.length > 0) {
+    if (id.length > 0 && id[0] !== undefined) {
       buf.push(id[0]);
     }
 
@@ -115,7 +113,10 @@
 
   // Get the index of a resource.  It tries to put the first argument
   // through urlFor, but if that fails, it goes directly as the url.
-  Client.prototype.index = function (r, callback) {
+  Client.prototype.index = function (r, data, callback) {
+    if (!callback) {
+      callback = data;
+    }
     this._ajaxCall({
       url: this.buildUrl(this._toUrl(r))
     }, callback);
@@ -127,6 +128,13 @@
 
   // This creates a new resource.
   Client.prototype.create = function (r, data, callback) {
+    if (typeof data === "function") {
+      callback = data;
+      data = null;
+    }
+    if (!data) {
+      data = {};
+    }
     this._ajaxCall({
       url: this.buildUrl(this._toUrl(r)),
       type: "POST",
@@ -135,6 +143,10 @@
   };
 
   Client.prototype.update = function (r, data, callback) {
+    if (typeof data === "function") {
+      callback = data;
+      data = null;
+    }
     if (!data) {
       data = {};
     }
@@ -147,6 +159,10 @@
   };
 
   Client.prototype.destroy = function (r, data, callback) {
+    if (typeof data === "function") {
+      callback = data;
+      data = null;
+    }
     if (!data) {
       data = {};
     }
@@ -158,9 +174,26 @@
     }, callback);
   };
 
+  Client.prototype.apiRequest = function (method, data, callback) {
+    if (typeof data === "function") {
+      callback = data;
+      data = null;
+    }
+    if (!data) {
+      data = {};
+    }
+    this._ajaxCall({
+      url: this.buildUrl([this.resources.api, method].join('/')),
+      type: "GET",
+      data: data
+    }, callback);
+  };
+
   Client.prototype.getToken = function (username, password, callback, force) {
-    if (this.userToken && !force) {
-      callback({ token: this.userToken}, true);
+    if (this.userToken && !force && this.userAuth.name === username) {
+      if (callback) {
+        callback({ token: this.userToken}, true);
+      }
       return;
     }
 
@@ -172,8 +205,38 @@
       if (status) {
         self._getTokenCallback.call(self, data);
       }
-      callback.call(self, data, status);
+      if (callback) {
+        callback.call(self, data, status);
+      }
     });
+  };
+
+  Client.prototype.run = function () {
+    var controller, method, ids = [], callback, args = [], i, data;
+    if (arguments.length < 3) {
+      throw "Could not run!";
+    }
+    for (i = 0; i < arguments.length; i += 1) {
+      args[i] = arguments[i];
+    }
+
+    method     = args.shift();
+    controller = args.shift();
+    callback   = args.pop();
+    data       = args.pop();
+    if (typeof data !== "object") {
+      args.push(data);
+      data = null;
+    }
+    for (i = 0; i < args.length; i += 1) {
+      ids[i] = args[i];
+    }
+
+    return this[method].call(this,
+      { resource: controller, ids: ids },
+      data,
+      callback
+      );
   };
 
   Client.prototype._getTokenCallback = function (data) {
@@ -220,4 +283,4 @@
 
   expose.Client = Client;
 
-}(Generic.lib));
+}(Generic.Lib));

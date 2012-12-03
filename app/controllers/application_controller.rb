@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
   def error(number)
     response.status = number
     render "error/#{number}"
+    true
   end
 
   def current_session

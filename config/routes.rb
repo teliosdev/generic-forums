@@ -65,6 +65,15 @@ GenericForums::Application.routes.draw do
         "dash/index" => "Dashboard#index"
   end
 
+  #scope "api" do
+  #  root :to => "Api#index"
+  #  get "index"  => "Api#index"
+  #  get "whoami" => "Api#whoami"
+  #end
+
+  get "api" => "Api#index"
+  get "api/:action", :controller => "Api"
+
   # Sample resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController

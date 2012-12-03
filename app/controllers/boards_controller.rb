@@ -1,8 +1,8 @@
 class BoardsController < ApplicationController
 
 	before_filter :load_board
-
   before_filter :check_permissions, :only => [:show]
+  helper :posts
 
   def index
   end

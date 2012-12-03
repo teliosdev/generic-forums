@@ -31,7 +31,11 @@ class PostsController < ApplicationController
     @post.rope = @rope
     @post.user = @user
     unless @post.save
-      render "new"
+      if api_request?
+        render "create"
+      else
+        render "new"
+      end
     else
       @rope.touch
       redirect_to determine_path(@post) unless request.xhr?

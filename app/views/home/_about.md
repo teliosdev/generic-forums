@@ -6,7 +6,6 @@ Generic Forums is an open-source forum project, targeting simplicity.	As it is, 
 - [`CanCan`][cancan] (v1.6.8)
 - [`Kaminari`][kaminari] (v0.14.1)
 - [`RDiscount`][rdiscount] (v1.6.8)
-- [`JBuilder`][jbuilder] (v0.6.0)
 - [`Rabl`][rabl] (0.7.6)
 
 Generic Forums has contributions from the following people:
@@ -22,6 +21,5 @@ Generic Forums can be found [on github][gf].
 [cancan]: https://github.com/ryanb/cancan
 [kaminari]: https://github.com/amatsuda/kaminari
 [rdiscount]: https://github.com/rtomayko/rdiscount
-[jbuilder]: https://github.com/rails/jbuilder
 [rabl]: https://github.com/nesquena/rabl
 [gf]: https://github.com/redjazz96/generic-forums
