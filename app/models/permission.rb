@@ -1,5 +1,5 @@
 class Permission < ActiveRecord::Base
-  attr_accessible :group_id, :remote_id, :action, :group, :type, :negate
+  attr_accessible :group_id, :remote_id, :action, :group, :negate
   belongs_to :group
   has_many :users, :through => :group
   belongs_to :remote, :polymorphic => true

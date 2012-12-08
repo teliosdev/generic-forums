@@ -1,5 +1,3 @@
-source 'https://rubygems.org'
-
 gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
@@ -17,11 +15,13 @@ group :op do
   gem 'cancan'
   gem 'kaminari'
   gem 'plugin_manager', :github => "redjazz96/plugin-manager"
+  gem 'paper_trail', '~> 2'
 end
 
 group :post_formats do
   gem 'rdiscount'
   gem 'paperclip'
+  gem 'differ'
 end
 
 # Gems used only for assets and not required
@@ -37,8 +37,6 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # For the public API

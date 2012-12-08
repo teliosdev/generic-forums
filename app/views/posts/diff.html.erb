@@ -1,0 +1,10 @@
+<div class="thread_info single"></div>
+<!--<ul class="post_list abnormal">
+	<%#= render "post", :post => @post %>
+</ul>-->
+<ul class="post_list abnormal diff">
+	<%= render "diff_post", :post => @post, :version => nil %>
+	<% @versions.each do |version| %>
+		<%= render "diff_post", :post => version.reify, :version => version %>
+	<% end %>
+</ul>

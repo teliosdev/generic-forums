@@ -41,6 +41,9 @@ body
           bottom: 1px solid $light_blue
         margin-top: 15px
 
+        &.single
+          border-bottom: 0 none transparent
+
         div.page_info
           padding: 7px 0
           color: $light_gray
@@ -129,6 +132,28 @@ body
             //display: inline-block
             padding-left: 150px
             width: ((960px - 150px) - (10px + 10px))  - 1px
+
+            &.diff
+
+              ins, del
+                padding: 3px
+                text-decoration: none
+                line-height: 25px
+
+              code
+                border: 0 none transparent
+                color: $main_color
+
+              ins
+                //background-color: $light_blue
+                //color: $blue_color
+                background-color: mix(white, $blue_color, 75%)
+                color: $blue_color
+
+              del
+                background-color: mix(white, $error_red, 75%)
+                color: $error_red
+
 
 .popup_container
   .popup

@@ -43,7 +43,9 @@ GenericForums::Application.routes.draw do
 
   resources :boards, :only => [:index] do
     resources :ropes, :path => "threads", :except => [:show] do
-      resources :posts
+      resources :posts do
+        get 'diff' => "posts#diff"
+      end
     end
     get "threads/:rope_id" => "posts#index"
   end

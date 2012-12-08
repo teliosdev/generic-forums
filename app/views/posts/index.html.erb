@@ -9,3 +9,7 @@
 	<%= render "reply_box", :post => Post.new %>
 <% end %>
 <%= render "thread_info" %>
+
+<% content_for :desc do %>
+	<% @rope.posts.first.body %>
+<% end %>

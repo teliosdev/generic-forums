@@ -2,17 +2,23 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.guest
+    @user = user ||= User.guest
     can do |action, subject_class, subject|
       can_result = false
       negated    = false
       remote_ids = [subject.id]
-      remote_ids.push subject.ghost.id if subject.respond_to?(:ghost)
-      action_permissions = user.permissions.where(
-                                                  :action => aliases(action, user, subject),
-                                                  :type => subject_class.to_s,
-                                                  :remote_id => remote_ids
-                                                )
+      action     = aliases(action)
+      #next false if subject.respond_to?(:ghost?) and subject.ghost?
+      action_permissions = if subject.respond_to?(:ghost_permissions)
+        subject.ghost_permissions(user, action)
+      else
+        action_permissions = user.permissions.where(
+          :action => action,
+          :remote_type => subject_class,
+          :remote_id => remote_ids
+        )
+      end
+
       if action_permissions.any?
         can_result = action_permissions.any? do |permission|
           negated = true if permission.negate
@@ -26,23 +32,10 @@ class Ability
 
   private
 
-  def aliases(action, user, subject)
+  def aliases(action)
     aliases = [action]
     aliases << :manage
-    case action
-    when :edit_post
-      aliases.push *check(:edit_post, :edit_own_post, user, subject)
-    when :delete_post
-      aliases.push *check(:delete_post, :delete_own_post, user, subject)
-    end
     aliases
   end
 
-  def check(basic_action, new_action, user, subject)
-    if subject.respond_to?(:user) and subject.user == user
-      return [basic_action, new_action]
-    else
-      return [basic_action]
-    end
-  end
 end

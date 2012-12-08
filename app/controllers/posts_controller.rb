@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    return render "error/400" unless can?(:post, @rope)
+    return error(400) unless can?(:post, @rope)
     @post = Post.new
     if params[:parent_id]
       @post.parent_id = params[:parent_id]
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    return render "error/400" unless can?(:post, @rope)
+    return error(400) unless can?(:post, @rope)
     @post = Post.create params[:post]
     @post.rope = @rope
     @post.user = @user
@@ -48,12 +48,12 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find params[:id]
-    return render "error/400" unless can?(:edit_post, @rope) or (@post.user == @user and can?(:edit_own_post, @rope))
+    return error(400) unless can?(:edit_post, @post)
   end
 
   def update
     @post = Post.find params[:id]
-    return render "error/400" unless can?(:edit_post, @rope) or (@post.user == @user and can?(:edit_own_post, @rope))
+    return error(400) unless can?(:edit_post, @post)
     @post.body   = params[:post][:body]
     @post.format = params[:post][:format]
     unless @post.save
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find params[:id]
-    return render "error/400" unless can?(:delete_post, @rope) or (@post.user == @user and can?(:edit_own_post, @rope))
+    return error(400) unless can?(:delete_post, @post)
     if @rope.posts.size == 1
       @rope.destroy
       redirect_to board_ropes_path(@rope.board_id)
@@ -73,6 +73,13 @@ class PostsController < ApplicationController
       @post.destroy
       redirect_to board_rope_posts_path(@rope.board_id, @rope.id)
     end
+  end
+
+  def diff
+    @post = Post.find params[:post_id]
+    return error(400) unless can? :see_history, @post
+    @breadcrumbs.add :name => "Post History", :link => determine_path(@post)
+    @versions = @post.versions.where(:event => 'update').except(:order).order("#{Version.primary_key} DESC")
   end
 
   protected
@@ -85,7 +92,7 @@ class PostsController < ApplicationController
   end
 
   def check_permissions
-    render 'error/400' unless can? :read, @board
-    render 'error/400' unless can? :read, @rope
+    error(400) unless can? :read, @board
+    error(400) unless can? :read, @rope
   end
 end

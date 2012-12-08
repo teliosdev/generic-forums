@@ -2,10 +2,13 @@
 	<% if can? :post, @rope %>
 		<li><%= link_to "Reply", new_board_rope_post_path(@board, @rope, :parent_id => post.id) %></li>
 	<% end -%>
-	<% if can?(:edit_post, @rope) or (post.user == @user and can?(:edit_own_post, @rope)) %>
+	<% if can? :edit_post, post %>
 		<li><%= link_to "Edit", edit_board_rope_post_path(@board, @rope, post) %></li>
 	<% end -%>
-	<% if can? :delete_post, @rope or (post.user == @user and can?(:delete_own_post, @rope)) %>
+	<% if can? :see_history, post %>
+		<li><%= link_to "History", board_rope_post_diff_path(@board, @rope, post) %></li>
+	<% end -%>
+	<% if can? :delete_post, post %>
 		<li><%= link_to "Delete", board_rope_post_path(@board, @rope, post), :method => "delete" %></li>
 	<% end -%>
 </ul>

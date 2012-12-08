@@ -135,10 +135,10 @@ var Generic = Generic || (function ($) {
       }
       //edit: Routes.posts.index,
       //"new": Routes.posts.index
-    }
+    }, ropes: {}
   };
 
-  Routes.posts.edit = Routes.posts["new"] = Routes.posts.index;
+  Routes.posts.edit = Routes.posts["new"] = Routes.ropes["new"] = Routes.posts.index;
 
   App = {
     logic: {},

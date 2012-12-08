@@ -1,0 +1,34 @@
+<li class="post <%= "user_online" if post.user.logged_in? %>">
+	<a name="post-<%= post.id %>"></a>
+	<div class="user_info">
+		<%= render "posts/single_post/user_info", :post => post %>
+	</div>
+	<div class="post_data diff">
+		<% if version %>
+			<pre><code><%= unless version.previous && version.previous.event == 'update'
+				version.reify.body
+			else
+				Differ.diff_by_char(version.reify.body, version.previous.reify.body)
+					.format_as(:html)
+					.to_s
+					.html_safe
+			end
+			%></code></pre>
+		<% else %>
+			<pre><code><%= unless @versions.first
+				post.body
+			else
+				Differ.diff_by_char(post.body, @versions.first.reify.body)
+					.format_as(:html)
+					.to_s
+					.html_safe
+			end
+			%></code></pre>
+		<% end %>
+
+
+	</div>
+	<div class="post_info">
+		<%= render "posts/diff_post/post_info", :post => post %>
+	</div>
+</li>

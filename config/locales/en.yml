@@ -36,11 +36,14 @@ en:
     new_post: New Post
     ago: "Posted %{time} ago"
 # "
-    updated: "and updated %{time} ago"
+    updated: " and updated %{time} ago"
     replies: Replies
     post: Post
     reply_box: Reply Box
     page: Page
+    reply_to: "Reply to: %{link}."
+    version: "Version %{version}."
+    edited_by: "Edited by %{user}."
 
   threads:
     <<: *thread
