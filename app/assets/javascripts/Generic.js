@@ -101,7 +101,7 @@ var Generic = Generic || (function ($) {
 
   Routes = {
     posts: {
-      index: function () {
+      edit: function () {
         var formatSelector, editor, format, tagInput, form;
 
         formatSelector = $("form.for_editor div.format_select select");
@@ -116,7 +116,8 @@ var Generic = Generic || (function ($) {
           {
             "iconContainer": editor.parent().children('.high_bar')
               .children('.icon_container'),
-            "output": editor.parent().children('.output_wrapper')
+            "output": editor.parent().children('.output_wrapper'),
+            "client": Ajax.Client
           }
         ));
 
@@ -132,13 +133,18 @@ var Generic = Generic || (function ($) {
             "form":    form
           }));
         }
+      },
+
+      index: function () {
+        Routes.posts.edit();
+        Utils.Editors[0].bindReplyLinks();
       }
       //edit: Routes.posts.index,
       //"new": Routes.posts.index
     }, ropes: {}
   };
 
-  Routes.posts.edit = Routes.posts["new"] = Routes.ropes["new"] = Routes.posts.index;
+  Routes.posts["new"] = Routes.ropes["new"] = Routes.posts.edit;
 
   App = {
     logic: {},
@@ -153,7 +159,7 @@ var Generic = Generic || (function ($) {
     test: function () {
       Ajax.Client.getToken("Ac1dL3ak", "pyong");
       Ajax.Client.apiRequest("whoami", function (d) {
-        console.warn(d);
+        _log(d);
       });
     }
   };

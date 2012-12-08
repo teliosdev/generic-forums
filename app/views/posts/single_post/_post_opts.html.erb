@@ -1,6 +1,6 @@
 <ul class="post_opts abnormal">
 	<% if can? :post, @rope %>
-		<li><%= link_to "Reply", new_board_rope_post_path(@board, @rope, :parent_id => post.id) %></li>
+		<li><%= link_to "Reply", new_board_rope_post_path(@board, @rope, :parent_id => post.id), :class => :reply_link %></li>
 	<% end -%>
 	<% if can? :edit_post, post %>
 		<li><%= link_to "Edit", edit_board_rope_post_path(@board, @rope, post) %></li>

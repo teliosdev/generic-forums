@@ -4,11 +4,12 @@
 		<%= render "post", :post => post %>
 	<% end -%>
 </ul>
+<%= render "thread_info" %>
+<a name="reply"></a>
 <% if can? :post, @rope %>
 	<p><%= t('posts.reply') %></p>
 	<%= render "reply_box", :post => Post.new %>
 <% end %>
-<%= render "thread_info" %>
 
 <% content_for :desc do %>
 	<% @rope.posts.first.body %>

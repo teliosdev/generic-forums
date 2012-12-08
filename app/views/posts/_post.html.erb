@@ -1,4 +1,4 @@
-<li class="post <%= "user_online" if post.user.logged_in? %>">
+<li class="post <%= "user_online" if post.user.logged_in? %>" data-post-id="<%= post.id %>" data-thread-id="<%= post.rope.id %>" data-board-id="<%= post.board.id %>">
 	<a name="post-<%= post.id %>"></a>
 	<div class="user_info">
 		<%= render "posts/single_post/user_info", :post => post %>

@@ -76,6 +76,76 @@
     return result;
   };
 
+  /*
+   * The first argument should be a jQuery element.
+  */
+  Editor.prototype.newReply = function(post) {
+    var ids, self = this, callback = function (data) {
+      var tempVal, parentIdInput, quote;
+      quote = self.syntax.quote(data ? data.post.body : '');
+      console.log(quote);
+      self.element.val(quote);
+      tempVal = self.element.val();
+      self.updateOutput();
+      location.hash = "#reply";
+      self.element.focus();
+      self.element.setPosition(tempVal.length, tempVal.length);
+      if(
+          self.element
+          .parents('div.reply_box')
+          .children('input#post_parent_id').length === 0) {
+        tempVal = jQuery("<input/>");
+        tempVal.attr('type', 'hidden');
+        tempVal.attr('name', 'post[parent_id]');
+        tempVal.attr('id', 'post_parent_id');
+        self.element.parents('form.for_editor').append(tempVal);
+      }
+      self.element.parents('div.reply_box').children('input#post_parent_id')
+        .attr('value', data.post.id);
+
+    };
+    if(this.options.client && post && post.length > 0) {
+      ids = [
+        post.data('board-id'),
+        post.data('thread-id'),
+        post.data('post-id')
+      ];
+
+      this.options.client.run(
+        'show',
+        'posts',
+        ids[0],
+        ids[1],
+        ids[2],
+        callback
+      );
+    } else {
+      callback();
+    }
+  };
+
+  Editor.prototype.bindReplyLinks = function() {
+    var self = this;
+    jQuery("a.reply_link").each(function (i, e) {
+      var $e = jQuery(e), newLink = [
+        e.pathname.replace(/\/new\/*$/, ''),
+        '/'
+      ], parent = $e.parents('li.post');
+
+      if(parent.length === 0) {
+        $e.attr('data-show-link', '');
+      } else {
+        newLink.push(parent.data('post-id'));
+        $e.attr('data-show-link', newLink);
+      }
+
+      $e.on('click', function (event) {
+        event.preventDefault();
+        self.newReply(parent);
+      });
+    });
+  };
+
   Editor.prototype._handleOptions = function (options) {
     if (options.iconContainer !== null) {
       this.iconContainer = options.iconContainer;

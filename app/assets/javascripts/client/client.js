@@ -192,7 +192,7 @@
   Client.prototype.getToken = function (username, password, callback, force) {
     if (this.userToken && !force && this.userAuth.name === username) {
       if (callback) {
-        callback({ token: this.userToken}, true);
+        callback({token: this.userToken}, true);
       }
       return;
     }

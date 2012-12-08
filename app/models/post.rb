@@ -28,4 +28,8 @@ class Post < ActiveRecord::Base
     end || nil
   end
 
+  def ghost?
+    rope.ghost?
+  end
+
 end

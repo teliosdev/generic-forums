@@ -8,7 +8,7 @@ class Ability
       negated    = false
       remote_ids = [subject.id]
       action     = aliases(action)
-      #next false if subject.respond_to?(:ghost?) and subject.ghost?
+      next false if subject.respond_to?(:ghost?) and subject.ghost?
       action_permissions = if subject.respond_to?(:ghost_permissions)
         subject.ghost_permissions(user, action)
       else

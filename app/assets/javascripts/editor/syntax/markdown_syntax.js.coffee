@@ -12,6 +12,10 @@
 			catch e
 				""
 
+		quote: (text)->
+			console.log("quoting", text)
+			[ '> ', text.replace(/^\>(.*?)[\r\n]/gm, '').split('\n').join('\n> '), '\n\n' ].join('')
+
 		supportsPreview: true
 
 		fromLastNewLine: (text,fromPos=text.length)->
