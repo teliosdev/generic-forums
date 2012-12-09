@@ -30,7 +30,7 @@ In generic forums, there are groups; groups can have users.  The user's last gro
 In order to make it easier to define permissions, there is a user with the `id = 0` named `guest`.  It exists so that permissions defined on guest are the permissions that default whenever a user that is not logged in browses the forum.  Please **do not** define negated permissions on `guest`, because by default every user is a part of the guest group.
 
 ### Formats ###
-Generic forums allows posts to be in multiple formats.  Generic forums comes with 3 default formats: [`markdown`][markdown], [`bbcode`][bbcode], and `plain`.  To add another format, add the format's gem to the gemfile, and modify `config/initializers/post.rb` to use the format (examples are somewhat given in the file).
+Generic forums allows posts to be in multiple formats.  Generic forums comes with 2 default formats: [`markdown`][markdown] and `plain`.  To add another format, add the format's gem to the gemfile, and modify `config/initializers/post.rb` to use the format (examples are somewhat given in the file).
 
 ## Configuration ##
 Configuration options for the forum itself are located in `config/app_config.yml`.  The file is very well documented, so please check out the file.
