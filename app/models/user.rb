@@ -49,6 +49,8 @@ class User < ActiveRecord::Base
     :content_type => { :content_type => AppConfig.avatars.allowed_content_types },
     :size         => { :less_than => AppConfig.avatars.max_size }
 
+  is_impressionable :counter_cache => true
+
   # Methods
   def self.guest
     find 0

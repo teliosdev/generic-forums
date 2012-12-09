@@ -40,7 +40,8 @@ class UsersController < ApplicationController
 		unless user.options[:public_profile] or current_user?
 			error(404) and return
 		end
-		@breadcrumbs.add :name => t('users.users'), :link => users_path
+		impressionist(user)
+		@breadcrumbs.add :name => t('users.users'),:link => users_path
 		@breadcrumbs.add :name => user.name,       :link =>  user_path(user)
 	end
 

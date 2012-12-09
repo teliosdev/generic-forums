@@ -9,6 +9,8 @@ gem 'pg'
 
 group :development do
   gem 'sqlite3'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :op do
@@ -17,13 +19,14 @@ group :op do
   gem 'cancan'
   gem 'kaminari'
   gem 'plugin_manager', :github => "redjazz96/plugin-manager"
-  gem 'paper_trail', '~> 2'
 end
 
-group :post_formats do
+group :post_stuff do
   gem 'rdiscount'
+  gem 'paper_trail', '~> 2'
   gem 'paperclip'
   gem 'differ'
+  gem 'impressionist'
 end
 
 # Gems used only for assets and not required
@@ -38,12 +41,15 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+# For the public API
+group :api do
+  gem 'rabl'
+  gem 'yajl-ruby', :require => 'yajl'
+end
+
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-# For the public API
-gem 'rabl'
-gem 'yajl-ruby', :require => "yajl"
 
 gem 'thin'
 # Use unicorn as the app server

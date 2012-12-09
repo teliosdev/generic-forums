@@ -9,6 +9,7 @@ class Rope < ActiveRecord::Base
   has_and_belongs_to_many :tags
 
   has_ghost
+  is_impressionable :counter_cache => true
 
   # Others
   attr_accessible :title, :main_post_attributes

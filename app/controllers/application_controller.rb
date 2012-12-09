@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   helper :application
   before_filter :forum_info, :check_content, :set_locale
   helper_method :current_user
+  rescue_from ActiveRecord::RecordNotFound, :with => :rescue_exception
 
   protected
 
@@ -18,10 +19,18 @@ class ApplicationController < ActionController::Base
     @breadcrumbs.add :name => t('home.home'), :link => "/"
   end
 
-  def error(number)
+  def error(number=404)
     response.status = number
     render "error/#{number}"
     true
+  end
+
+  def rescue_exception(exception)
+    if exception.is_a? ActiveRecord::RecordNotFound
+      error
+    else
+      error(400)
+    end
   end
 
   def current_session

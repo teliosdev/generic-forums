@@ -12,6 +12,7 @@ class PostsController < ApplicationController
     #p @thread
     @posts   = Post.includes(:user).where(:rope_id => @rope)
       .page(params[:page]).per(if true then 20 else @user.per_page(:posts) end)
+      impressionist(@rope)
   end
 
   def new

@@ -12,7 +12,6 @@ Generic Forums has contributions from the following people:
 
 - [redjazz96, Dr. Derp, PhD, or Ac!dL3ak](https://github.com/redjazz96/)
 - [Gabriele Cirulli](http://www.gabrielecirulli.com/)
-- ...
 
 Generic Forums can be found [on github][gf].
 

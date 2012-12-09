@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121208015744) do
+ActiveRecord::Schema.define(:version => 20121209193351) do
 
   create_table "boards", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,30 @@ ActiveRecord::Schema.define(:version => 20121208015744) do
     t.string   "title"
     t.string   "name_color"
   end
+
+  create_table "impressions", :force => true do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "ip_address"], :name => "controlleraction_ip_index"
+  add_index "impressions", ["controller_name", "action_name", "request_hash"], :name => "controlleraction_request_index"
+  add_index "impressions", ["controller_name", "action_name", "session_hash"], :name => "controlleraction_session_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], :name => "poly_ip_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], :name => "poly_request_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
+  add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
 
   create_table "permissions", :force => true do |t|
     t.integer  "remote_id"
@@ -63,11 +87,12 @@ ActiveRecord::Schema.define(:version => 20121208015744) do
     t.string   "title"
     t.integer  "board_id"
     t.integer  "user_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "posts_count", :default => 0
-    t.boolean  "is_ghost",    :default => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.integer  "posts_count",       :default => 0
+    t.boolean  "is_ghost",          :default => false
     t.text     "ghost_data"
+    t.integer  "impressions_count", :default => 0
   end
 
   add_index "ropes", ["board_id"], :name => "index_ropes_on_board_id"
@@ -113,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20121208015744) do
     t.datetime "avatar_updated_at"
     t.integer  "primary_group_id"
     t.string   "title"
+    t.integer  "impressions_count",   :default => 0
   end
 
   create_table "versions", :force => true do |t|
