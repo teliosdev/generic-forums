@@ -12,33 +12,37 @@
 		<%- if content_for? :title -%>
 			<%= content_for :title -%> &mdash; <%= @forum.name -%>
 		<%- else -%>
-			<%= @forum.name + " / " + controller_name + " / " + action_name -%>
+			<%= @forum.name -%> admin panel
 		<%- end -%>
 	</title>
 
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
+	<meta name="controller" content="<%= controller_name %>">
+	<meta name="action" content="<%= action_name %>">
+	<meta name="currentUser" content="<%= current_user.id %>">
+	<meta name="homeURL" content="<%= admin_root_path %>">
 
 
 	<%= stylesheet_link_tag		"admin", :media => "all" %>
-	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tag %>
 </head>
 <body>
-	<header class="clearfix">
-		<div id="contain">
-			<h1 id="name">{generic forums}</h1>
-			<div id="user-info">
-				<span id="user-name"><a href="#!/">username</a></span>
+	<div class="container_16">
+		<header class="clearfix">
+			<h1>admin panel</h1>
+			<div class="user-data clearfix">
+				<span class="welcome">welcome</span>
+				<span class="user-name"><a href="#!/user/1">drderp</a></span>
 			</div>
+			<%= render "admin/nav" %>
+		</header>
+		<div class="wrapper">
+			<%= yield %>
 		</div>
-	</header>
-	<div id="bg"></div>
-	<div id="main" role="main">
-		<%= render :partial => "layouts/nav" %>
-		<%= yield %>
 	</div>
 
+	<%= javascript_include_tag "admin" %>
 	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 	<script src="js/main.js"></script>-->

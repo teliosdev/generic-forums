@@ -1,5 +1,7 @@
 //= require_self
 //= require client/client
+//= require admin/grapher
+//= require admin/scroll
 
 /*global window: false, document: false */
 
@@ -67,9 +69,7 @@ var Generic = Generic || (function ($) {
         }
       }
 
-    },
-    Editors: [],
-    Taggers: []
+    }
   };
 
   _log = Utils.log;
@@ -92,11 +92,39 @@ var Generic = Generic || (function ($) {
 
   Events = {
     endpoints: {
+      grapherResize: function (event) {
+        Utils.Grapher.element.height($(window).height() -
+                             $("header").height() - 356);
+        event.data.recompute();
+      }
     }
   };
 
   Routes = {
+    dashboard: {
+      index: function () {
+        var data = {
+          numberOfElements: 24,
+          elements: []
+        }, $e = $("div.graph"), i;
 
+        $e.children("span.data").each(function (_, e) {
+          data.elements.push($(e).data('value'));
+        });
+
+        //for(i = 0; i < data.numberOfElements; i += 1) {
+        //  data.elements.push(Math.round(Math.random() * 25));
+       // }
+
+        Utils.Grapher = new Public.Lib.Grapher($e, data);
+        $(window).on('resize', Utils.Grapher, Events.endpoints.grapherResize);
+        $(window).resize();
+      },
+
+      scroll: function () {
+        Generic.Scroll.bindEvent();
+      }
+    }
   };
 
   App = {
@@ -112,7 +140,7 @@ var Generic = Generic || (function ($) {
 
   Public = {
     init: App.init,
-    Lib: { Parsers: {} }
+    Lib: {}
   };
 
   if (Utils.settings.debug) {

@@ -1,0 +1,10 @@
+<ul class="nav">
+  <% %w(dashboard users groups boards plugins).each do |location| %>
+    <li <%= if controller_name == location then "class='selected'".html_safe end %>><%= link_to location, admin_root_path + "/" + location %></li>
+  <% end %>
+  <!--<li><a href="#">dashboard</a></li>
+  <li><a href="#">users</a></li>
+  <li><a href="#">groups</a></li>
+  <li><a href="#">boards</a></li>
+  <li><a href="#">plugins</a></li>-->
+</ul>
