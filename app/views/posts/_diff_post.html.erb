@@ -8,7 +8,7 @@
 			<pre><code><%= unless version.previous && version.previous.event == 'update'
 				version.reify.body
 			else
-				Differ.diff_by_char(version.reify.body, version.previous.reify.body)
+				Differ.diff(h(version.reify.body), h(version.previous.reify.body))
 					.format_as(:html)
 					.to_s
 					.html_safe
@@ -18,7 +18,7 @@
 			<pre><code><%= unless @versions.first
 				post.body
 			else
-				Differ.diff_by_char(post.body, @versions.first.reify.body)
+				Differ.diff(h(post.body), h(@versions.first.reify.body))
 					.format_as(:html)
 					.to_s
 					.html_safe

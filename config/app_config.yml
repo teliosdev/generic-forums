@@ -48,8 +48,13 @@ development: &default
   # https://github.com/rtomayko/rdiscount/blob/master/lib/rdiscount.rb
   # for available options.
   markdown_options:
-    - :smart
     - :autolink
+    - :fenced_code_blocks
+    - :no_intra_emphasis
+    - :strikethrough
+    - :space_after_headers
+    - :superscript
+
   # Allow parameterization of board/thread/post urls.  This makes them
   # look pretty; for example, with the board "primary" and the thread
   # "thread", the url would look like

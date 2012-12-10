@@ -138,6 +138,19 @@ var Generic = Generic || (function ($) {
       index: function () {
         Routes.posts.edit();
         Utils.Editors[0].bindReplyLinks();
+        if (window.hljs) {
+          //window.hljs.initHighlighting();
+          $("li.post pre code").each(function(_, e) {
+            var $e = $(e), ret;
+            ret = window.hljs.highlightAuto(
+              $e.text()
+            );
+            console.warn(ret);
+            //if (ret.r >= 10) {
+              $e.html(ret.value);
+            //}
+          });
+        }
       }
       //edit: Routes.posts.index,
       //"new": Routes.posts.index

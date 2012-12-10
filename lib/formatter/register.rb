@@ -10,15 +10,20 @@ class Formatter::Register
 		# should follow the basic +Markdown+ class style interface.  Can
 		# register different types, such as +quote+ or +render+.  +quote+
 		# is used for quoting posts.
-		def register(format, type=:render, klass=nil, *opts, &block)
-			@render ||= {}
-			@render_opts ||= {}
-			@quote ||= {}
-			case type
-			when :render
-				_add_to_render format, klass, *opts, &block
-			when :quote
-				_add_to_quote  format, klass, *opts, &block
+		def register(format=nil, type=:render, klass=nil, *opts, &block)
+			unless format
+				context = Context.new self
+				context.instance_eval(&block)
+			else
+				@render ||= {}
+				@render_opts ||= {}
+				@quote ||= {}
+				case type
+				when :render
+					_add_to_render format, klass, *opts, &block
+				when :quote
+					_add_to_quote  format, klass, *opts, &block
+				end
 			end
 		end
 
@@ -67,5 +72,17 @@ class Formatter::Register
 			end
 		end
 
+	end
+end
+
+class Formatter::Register::Context
+
+	attr_accessor :register
+	def initialize(register)
+		@register = register
+	end
+
+	def method_missing(method, *args, &block)
+		register.register method, *args, &block
 	end
 end

@@ -17,3 +17,4 @@
 //= require jquery_ujs
 //= require modernizr
 //= require Generic
+//= require highlighter/highlight.pack

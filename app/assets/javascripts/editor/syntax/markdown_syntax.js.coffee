@@ -4,11 +4,18 @@
 	class MarkdownSyntax
 		afterConstructorCallback: (@editor)->
 			@editor.info.linkIncrement = 0
-			@dialect = exports.Parsers.MarkdownParser.Markdown.dialects.Maruku
+			@_parser = exports.Parsers.MarkdownParser.marked
+			@_parser.setOptions(
+			  gfm: true,
+			  pedantic: false,
+			  highlight: (code)->
+			  	if hljs
+			  		hljs.highlightAuto(code).value
+			)
 
 		render: (text)->
 			try
-				exports.Parsers.MarkdownParser.toHTML(text, @dialect)
+				@_parser(text)
 			catch e
 				""
 

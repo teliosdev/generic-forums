@@ -22,7 +22,7 @@ group :op do
 end
 
 group :post_stuff do
-  gem 'rdiscount'
+  gem 'redcarpet'
   gem 'paper_trail', '~> 2'
   gem 'paperclip'
   gem 'differ'
