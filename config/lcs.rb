@@ -1,0 +1,1 @@
+require 'diff/lcs/hunk'

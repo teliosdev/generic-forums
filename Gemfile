@@ -25,7 +25,7 @@ group :post_stuff do
   gem 'redcarpet'
   gem 'paper_trail', '~> 2'
   gem 'paperclip'
-  gem 'differ'
+  gem 'diff-lcs', :require => 'diff/lcs'
   gem 'impressionist'
 end
 

@@ -4,6 +4,10 @@ body div#main
       border: none
       border-radius: 0
       padding: 0
+      background-color: transparent
+      max-height: inherit
+      overflow-y: hidden
+      resize: none
 
     img
       max-width: 750px
@@ -26,9 +30,13 @@ body div#main
       border: 1px solid $a_blue
 
     code
-      border: 1px solid $light_gray
-      padding: 0 5px
-      border-radius: 4px
+      padding: 0 3px
+      //border-radius: 0
+      border: 0 none transparent
+      background-color: $lightest_gray
+
+    pre code
+      padding: 10px
 
     a:hover
       text-decoration: underline

@@ -55,6 +55,8 @@ b.ropes.create! :title => "ghost" do |r|
   r.ghost_data = {}
   r.user_id = 2
 end
+b.ropes.first.do_ghost!
+
 b.ropes.create! :title => "Hello World" do |r|
   r.user_id = 1
 end
@@ -82,7 +84,6 @@ b.permissions.create! :action => :create, :group_id => 2
 b.permissions.create! :action => :manage, :group_id => 3
 
 r = b.ropes.find(1)
-r.do_ghost!
 posts = b.ropes.find(1).posts
 
 [:read, :post].each do |p|

@@ -18,6 +18,7 @@
     this._wrapElement();
     this.changeSyntax(syntaxType);
     this.element.autosize({ append: "\n" });
+    this.updateOutput();
   };
 
   Editor.prototype.changeSyntax = function (to, options) {
@@ -337,13 +338,14 @@
   };
 
   ITools.prototype._htmlEntities = [
-    [/&/g, "&amp;" ],
-    [/>/g, "&gt;"  ],
-    [/</g, "&lt;"  ],
-    [/"/g, "&quot;"], // "
-    [/'/g, "&#39;" ], // '
+    [(/&/g), "&amp;" ],
+    [(/>/g), "&gt;"  ],
+    [(/</g), "&lt;"  ],
+    [(/"/g), "&quot;"],
+    [(/'/g), "&#39;" ]
   ];
 
   Tools = new ITools();
+  expose.Tools = Tools;
 
 }(Generic.Lib, Generic));

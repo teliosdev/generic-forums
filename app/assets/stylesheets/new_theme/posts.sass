@@ -135,25 +135,35 @@ body
 
             &.diff
 
-              ins, del
+              pre code
+                padding: 0
+
+              .diff, ins, del
                 //padding: 3px
                 display: block
                 text-decoration: none
                 line-height: 25px
+                padding: 0 5px
 
               code
                 border: 0 none transparent
                 color: $main_color
 
-              ins
+              .diff_ins
                 //background-color: $light_blue
                 //color: $blue_color
                 background-color: mix(white, $good_green, 75%)
                 color: $good_green
 
-              del
+                &:before
+                  content: "+"
+
+              .diff_del
                 background-color: mix(white, $error_red, 75%)
                 color: $error_red
+
+                &:before
+                  content: "-"
 
 
 .popup_container
@@ -209,6 +219,7 @@ div.reply_box
       padding: 8px 5px
       color: $main_color
       font-family: $mono_font
+      line-height: 21px
 
   div.error
     display: inline-block
@@ -238,7 +249,7 @@ div.reply_box
 
 
     .tag
-      //background-color: $lightest_gray
+      //background-color: $lighter_gray
       padding: 0 7px
       color: $a_blue
       //border: 1px solid $light_gray

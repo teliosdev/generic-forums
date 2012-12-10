@@ -1,5 +1,5 @@
-require "#{Rails.root}/lib/formatter/formatter"
-require "#{Rails.root}/lib/app_config"
+require 'diff/lcs/hunk'
+Ghost
 
 Formatter::Register.register do
   markdown :render do |t|

@@ -102,7 +102,7 @@ var Generic = Generic || (function ($) {
   Routes = {
     posts: {
       edit: function () {
-        var formatSelector, editor, format, tagInput, form;
+        var formatSelector, editor, format, tagInput, form, ieditor;
 
         formatSelector = $("form.for_editor div.format_select select");
         editor         = $("form.for_editor textarea.editor");
@@ -110,7 +110,7 @@ var Generic = Generic || (function ($) {
           return;
         }
         format = formatSelector.val();
-        Utils.Editors.push(new Public.Lib.Editor(
+        ieditor = new Public.Lib.Editor(
           editor,
           format,
           {
@@ -119,10 +119,11 @@ var Generic = Generic || (function ($) {
             "output": editor.parent().children('.output_wrapper'),
             "client": Ajax.Client
           }
-        ));
+        );
+        Utils.Editors.push(ieditor);
 
         formatSelector.on('change',
-          editor,
+          ieditor,
           Events.endpoints.formatSelectorChange);
 
         if ($("input#tag_input").length > 0) {
@@ -142,12 +143,15 @@ var Generic = Generic || (function ($) {
           //window.hljs.initHighlighting();
           $("li.post pre code").each(function(_, e) {
             var $e = $(e), ret;
+            if ($e.parent().hasClass("plain_text")) {
+              return;
+            }
             ret = window.hljs.highlightAuto(
               $e.text()
             );
-            console.warn(ret);
             //if (ret.r >= 10) {
               $e.html(ret.value);
+              $e.addClass(ret.language);
             //}
           });
         }

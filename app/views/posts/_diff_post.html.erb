@@ -8,20 +8,16 @@
 			<pre><code><%= unless version.previous && version.previous.event == 'update'
 				version.reify.body
 			else
-				Differ.diff(h(version.reify.body), h(version.previous.reify.body))
-					.format_as(:html)
-					.to_s
-					.html_safe
+				PostDiff.new(fix(version.reify.body), fix(version.previous.reify.body))
+					.to_html.html_safe
 			end
 			%></code></pre>
 		<% else %>
 			<pre><code><%= unless @versions.first
 				post.body
 			else
-				Differ.diff(h(post.body), h(@versions.first.reify.body))
-					.format_as(:html)
-					.to_s
-					.html_safe
+				PostDiff.new(fix(@post.body), fix(@versions.first.reify.body))
+					.to_html.html_safe
 			end
 			%></code></pre>
 		<% end %>

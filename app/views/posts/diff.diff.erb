@@ -1,0 +1,13 @@
+<% if @versions.length > 1 -%>
+<%- unless (params[:v1] and params[:v2]) and not params[:v2] == 'now' -%>
+--- version/<%= @versions.first.id %>	<%= @versions.first.created_at.strftime('%Y-%m-%d %H:%M:%S %z') %>
++++ current	<%= @post.updated_at.strftime('%Y-%m-%d %H:%M:%S %z') %>
+<%= PostDiff.new(fix(@post.body), fix(@versions.first.reify.body)).to_diff.html_safe %>
+<%- end -%>
+<%- @versions.each do |version| -%>
+<%- next unless version.previous and version.previous.event == 'update' -%>
+--- version/<%= version.previous.id %>	<%= version.previous.created_at.strftime('%Y-%m-%d %H:%M:%S %z') %>
++++ version/<%= version.id %>	<%= version.created_at.strftime('%Y-%m-%d %H:%M:%S %z') %>
+<%= PostDiff.new(fix(version.reify.body), fix(version.previous.reify.body)).to_diff.html_safe %>
+<%- end -%>
+<%- end %>

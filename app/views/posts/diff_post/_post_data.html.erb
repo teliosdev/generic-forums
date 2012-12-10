@@ -1,6 +1,6 @@
 <%= render "posts/single_post/post_data", :post => post %>
 <span class="version">
-	<%= t 'posts.version', :version => post.live? ? post.versions.last.index+1 : post.version.index %>
+	<%= t 'posts.version', :version => post.live? ? post.versions.last.id+1 : post.version.id %>
 </span>
 <% if post.previous_version %>
 	<%- editor = User.find post.previous_version.version.terminator %>

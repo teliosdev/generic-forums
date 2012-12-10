@@ -80,7 +80,12 @@ class PostsController < ApplicationController
     @post = Post.find params[:post_id]
     return error(400) unless can? :see_history, @post
     @breadcrumbs.add :name => "Post History", :link => determine_path(@post)
-    @versions = @post.versions.where(:event => 'update').except(:order).order("#{Version.primary_key} DESC")
+    #if params[:v1] and params[:v2]
+    #  @versions = @post.versions.where(Version.primary_key => [params[:v1], params[:v2]], :event => 'update')
+    #    .except(:order).order("#{Version.primary_key} DESC")
+    #else
+      @versions = @post.versions.where(:event => 'update').except(:order).order("#{Version.primary_key} DESC")
+    #end
   end
 
   protected
