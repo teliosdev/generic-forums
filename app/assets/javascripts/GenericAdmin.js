@@ -1,5 +1,4 @@
 //= require_self
-//= require_tree ./editor
 //= require client/client
 
 /*global window: false, document: false */
@@ -93,77 +92,12 @@ var Generic = Generic || (function ($) {
 
   Events = {
     endpoints: {
-      formatSelectorChange: function (event) {
-        event.data.changeSyntax($(this).val());
-      }
     }
   };
 
   Routes = {
-    posts: {
-      edit: function () {
-        var formatSelector, editor, format, tagInput, form, ieditor;
 
-        formatSelector = $("form.for_editor div.format_select select");
-        editor         = $("form.for_editor textarea.editor");
-        if (editor.length < 1) {
-          return;
-        }
-        format = formatSelector.val();
-        ieditor = new Public.Lib.Editor(
-          editor,
-          format,
-          {
-            "iconContainer": editor.parent().children('.high_bar')
-              .children('.icon_container'),
-            "output": editor.parent().children('.output_wrapper'),
-            "client": Ajax.Client
-          }
-        );
-        Utils.Editors.push(ieditor);
-
-        formatSelector.on('change',
-          ieditor,
-          Events.endpoints.formatSelectorChange);
-
-        if ($("input#tag_input").length > 0) {
-          form = $("form.for_editor");
-          tagInput = $("input#tag_input");
-          Utils.Taggers.push(new Public.Lib.Tagger(tagInput, {
-            "wrapper": tagInput.parent(),
-            "form":    form
-          }));
-        }
-      },
-
-      index: function () {
-        Routes.posts.edit();
-        if (Utils.Editors && Utils.Editors.length > 0) {
-          Utils.Editors[0].bindReplyLinks();
-        }
-        if (window.hljs) {
-          //window.hljs.initHighlighting();
-          $("li.post pre code").each(function(_, e) {
-            var $e = $(e), ret;
-            if ($e.parent().hasClass("plain_text")) {
-              return;
-            }
-            ret = window.hljs.highlightAuto(
-              $e.text()
-            );
-            //if (ret.r >= 10) {
-              $e.html(ret.value);
-              $e.addClass(ret.language);
-            //}
-          });
-        }
-      }
-      //edit: Routes.posts.index,
-      //"new": Routes.posts.index
-    }, ropes: {}
   };
-
-  Routes.posts["new"] = Routes.ropes["new"] = Routes.posts.edit;
 
   App = {
     logic: {},
@@ -174,7 +108,6 @@ var Generic = Generic || (function ($) {
       Utils.route();
 
     },
-
   };
 
   Public = {
