@@ -9,6 +9,8 @@ class Post < ActiveRecord::Base
 
   has_paper_trail
   has_ghost
+  has_option :options
+  can_be_soft_destroyed
 
   validates_presence_of :body, :format, :rope_id, :user_id
   validates :format, :inclusion => { :in => ::Formatter::Register.format_list.map { |x| x.to_s } }
@@ -26,6 +28,20 @@ class Post < ActiveRecord::Base
     else
       self.rope.try(:ghost, user).try(:posts).try(:first)
     end || nil
+  end
+
+  alias :hard_destroy :destroy
+
+  def soft_destroy
+    options[:deleted] = true
+    children.each do |c|
+      c.parent = nil
+    end
+    self.children = []
+  end
+
+  def deleted?
+    options[:deleted] || false
   end
 
   def ghost?

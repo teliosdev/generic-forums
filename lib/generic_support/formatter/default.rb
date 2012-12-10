@@ -1,7 +1,4 @@
-require 'diff/lcs/hunk'
-Ghost
-
-Formatter::Register.register do
+GenericSupport::Formatter::Register.register do
   markdown :render do |t|
     renderer = Redcarpet::Render::HTML.new :no_styles => true
     options  = {}
@@ -19,8 +16,4 @@ Formatter::Register.register do
   markdown :quote do |t|
     "> " + (t.gsub(/\>(.*?)\n/, "").gsub(/\n/, "\n> ")) + "\n\n"
   end
-end
-
-ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
-  html_tag
 end

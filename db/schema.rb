@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209193351) do
+ActiveRecord::Schema.define(:version => 20121210134651) do
 
   create_table "boards", :force => true do |t|
     t.string   "name"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20121209193351) do
     t.datetime "updated_at",                         :null => false
     t.string   "format",     :default => "markdown"
     t.integer  "parent_id"
+    t.text     "options"
   end
 
   add_index "posts", ["parent_id"], :name => "index_posts_on_parent_id"

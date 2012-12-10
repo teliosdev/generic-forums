@@ -19,12 +19,12 @@ class Ability
         )
       end
 
-      if action_permissions.any?
-        can_result = action_permissions.any? do |permission|
+      #if action_permissions.any?
+        action_permissions.any? do |permission|
           negated = true if permission.negate
           can_result ||= true
         end
-      end
+      #end
 
       can_result and not negated
     end

@@ -67,12 +67,16 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find params[:id]
     return error(400) unless can?(:delete_post, @post)
-    if @rope.posts.size == 1
-      @rope.destroy
-      redirect_to board_ropes_path(@rope.board_id)
+    if @rope.main_post == @post
+      @post.soft_destroy
+      redirect_to board_rope_posts_path(@board, @rope)
     else
-      @post.destroy
-      redirect_to board_rope_posts_path(@rope.board_id, @rope.id)
+      if params[:hard] and can?(:hard_delete, @post)
+        @post.hard_destroy
+      else
+        @post.soft_destroy
+      end
+      redirect_to board_rope_posts_path(@board, @rope)
     end
   end
 
@@ -80,12 +84,21 @@ class PostsController < ApplicationController
     @post = Post.find params[:post_id]
     return error(400) unless can? :see_history, @post
     @breadcrumbs.add :name => "Post History", :link => determine_path(@post)
-    #if params[:v1] and params[:v2]
-    #  @versions = @post.versions.where(Version.primary_key => [params[:v1], params[:v2]], :event => 'update')
-    #    .except(:order).order("#{Version.primary_key} DESC")
-    #else
+    if params[:v1] and params[:v2]
+      @versions = @post.versions.where(Version.primary_key => [params[:v1], params[:v2]], :event => 'update')
+        .except(:order).order("#{Version.primary_key} DESC")
+    else
       @versions = @post.versions.where(:event => 'update').except(:order).order("#{Version.primary_key} DESC")
-    #end
+    end
+  end
+
+  def undelete
+    @post = Post.find params[:post_id]
+    return error(400) unless can? :undelete, @post
+    if @post.deleted?
+      @post.options[:deleted] = false
+    end
+    redirect_to determine_path(@post)
   end
 
   protected

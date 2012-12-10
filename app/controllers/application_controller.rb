@@ -19,15 +19,15 @@ class ApplicationController < ActionController::Base
     @breadcrumbs.add :name => t('home.home'), :link => "/"
   end
 
-  def error(number=404)
+  def error(number=404, pass=nil)
     response.status = number
-    render "error/#{number}"
+    render "error/#{number}", :locals => { :pass => pass }
     true
   end
 
   def rescue_exception(exception)
     if exception.is_a? ActiveRecord::RecordNotFound
-      error
+      error(404, exception)
     else
       error(400)
     end

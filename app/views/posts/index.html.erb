@@ -1,7 +1,7 @@
 <%= render "thread_info" %>
 <ul class="post_list abnormal">
 	<% for post in @posts %>
-		<%= render "post", :post => post %>
+		<%= render(if post.soft_destroyed? then "deleted_post" else "post" end, :post => post) %>
 	<% end -%>
 </ul>
 <%= render "thread_info" %>

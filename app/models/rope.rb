@@ -5,16 +5,18 @@ class Rope < ActiveRecord::Base
   belongs_to :user, :inverse_of => :ropes, :counter_cache => true
   has_many :posts, :inverse_of => :rope, :dependent => :destroy
   has_many :permissions, :as => :remote, :dependent => :destroy
-  has_one :main_post, :class_name => "Post", :validate => false
+  has_one :main_post, :class_name => "Post", :validate => false, :dependent => :destroy
   has_and_belongs_to_many :tags
 
-  has_ghost
-  is_impressionable :counter_cache => true
 
   # Others
   attr_accessible :title, :main_post_attributes
   accepts_nested_attributes_for :main_post
-  serialize :ghost_data
+  has_ghost
+  has_option :ghost_data
+  can_be_soft_destroyed
+  is_impressionable :counter_cache => true
+  #serialize :ghost_data
 
   validates :title, :presence => true, :length => { :minimum => 3 }
   validate :number_of_tags, :on => :save
@@ -24,9 +26,10 @@ class Rope < ActiveRecord::Base
 
   def ghost(user)
     @ghost_thread ||= (self.class.where({
-        :board_id => read_attribute(:board_id),
-        :is_ghost => true,
-        :ghost_data => (read_attribute(:ghost_data) || {})
+        :board_id   => read_attribute(:board_id),
+        :is_ghost   => true,
+        # very hacky :/
+        :ghost_data => (ghost_data.to_h || {}).to_yaml
       }).first || nil)
   end
 

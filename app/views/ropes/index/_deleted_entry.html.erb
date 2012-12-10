@@ -1,0 +1,23 @@
+<li class='data_row deleted'>
+	<div class="data board_name size50">
+		<span class="sup header_font">
+			<% if can? :undelete, thread %>
+				<%= link_to ("<code>" + t('threads.deleted') + "</code>").html_safe, board_rope_posts_path(@board, thread) %>
+			<% else %>
+				<code><%= t('threads.deleted') %></code>
+			<% end %>
+
+		</span>
+		<span class="sub gray">
+			<code><%= t('threads.deleted') %></code>
+		</span>
+	</div>
+	<div class="data basic_data size20">
+		<span class="sup"><code><%= t('threads.deleted') %></code></span>
+	</div>
+	<div class="data basic_data size20">
+		<span class="sup">
+			<code><%= t('threads.deleted') %></code>
+		</span>
+	</div>
+</li>

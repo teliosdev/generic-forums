@@ -345,6 +345,12 @@
     [(/'/g), "&#39;" ]
   ];
 
+  ITools.prototype.keyMap = {
+    8: "backspace",
+    32: "space",
+    188: "comma"
+  };
+
   Tools = new ITools();
   expose.Tools = Tools;
 

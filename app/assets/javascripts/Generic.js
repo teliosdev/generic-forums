@@ -138,7 +138,9 @@ var Generic = Generic || (function ($) {
 
       index: function () {
         Routes.posts.edit();
-        Utils.Editors[0].bindReplyLinks();
+        if (Utils.Editors && Utils.Editors.length > 0) {
+          Utils.Editors[0].bindReplyLinks();
+        }
         if (window.hljs) {
           //window.hljs.initHighlighting();
           $("li.post pre code").each(function(_, e) {

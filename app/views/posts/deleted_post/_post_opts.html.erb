@@ -1,0 +1,8 @@
+<ul class="post_opts abnormal">
+	<% if can? :undelete, post %>
+		<li><%= link_to t('posts.deleted.undelete'), board_rope_post_undelete_path(@board, @rope, post), :method => :POST %></li>
+	<% end %>
+	<% if can? :hard_delete, post %>
+		<li><%= link_to t('posts.hard_delete'), board_rope_post_path(@board, @rope, post, :hard => true), :method => "delete" %></li>
+	<% end %>
+</ul>

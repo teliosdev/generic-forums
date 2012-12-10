@@ -1,14 +1,17 @@
 <ul class="post_opts abnormal">
 	<% if can? :post, @rope %>
-		<li><%= link_to "Reply", new_board_rope_post_path(@board, @rope, :parent_id => post.id), :class => :reply_link %></li>
+		<li><%= link_to t('posts.reply'), new_board_rope_post_path(@board, @rope, :parent_id => post.id), :class => :reply_link %></li>
 	<% end -%>
 	<% if can? :edit_post, post %>
-		<li><%= link_to "Edit", edit_board_rope_post_path(@board, @rope, post) %></li>
+		<li><%= link_to t('posts.edit'), edit_board_rope_post_path(@board, @rope, post) %></li>
 	<% end -%>
 	<% if can? :see_history, post %>
-		<li><%= link_to "History", board_rope_post_diff_path(@board, @rope, post) %></li>
+		<li><%= link_to t('posts.history'), board_rope_post_diff_path(@board, @rope, post) %></li>
 	<% end -%>
-	<% if can? :delete_post, post %>
-		<li><%= link_to "Delete", board_rope_post_path(@board, @rope, post), :method => "delete" %></li>
+	<% if can? :destroy, post %>
+		<li><%= link_to t('posts.delete'), board_rope_post_path(@board, @rope, post), :method => "delete" %></li>
 	<% end -%>
+	<% if can? :hard_destroy, post %>
+		<li><%= link_to t('posts.hard_delete'), board_rope_post_path(@board, @rope, post, :hard => true), :method => "delete" %></li>
+	<% end %>
 </ul>

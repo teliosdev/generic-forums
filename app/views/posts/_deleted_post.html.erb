@@ -1,0 +1,12 @@
+<li class="post deleted" data-post-id="<%= post.id %>" data-thread-id="<%= post.rope.id %>" data-board-id="<%= post.board.id %>">
+	<a name="post-<%= post.id %>"></a>
+	<div class="user_info">
+		<%= render "posts/deleted_post/user_info", :post => post %>
+	</div>
+	<div class="post_data">
+		<code><%= t('posts.deleted.full') %></code>
+	</div>
+	<div class="post_info">
+		<%= render "posts/deleted_post/post_info", :post => post %>
+	</div>
+</li>

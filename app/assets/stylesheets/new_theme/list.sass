@@ -16,6 +16,17 @@ body
             display: none
             margin-bottom: 25px
 
+          &.deleted
+            code
+              background-color: #f0f0f0
+              padding: 2px
+
+            a code
+              color: $a_blue
+
+            a:hover code
+              color: $ah_blue
+
           &.data_row
             border-bottom: 1px solid $light_blue
             padding:
@@ -47,8 +58,6 @@ body
 
               .gray
                 color: $light_gray
-
-              span.sup
 
               span.sub
                 display: block

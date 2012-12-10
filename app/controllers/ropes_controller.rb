@@ -1,8 +1,8 @@
 class RopesController < ApplicationController
 
   before_filter :load_board, :handle_breadcrumbs
-  before_filter :check_permissions, :only => [:show]
-  before_filter :check_create_permissions, :only => [:new, :create]
+  before_filter :check_create_permissions,  :only => [:new, :create]
+  before_filter :check_destroy_permissions, :only => [:destroy]
 
   helper :posts
 
@@ -12,7 +12,8 @@ class RopesController < ApplicationController
     #p params[:page]
     #p AppConfig.user_options.posts_per_page.default
     @threads = Rope.where(:board_id => @board.id, :is_ghost => false).select do |t|
-      can? :read, t
+      #(can? :read, t) or t.soft_destroyed?
+      true
     end
     @threads = Kaminari.paginate_array(@threads).page(params[:page]).per(@user.per_page :threads)
   end
@@ -37,7 +38,6 @@ class RopesController < ApplicationController
   end
 
   def new
-    puts "ERROR_STILL_NOT_RIGHT_" + ("_"*20) if cannot? :create, @board
     @thread       = Rope.new
     @thread.board = @board
     @thread.user  = @user
@@ -47,8 +47,20 @@ class RopesController < ApplicationController
     @breadcrumbs.add :name => "New Thread", :link => "#!/", :class => "new_thread_breadcrumb"
   end
 
-  def show
-    @thread  = Rope.find(params[:id])
+  def destroy
+    if params[:hard] and can? :hard_destroy, @rope
+      @rope.hard_destroy
+    else
+      @rope.soft_destroy
+    end
+    redirect_to board_ropes_path(@board)
+  end
+
+  def undelete
+    @rope = Rope.find params[:rope_id]
+    return error(400) unless can? :undelete, @rope
+    @rope.undestroy
+    redirect_to board_rope_posts_path(@board, @rope)
   end
 
   protected
@@ -63,13 +75,13 @@ class RopesController < ApplicationController
     end if @board
   end
 
-  def check_permissions
-    error(404) unless can? :read, @board
-    error(404) unless @thread and can? :read, @thread
-  end
-
   def check_create_permissions
     error(404) unless can? :create, @board
+  end
+
+  def check_destroy_permissions
+    @rope = Rope.find(params[:id])
+    error(404) unless can? :destroy, @rope
   end
 
 end

@@ -9,5 +9,14 @@
 			<% if can? :post, @rope %>
 				<li><%= link_to t('posts.reply'), new_board_rope_post_path(@board, @rope), :class => :reply_link %></li>
 			<%- end -%>
+			<% if can? :destroy, @rope %>
+				<li><%= link_to t('posts.delete'), board_rope_path(@board, @rope), :method => :DELETE %></li>
+			<%- end -%>
+			<% if can? :hard_destroy, @rope %>
+				<li><%= link_to t('posts.hard_delete'), board_rope_path(@board, @rope, :hard => true), :method => :DELETE %></li>
+			<%- end -%>
+			<% if @rope.soft_destroyed? and can? :undestroy, @rope %>
+				<li><%= link_to t('posts.deleted.undelete'), board_rope_undelete_path(@board, @rope), :method => :POST %></li>
+			<%- end -%>
 		</ul>
 </div></div>

@@ -1,4 +1,4 @@
-module Ghost
+module GenericSupport::Ghost
   module Model
     def self.included(base)
       base.send :extend, ClassMethods
@@ -39,5 +39,5 @@ module Ghost
 end
 
 ActiveSupport.on_load(:active_record) do
-  include Ghost::Model
+  include GenericSupport::Ghost::Model
 end

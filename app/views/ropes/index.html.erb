@@ -6,7 +6,11 @@
 		<span class="head size20"><%= t 'threads.posts' %></span>
 	</li>
 	<% @threads.each do |thread| %>
-		<%= render :partial => "ropes/index/entry", :locals => { :thread => thread } %>
+		<%#= debug thread %>
+		<%#= debug thread.ghost(current_user) %>
+		<%#= debug(if thread.soft_destroyed? then thread.ghost(current_user).permissions end) %>
+		<%#= debug can?(:read, thread) %>
+		<%= render :partial => if thread.soft_destroyed? then "ropes/index/deleted_entry" else "ropes/index/entry" end, :locals => { :thread => thread } %>
 	<% end -%>
 </ul>
 <%= render :partial => "ropes/index/thread_info" %>

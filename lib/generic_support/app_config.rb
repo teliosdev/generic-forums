@@ -1,4 +1,4 @@
-class AppConfigAccessor
+class GenericSupport::AppConfigAccessor
   def initialize(opts = {})
     @opts = opts
   end
@@ -38,11 +38,11 @@ end
 
 filename = File.expand_path("config/app_config.yml", Rails.root)
 if File.exist? filename
-  AppConfig = AppConfigAccessor.new YAML.load_file(filename)[Rails.env]
+  GenericSupport::AppConfig = AppConfig = GenericSupport::AppConfigAccessor.new YAML.load_file(filename)[Rails.env]
 else
   raise "Couldn't load application configuration from config/app_config.yml"
 end
 
 def p?(*args)
-  AppConfig.plugin? *args
+  AppConfig.plugin?(*args)
 end
