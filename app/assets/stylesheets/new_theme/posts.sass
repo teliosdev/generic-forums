@@ -137,12 +137,13 @@ body
 
               pre code
                 padding: 0
+                  top: 5px
+                line-height: 21px
 
               .diff, ins, del
                 //padding: 3px
                 display: block
                 text-decoration: none
-                line-height: 25px
                 padding: 0 5px
 
               code
@@ -154,6 +155,10 @@ body
                 //color: $blue_color
                 background-color: mix(white, $good_green, 75%)
                 color: $good_green
+                //border:
+                //  top: 1px solid $good_green
+                //  bottom: 1px solid $good_green
+                //margin-top: -1px
 
                 &:before
                   content: "+"
@@ -161,9 +166,18 @@ body
               .diff_del
                 background-color: mix(white, $error_red, 75%)
                 color: $error_red
+                //border:
+                //  top: 1px solid $error_red
+                //  bottom: 1px solid $error_red
+                //margin-top: -1px
 
                 &:before
                   content: "-"
+
+              .diff_same
+
+                &:before
+                  content: " "
 
 
 .popup_container
