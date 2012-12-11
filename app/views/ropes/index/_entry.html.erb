@@ -1,18 +1,23 @@
 <li class='data_row'>
 	<div class="data board_name size50">
-		<span class="sup header_font"><%= link_to thread.title, board_rope_posts_path(@board, thread) %></span>
+		<span class="sup header_font"><%= link_to thread.title, board_rope_posts_path(thread.board, thread) %></span>
 		<span class="sub gray">
 			<%= t('threads.created_by', :name => link_to(thread.user.name, thread.user), :time => thread.created_at.strftime("%b %-d '%y")).html_safe %>
 			</span>
 	</div>
 	<div class="data basic_data size20">
-		<span class="sup"><%= pluralize((thread.posts.size.fdiv @user.per_page(:posts)).ceil, t('posts.page')) %></span>
+		<span class="sup"><%= pluralize((thread.posts.size.fdiv current_user.per_page(:posts)).ceil, t('posts.page')) %></span>
 		<!--<span class="sub"><%#= paginate thread.posts.page(0).per(@user.per_page(:posts)) if thread.posts.size > @user.per_page(:posts) %></span>-->
 		<span class="sub"><%= number_to_human(thread.impressions_count, :units => :rope_views, :format => "%n%u") %></span>
 	</div>
 	<div class="data basic_data size20">
 		<span class="sup">
+			<% new_posts = thread.posts.where("created_at > ?", thread.impressions.where(:user_id => current_user.id).order(:created_at).first.try(:created_at)).size %>
 			<%= pluralize(thread.posts.size-1, t('posts.reply')) %>
+			<% if new_posts > 0 %>
+				<span class="sepdot">&middot;</span>
+				<%= pluralize(new_posts, t('posts.new')).html_safe %>
+			<% end %>
 		</span>
 		<span class="sub">
 			<%= t('threads.latest_post', :name => link_to(thread.posts.last.user.name, thread.posts.last.user)).html_safe %>

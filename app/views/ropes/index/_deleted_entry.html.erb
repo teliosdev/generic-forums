@@ -2,7 +2,7 @@
 	<div class="data board_name size50">
 		<span class="sup header_font">
 			<% if can? :undelete, thread %>
-				<%= link_to ("<code>" + t('threads.deleted') + "</code>").html_safe, board_rope_posts_path(@board, thread) %>
+				<%= link_to ("<code>" + t('threads.deleted') + "</code>").html_safe, board_rope_posts_path(thread.board, thread) %>
 			<% else %>
 				<code><%= t('threads.deleted') %></code>
 			<% end %>

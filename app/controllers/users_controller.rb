@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
 	before_filter :find_user, :only => [:show]
+	helper :posts
 
 	def new
 		@new_user = User.new

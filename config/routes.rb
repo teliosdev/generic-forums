@@ -56,6 +56,7 @@ GenericForums::Application.routes.draw do
 
   resources :users, :except => [:destroy] do
     resources :messages
+    get 'read' => 'users#read'
   end
 
   resources :sessions, :only => [:new, :create, :destroy]
