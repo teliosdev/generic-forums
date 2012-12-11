@@ -38,7 +38,7 @@ end
 
 filename = File.expand_path("config/app_config.yml", Rails.root)
 if File.exist? filename
-  GenericSupport::AppConfig = AppConfig = GenericSupport::AppConfigAccessor.new YAML.load_file(filename)[Rails.env]
+  GenericSupport::AppConfig = GenericSupport::AppConfigAccessor.new YAML.load_file(filename)[Rails.env]
 else
   raise "Couldn't load application configuration from config/app_config.yml"
 end
