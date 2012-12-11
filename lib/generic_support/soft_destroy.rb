@@ -21,7 +21,7 @@ module GenericSupport::SoftDestroy
       end
 
       def soft_destroyed?
-        options_proxy[:deleted] || false
+        options_proxy.has_key?(:deleted) and options_proxy[:deleted]
       end
 
       def hard_destroy(*args, &block)

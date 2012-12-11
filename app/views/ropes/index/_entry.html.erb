@@ -12,12 +12,14 @@
 	</div>
 	<div class="data basic_data size20">
 		<span class="sup">
-			<% new_posts = thread.posts.where("created_at > ?", thread.impressions.where(:user_id => current_user.id).order(:created_at).first.try(:created_at)).size %>
 			<%= pluralize(thread.posts.size-1, t('posts.reply')) %>
-			<% if new_posts > 0 %>
-				<span class="sepdot">&middot;</span>
-				<%= new_posts + " " + t('posts.new') %>
-			<% end %>
+			<%- unless current_user.guest? -%>
+				<% new_posts = thread.posts.where("created_at > ?", thread.impressions.where(:user_id => current_user.id).order(:created_at).first.try(:created_at)).size %>
+				<% if new_posts > 0 %>
+					<span class="sepdot">&middot;</span>
+					<%= new_posts.to_s + " " + t('posts.new') %>
+				<% end %>
+			<%- end -%>
 		</span>
 		<span class="sub">
 			<%= t('threads.latest_post', :name => link_to(thread.posts.last.user.name, thread.posts.last.user)).html_safe %>

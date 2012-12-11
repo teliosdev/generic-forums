@@ -58,7 +58,7 @@ module GenericSupport::Options
         @_options
       end
 
-      def_delegators :@_options, :each, :[], :size
+      def_delegators :@_options, :each, :[], :size, :has_key?
       protected
 
       def refresh_options
