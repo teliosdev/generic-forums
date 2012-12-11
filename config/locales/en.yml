@@ -48,6 +48,7 @@ en:
     history: History
     hard_delete: Hard Delete
     delete: Delete
+    new: New
 
     deleted:
       full: "[this post has been deleted]"

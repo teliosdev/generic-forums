@@ -16,7 +16,7 @@
 			<%= pluralize(thread.posts.size-1, t('posts.reply')) %>
 			<% if new_posts > 0 %>
 				<span class="sepdot">&middot;</span>
-				<%= pluralize(new_posts, t('posts.new')).html_safe %>
+				<%= new_posts + " " + t('posts.new') %>
 			<% end %>
 		</span>
 		<span class="sub">

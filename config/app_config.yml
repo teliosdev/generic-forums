@@ -9,7 +9,7 @@ development: &default
   # The version of the forum.  You may not want this to appear or
   # something, so this is open to modification.  You don't need to
   # though.
-  forum_version: 0.2.0
+  forum_version: 0.2.1
   # The maximum amount of times AuthLogic will allow a user to try to
   # login.  Set to 0 to disable.
   max_login_tries: 5
