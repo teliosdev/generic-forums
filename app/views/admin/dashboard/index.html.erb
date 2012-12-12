@@ -1,5 +1,6 @@
+
 <div class="graph grid_16 alpha">
-  <% @post_history.any? do |his| %>
+  <% @post_history.each do |his| %>
     <span class='data' data-value="<%= his[1] %>" data-index="<%= his[0] %>"></span>
   <% end %>
 </div>
