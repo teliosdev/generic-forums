@@ -1,4 +1,4 @@
-class GenericSupport::PostDiff
+class GenericForums::PostDiff
   attr_accessor :first, :second
   def initialize(p1, p2, split="\n")
     @first  = p2.split(split)

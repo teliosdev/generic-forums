@@ -1,4 +1,4 @@
-module GenericSupport::SoftDestroy
+module GenericForums::SoftDestroy
   module Model
     def self.included(base)
       base.send :extend, ClassMethods
@@ -32,5 +32,5 @@ module GenericSupport::SoftDestroy
 end
 
 ActiveSupport.on_load(:active_record) do
-  include GenericSupport::SoftDestroy::Model
+  include GenericForums::SoftDestroy::Model
 end

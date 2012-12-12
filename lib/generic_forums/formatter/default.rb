@@ -1,4 +1,4 @@
-GenericSupport::Formatter::Register.register do
+GenericForums::Formatter::Register.register do
   markdown :render do |t|
     renderer = Redcarpet::Render::HTML.new :no_styles => true
     options  = {}

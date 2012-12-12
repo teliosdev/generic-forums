@@ -1,4 +1,4 @@
-class GenericSupport::Formatter
+class GenericForums::Formatter
   ##
   # Register handles the registration of formats, and handles each one
   # for output.
@@ -88,4 +88,4 @@ class GenericSupport::Formatter
   end
 end
 
-require "#{Rails.root}/lib/generic_support/formatter/default"
+require "#{Rails.root}/lib/generic_forums/formatter/default"

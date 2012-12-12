@@ -1,4 +1,4 @@
-class GenericSupport::AppConfigAccessor
+class GenericForums::AppConfigAccessor
   def initialize(opts = {})
     @opts = opts
   end
@@ -38,7 +38,7 @@ end
 
 filename = File.expand_path("config/app_config.yml", Rails.root)
 if File.exist? filename
-  GenericSupport::AppConfig = GenericSupport::AppConfigAccessor.new YAML.load_file(filename)[Rails.env]
+  GenericForums::AppConfig = GenericForums::AppConfigAccessor.new YAML.load_file(filename)[Rails.env]
 else
   raise "Couldn't load application configuration from config/app_config.yml"
 end

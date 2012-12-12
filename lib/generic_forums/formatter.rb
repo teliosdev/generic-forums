@@ -1,4 +1,4 @@
-require "#{Rails.root}/lib/generic_support/formatter/register"
+require "#{Rails.root}/lib/generic_forums/formatter/register"
 
 ##
 # Formatter is a formatting engine for generic forums.  Its basic
@@ -8,7 +8,7 @@ require "#{Rails.root}/lib/generic_support/formatter/register"
 # Formatter also has roots in javascript, as the Editor for the
 # formats.  This editor is supposed to be a WYSIWYG editor, with an
 # output preview (depending on if the format has javascript support).
-class GenericSupport::Formatter
+class GenericForums::Formatter
 
 	# The format the text is in.  Something like "markdown", :plain, or
 	# "bbcode" (as that's what generic forums inheritly supports).

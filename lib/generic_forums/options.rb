@@ -1,4 +1,4 @@
-module GenericSupport::Options
+module GenericForums::Options
   module Model
     def self.included(base)
       base.send :extend, ClassMethods
@@ -69,5 +69,5 @@ module GenericSupport::Options
 end
 
 ActiveSupport.on_load(:active_record) do
-  include GenericSupport::Options::Model
+  include GenericForums::Options::Model
 end
