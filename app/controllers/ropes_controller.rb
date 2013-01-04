@@ -15,13 +15,13 @@ class RopesController < ApplicationController
       #(can? :read, t) or t.soft_destroyed?
       true
     end
-    @threads = Kaminari.paginate_array(@threads).page(params[:page]).per(@user.per_page :threads)
+    @threads = Kaminari.paginate_array(@threads).page(params[:page]).per(current_user.per_page :threads)
   end
 
   def create
     @thread = Rope.new :title => params[:rope][:title], :main_post_attributes => params[:rope][:main_post_attributes]
     @thread.board = @board
-    @thread.user  = @user
+    @thread.user  = current_user
     @thread.set_tags params[:rope][:tags].split(/(?:\s|\,)/).reject { |tag|
       tag.length > 3
     }

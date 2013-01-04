@@ -8,9 +8,12 @@
 			@_parser.setOptions(
 			  gfm: true,
 			  pedantic: false,
-			  highlight: (code)->
+			  highlight: (code, lang)->
 			  	if hljs
-			  		hljs.highlightAuto(code).value
+			  		if lang
+			  			hljs.highlight(lang.toLowerCase(), code).value
+			  		else
+			  			hljs.highlightAuto(code).value
 			)
 
 		render: (text)->

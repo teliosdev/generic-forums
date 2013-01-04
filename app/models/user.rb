@@ -1,7 +1,17 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :rememberable, :trackable, :validatable,
+         :lockable, :timeoutable
+  attr_accessor :login
 
-  attr_accessible :email, :name, :avatar, :password, :password_confirmation, :options
+  attr_accessible :email, :username, :avatar, :password,
+    :password_confirmation, :options, :remember_me, :login
+
   serialize :options
+
   default_scope order("created_at DESC")
 
   # Relationships
@@ -13,24 +23,13 @@ class User < ActiveRecord::Base
 
 
   # Validations
-  validates :name,
+  validates :username,
     :presence => true,
     :format => { :with => /\A[a-zA-Z0-9\-\_]+\Z/ },
     :length => { :in => 3..20 },
     :uniqueness => true
 
   validates_presence_of :primary_group
-
-  # Authentic
-  acts_as_authentic do |c|
-    c.session_class        Session
-    c.validate_email_field true
-    c.email_field          :email
-    c.logged_in_timeout    AppConfig.online
-    c.login_field          :name
-    c.crypto_provider      Authlogic::CryptoProviders::BCrypt
-    c.merge_validates_uniqueness_of_login_field_options :case_sensitive => true
-  end
 
   # Paperclip
   has_attached_file :avatar,
@@ -46,50 +45,43 @@ class User < ActiveRecord::Base
     }, :default_style => :default
 
   validates_attachment :avatar,
-    :content_type => { :content_type => AppConfig.avatars.allowed_content_types },
+    :content_type => {
+      :content_type => AppConfig.avatars.allowed_content_types
+    },
     :size         => { :less_than => AppConfig.avatars.max_size }
 
   is_impressionable :counter_cache => true
 
-  # Methods
-  def self.guest
-    find 0
-  end
+  has_option :options
 
+  # Methods
   def guest?
     id == 0
   end
 
+  def logged_in?
+    timedout? AppConfig.online.ago
+  end
+
   def per_page(type)
-    self.options[:"#{type}_per_page"]
+    self.options[:"#{type}_per_page"] || AppConfig.user_options[:"#{type}_per_page"]
   end
 
-  def options
-    @_opts ||= OptionsAccessor.new read_attribute(:options), self
+  def name
+    username
   end
 
-  def options= op
-    @_opts = nil
-    write_attribute(:options, op)
-  end
-end
-
-class OptionsAccessor
-  def initialize(opts, user)
-    @opts  = opts
-    @_user = user
+  def self.guest
+    find 0
   end
 
-  def [] name
-    if @opts and @opts[name]
-      @opts[name]
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
     else
-      AppConfig.user_options.public_send(name)
+      where(conditions).first
     end
   end
 
-  def []= name, value
-    @opts[name] = value
-    user.update_attribute(:options, @opts)
-  end
 end

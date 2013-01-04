@@ -1,8 +1,8 @@
-<%= form_for Session.new do |f| %>
+<%= form_for "user", :url => user_session_path, :html => { :id => "new_session" } do |f| %>
 	<div class="line">
-		<%= f.label :name,      :class => "part" %>
-		<%= f.text_field :name, :class => "part", :tabindex => 1 %>
-		<%= link_to t('home.register'), new_user_path, :class => "last-part" %>
+		<%= f.label :login,     :class => "part" %>
+		<%= f.text_field :login,:class => "part", :tabindex => 1 %>
+		<%= link_to t('home.register'), new_user_registration_path, :class => "last-part" %>
 	</div>
 	<div class="line">
 		<%= f.label :password,          :class => "part" %>

@@ -4,7 +4,7 @@
 	</p>
 	<ul id="user_opts">
 		<li><%= link_to t('home.messages'), user_messages_path(current_user) %></li>
-		<li><%= link_to t('home.settings'), edit_user_path(current_user) %></li>
-		<li><%= link_to t('home.logout'), session_path(1), :method => :DELETE %></li>
+		<li><%= link_to t('home.settings'), edit_user_registration_path %></li>
+		<li><%= link_to t('home.logout'), destroy_user_session_path, :method => :DELETE %></li>
 	</ul>
 </div>

@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     #puts "THREAD OUTPUT_______________________________"
     #p @thread
     @posts   = Post.includes(:user).where(:rope_id => @rope)
-      .page(params[:page]).per(if true then 20 else @user.per_page(:posts) end)
+      .page(params[:page]).per(current_user.per_page(:posts))
       impressionist(@rope)
   end
 
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     return error(400) unless can?(:post, @rope)
     @post = Post.create params[:post]
     @post.rope = @rope
-    @post.user = @user
+    @post.user = current_user
     unless @post.save
       if api_request?
         render "create"

@@ -26,28 +26,26 @@
 </head>
 <body>
 	<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-	<div class="wrapper">
-		<a name="#top"></a>
+	<div class="wrapper" id="top">
 		<div id="wide_border"><header class="clearfix">
 			<h1 id="title"><%= link_to @forum.name, root_path %></h1>
 			<%= render "layouts/header/user" %>
 		</header></div>
+		<% if notice %><p class="notice"><%= notice %></p><% end %>
+		<% if alert  %><p class="alert" ><%= alert  %></p><% end %>
 		<div role="main" id="main">
 			<div id="location">
-				<% last_crumb = @breadcrumbs.last %>
 				<ul id="trail" class="abnormal">
 					<% @breadcrumbs.each do |crumb| %>
-						<% next if crumb == last_crumb %>
 						<li><%= link_to crumb.name, crumb.link %></li>
 					<% end %>
 				</ul>
-				<h2><%= link_to last_crumb.name, last_crumb.link %></h2>
 			</div>
 			<%= yield %>
 		</div>
 		<footer>
 			<p>
-				<%= @forum.name %> &middot; <%= t('home.version') + " " + @forum.version %> &middot; <%= link_to t('home.about'), "/home/about" %> &middot; <a href="##top"><%= t 'home.top' %></a>
+				<%= @forum.name %> &middot; <%= t('home.version') + " " + @forum.version %> &middot; <%= link_to t('home.about'), "/home/about" %> &middot; <a href="#top"><%= t 'home.top' %></a>
 			</p>
 		</footer>
 	</div>

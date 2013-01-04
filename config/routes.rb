@@ -1,4 +1,6 @@
 GenericForums::Application.routes.draw do
+  devise_for :users
+
   get "home/index", "home/about", "home/rules"
 
   # The priority is based upon order of creation:
@@ -54,14 +56,15 @@ GenericForums::Application.routes.draw do
   get "boards/:board_id" => "ropes#index"
   resources :tags
 
-  resources :users, :except => [:destroy] do
+  resources :users, :only => [:show] do
     resources :messages
     get 'read' => 'users#read'
   end
 
-  resources :sessions, :only => [:new, :create, :destroy]
-  get "sessions/delete"
-  get "sessions/token"
+  #resources :users, :except => [:destroy] do
+  #  resources :messages
+  #  get 'read' => 'users#read'
+  #end
 
   namespace :admin do
     root :to => "Dashboard#index"

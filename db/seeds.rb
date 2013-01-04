@@ -12,29 +12,35 @@ Group.create! [
   {:name => "admin", :avatar_size => "100x100>" },
   {:name => "system",:avatar_size => "100%"     }
 ]
+
+def group(name)
+  Group.find_by_id(name) || Group.find_by_name(name)
+end
+
 guest_pass = SecureRandom.hex(5)
-User.create!(:name => "guest",
+User.create!(:username => "guest",
              :password => guest_pass,
              :password_confirmation => guest_pass,
              :email => "guest@localhost.com") do |u|
   u.id = 0
   u.group_ids = [1]
-  u.primary_group_id = 1
+  u.primary_group = group(1)
+  u.options = AppConfig.user_settings
 end
-User.create!(:name => "admin",
-             :password => "admin",
-             :password_confirmation => "admin",
+User.create!(:username => "admin",
+             :password => "password",
+             :password_confirmation => "password",
              :email => "admin@localhost.com") do |u|
   u.group_ids = [1,2,3]
-  u.primary_group_id = 3
+  u.primary_group = group(3)
 end
 system_pass = SecureRandom.hex(5)
-User.create!(:name => "system",
+User.create!(:username => "system",
              :password => system_pass,
              :password_confirmation => system_pass,
              :email => "system@localhost.com") do |u|
   u.group_ids = [1,2,3,4]
-  u.primary_group_id = 4
+  u.primary_group = group(4)
 end
 
 Board.create! [

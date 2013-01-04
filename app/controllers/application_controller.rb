@@ -33,16 +33,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_session
-    @session ||= Session.find
-  end
-
   def current_user
-    @user ||= if current_session and current_session.record
-      current_session.record
-    else
-      User.guest
-    end
+    super || User.guest
   end
 
   def check_content
@@ -52,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def api_request?
-    params[:format] and params[:format] != "html"
+    [:xml, :json].map(&:to_s).include? params[:format]
   end
 
   def set_locale

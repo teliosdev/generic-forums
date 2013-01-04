@@ -11,10 +11,8 @@ module PostsHelper
   end
 
   def determine_path(post)
-    #puts "DETERMINE_PATH_____________________________"
-    #p post
     board_rope_posts_path(post.board.id, post.rope.id,
-      :page => post.page(@user.per_page(:posts)),
+      :page => post.page(current_user.per_page(:posts)),
       :anchor => "post-#{post.id}"
     )
   end

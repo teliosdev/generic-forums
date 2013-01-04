@@ -148,13 +148,7 @@ var Generic = Generic || (function ($) {
             if ($e.parent().hasClass("plain_text")) {
               return;
             }
-            ret = window.hljs.highlightAuto(
-              $e.text()
-            );
-            //if (ret.r >= 10) {
-              $e.html(ret.value);
-              $e.addClass(ret.language);
-            //}
+            window.hljs.highlightBlock(e);
           });
         }
       }

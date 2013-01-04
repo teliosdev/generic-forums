@@ -76,6 +76,11 @@ development: &default
       - image/jpeg
       - image/png
       - image/gif
+  # Options for devise.
+  devise:
+    # Who sent the mail.  Since, in development, this is disabled, we
+    # just use a blank string.
+    mail_sender: ""
 
 production:
   <<: *default
