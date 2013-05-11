@@ -6,6 +6,11 @@ gem 'rails', '4.0.0.beta1'
 gem 'thin'
 gem 'pg'
 
+group :development do
+	gem 'better_errors'
+	gem 'binding_of_caller'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -37,3 +42,9 @@ gem 'jbuilder', '~> 1.0.1'
 
 # To use debugger
 # gem 'debugger'
+
+gem 'devise', :github => "plataformatec/devise", :branch => :rails4
+gem 'cancan'
+gem 'will_paginate'
+gem 'scoped_search'
+gem 'paper_trail', :github => "airblade/paper_trail", :branch => :rails4
