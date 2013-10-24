@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+
+    {{stylesheets}}
+    {{csrf}}
+  </head>
+  <body>
+
+    {{body}}
+
+    {{javascripts}}
+
+  </body>
+</html>

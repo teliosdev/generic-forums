@@ -1,0 +1,3 @@
+<ul>
+  {{category_list}}
+</ul>
