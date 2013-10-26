@@ -1,0 +1,3 @@
+<footer>
+  {{forum.name}} &middot; version {{forum.version}} &middot; {{link.about}} &middot; {{link.top}}
+</footer>

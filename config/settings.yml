@@ -1,3 +1,5 @@
 ---
 forum:
   name: '{generic-forums}'
+  style: default
+  version: 0.0.1

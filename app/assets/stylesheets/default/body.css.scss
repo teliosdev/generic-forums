@@ -1,0 +1,114 @@
+@import url(http://fonts.googleapis.com/css?family=Fredoka+One|Open+Sans:400,300,700);
+@import "variables";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  @include main-font;
+}
+
+a {
+  @include main-font;
+  text-decoration: none;
+  color: $blue-color;
+  font-weight: normal;
+}
+
+body:before {
+content: "";
+height: 100%;
+float: left;
+width: 0;
+margin-top: -32767px;
+}
+
+#container {
+  @include grid-container;
+  min-height: 100%;
+}
+
+$footer-height: 50px;
+
+#main {
+  overflow: auto;
+  padding-bottom: $footer-height;
+}
+
+footer {
+  position: relative;
+  height: $footer-height;
+  clear: both;
+  width: 960px;
+  border-top: 1px solid $light-blue-color;
+  padding: 12px;
+  text-align: center;
+  color: #999;
+  margin: auto {
+    top: -$footer-height;
+  };
+}
+
+#registration, #login {
+  @include text;
+  @include grid(16);
+
+  h1, h2, h3, h4, h5, h6 {
+    @include header-font;
+  }
+
+  a {
+    font-size: 12px;
+    color: lighten($blue-color, 10%);
+    padding: 0 5px;
+
+    &:after {
+      content: " \b7 ";
+      margin-left: 10px;
+    }
+
+    &:last-child:after { content: ""; margin-left: 0; }
+  }
+
+  form {
+    margin-top: 20px;
+    @include clearfix;
+
+    label {
+      color: #999;
+      @include grid(3);
+    }
+
+    input {
+      border: 1px solid $light-blue-color;
+      padding: 2px 5px;
+      outline: none;
+      @include main-font;
+      @include grid(5);
+    }
+
+    input[type=submit] {
+      background-color: transparent;
+      border: none;
+      color: lighten($blue-color, 10%);
+      font-weight: normal;
+      cursor: pointer;
+      width: inherit;
+      margin: 0;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .group {
+      display: block;
+      @include clearfix;
+    }
+
+  }
+}

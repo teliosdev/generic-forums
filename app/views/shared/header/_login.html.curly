@@ -1,0 +1,7 @@
+<span class="group">
+  {{label.email}} {{input.email}}
+</span>
+
+  {{label.password}} {{input.password}}
+
+{{submit}}

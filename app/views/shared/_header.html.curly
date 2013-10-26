@@ -1,0 +1,7 @@
+<header>
+  <h1><a href="{{main_link}}">{{forum.name}}</a></h1>
+
+  <span class="user-info">
+    {{user_info}}
+  </span>
+</header>

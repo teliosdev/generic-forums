@@ -1,0 +1,91 @@
+@import "variables";
+
+header {
+  border-bottom: 1px solid $light-blue-color;
+  @include clearfix;
+
+  h1 {
+    margin: 0;
+    padding: 0;
+    @include grid(11);
+
+    a {
+      margin: 0;
+      padding: 20px 0;
+      @include header-font;
+      display: inline-block;
+      font-weight: bold;
+    }
+  }
+
+  span.user-info {
+    @include grid(5);
+    margin-top: 25px;
+    font-size: 13px;
+
+    form {
+      @include clearfix;
+
+      span.group { display: block; @include clearfix; }
+      label, input[type=submit] { @include grid(1.2); }
+      input[type=text], input[type=password] {
+        @include grid(2.2);
+        @include main-font;
+        outline: none;
+        border: 1px solid $light-blue-color;
+        padding: 2px;
+      }
+
+      label {
+        color: #999;
+        padding: 2px;
+      }
+
+      input[type=submit] {
+        background-color: transparent;
+        border: none;
+        color: lighten($blue-color, 10%);
+        padding-top: 2px;
+        cursor: pointer;
+      }
+    }
+
+    img {
+      //@include fluid-grid(1);
+      display: inline-block;
+    }
+
+    .text-container {
+      //@include fluid-grid(3);
+      color: #999;
+      display: inline-block;
+      font-weight: normal;
+
+      .name { color: $blue-color; }
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      @include omega;
+
+      li {
+        display: inline-block;
+
+        &:before {
+          content: " \b7 ";
+          color: #999;
+          margin-right: 7px;
+          margin-left: 5px;
+        }
+
+        &:first-child:before {
+          content: "";
+          margin-right: 0;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}

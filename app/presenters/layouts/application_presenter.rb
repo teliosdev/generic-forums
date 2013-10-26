@@ -5,7 +5,8 @@ class Layouts::ApplicationPresenter < Curly::Presenter
   end
 
   def stylesheets
-    stylesheet_link_tag "application", media: "all"
+    stylesheet_link_tag "application", Setting.forum.style,
+      media: "all"
   end
 
   def javascripts
@@ -16,8 +17,16 @@ class Layouts::ApplicationPresenter < Curly::Presenter
     csrf_meta_tags
   end
 
+  def header
+    render "shared/header"
+  end
+
   def body
     yield
+  end
+
+  def footer
+    render "shared/footer"
   end
 
 end
