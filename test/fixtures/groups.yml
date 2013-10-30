@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
+user:
+  id: 1
+  name: user
 
-two:
-  name: MyString
+admin:
+  id: 2
+  name: admin

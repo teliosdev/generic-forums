@@ -4,4 +4,6 @@ class Category < ActiveRecord::Base
   has_many :children, class_name: "Category",
     foreign_key: "parent_id", dependent: :restrict_with_error,
     inverse_of: :parent
+
+  include Shared::Metable
 end

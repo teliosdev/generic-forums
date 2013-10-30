@@ -1,11 +1,13 @@
-<img src="{{avatar}}" />
+<span class="login-info">
+  <img src="{{avatar}}" />
 
-<span class="text-container">
-  Howdy, <span class="name">{{user_name}}</span>
+  <span class="text-container">
+    Howdy, <span class="name">{{user_name}}</span>
 
-  <ul>
-    <li><a href="{{link.inbox}}">{{t.inbox}}</a></li>
-    <li><a href="{{link.settings}}">{{t.settings}}</a></li>
-    <li><a href="{{link.log_out}}">{{t.log_out}}</a></li>
-  </ul>
+    <ul>
+      <li><a href="{{link.inbox}}">{{t.inbox}}</a></li>
+      <li><a href="{{link.settings}}">{{t.settings}}</a></li>
+      <li><a href="{{link.log_out}}">{{t.log_out}}</a></li>
+    </ul>
+  </span>
 </span>

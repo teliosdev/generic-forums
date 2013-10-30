@@ -1,0 +1,58 @@
+---
+groups:
+  type: model
+  data:
+    - name: guest
+      id: 0
+    - name: user
+      id: 1
+    - name: admin
+      id: 2
+
+users:
+  type: model
+  data:
+    - email: guest@localhost.ld
+      id: 0
+    - email: admin@localhost.ld
+      id: 1
+
+categories:
+  type: model
+  data:
+    - name: First
+      description: "Hello, World"
+      id: 1
+      meta_id: 1
+
+permissions:
+  type: model
+  data:
+    - type: manage
+      group_id: 2
+      meta_id: 1
+    - type: index
+      group_id: 0
+      meta_id: 2
+    - type: read
+      group_id: 1
+      meta_id: 1
+
+metas:
+  type: model
+  data:
+    - remote_type: Category
+      id: 1
+    - remote_type: Category
+      collection: true
+      id: 2
+
+groups_users:
+  type: relationship
+  left: users
+  right: groups
+  data:
+    - user_id: 0
+      group_id: 0
+    - user_id: 1
+      group_id: 2

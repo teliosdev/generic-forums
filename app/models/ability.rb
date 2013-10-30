@@ -28,6 +28,32 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-    can :manage, :all
+    #can :manage, :all
+
+    user ||= User.find(0)
+
+    #user.permissions.find_each do |permission|
+    #  if permission.remote_id
+    #    can permission.permission.to_sym, permission.type.constantize
+    #  else
+    #    can permission.permission.to_sym, permission.type.constantize,
+    #      :id => permission.remote_id
+    #  end
+    #end
+    user.permissions.includes(:meta).find_each do |permission|
+      can permission.type.to_sym, permission.meta
+      can permission.type.to_sym,
+        permission.meta.remote_type.constantize,
+        meta_id: permission.meta_id
+    end
   end
+
+  #def can?(action, subject, *args)
+  #  if subject.respond_to?(:is_metable?) and subject.is_metable?
+  #    old_subject = subject
+  #    subject = subject.meta || subject
+  #  end
+
+  #  super action, subject, *args
+  #end
 end

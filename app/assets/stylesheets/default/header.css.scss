@@ -20,7 +20,7 @@ header {
 
   span.user-info {
     @include grid(5);
-    margin-top: 25px;
+    margin-top: 15px;
     font-size: 13px;
 
     form {
@@ -48,6 +48,11 @@ header {
         padding-top: 2px;
         cursor: pointer;
       }
+    }
+
+    .login-info {
+      margin-top: 10px;
+      @include clearfix;
     }
 
     img {

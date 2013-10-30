@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131026013847) do
+ActiveRecord::Schema.define(version: 20131029202129) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(version: 20131026013847) do
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "meta_id"
   end
+
+  add_index "categories", ["meta_id"], name: "index_categories_on_meta_id"
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -35,15 +38,23 @@ ActiveRecord::Schema.define(version: 20131026013847) do
   add_index "groups_users", ["group_id"], name: "index_groups_users_on_group_id"
   add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id"
 
+  create_table "meta", force: true do |t|
+    t.string   "remote_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "collection",  default: false
+  end
+
   create_table "permissions", force: true do |t|
     t.string   "type"
-    t.string   "permission"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "group_id"
+    t.integer  "meta_id"
   end
 
   add_index "permissions", ["group_id"], name: "index_permissions_on_group_id"
+  add_index "permissions", ["meta_id"], name: "index_permissions_on_meta_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
