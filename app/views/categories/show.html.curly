@@ -1,0 +1,17 @@
+<ul class="ropes">
+  <li class="header pagination">{{pagination}}</li>
+
+  <li class="header">
+    <span class="size50 item">
+      {{t.thread_name}}
+    </span>
+    <span class="size20 item">
+      {{t.pages}}
+    </span>
+    <span class="size20 item">
+      {{t.replies}}
+    </span>
+  </li>
+
+  {{thread_list}}
+</ul>

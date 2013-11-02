@@ -1,0 +1,28 @@
+<li>
+  <span class="size50">
+    <a href="{{link}}">
+      <h2>{{title}}</h2>
+    </a>
+    <small>{{posted}}</small>
+  </span>
+
+  <span class="size20 set">
+    <span class="top">
+      {{pages}}
+    </span>
+    <span class="bottom">
+      {{views}}
+    </span>
+  </span>
+
+  <span class="size20 set">
+    <span class="top">
+      {{replies}}
+    </span>
+    <span class="bottom">
+      {{latest_post}}
+    </span>
+  </span>
+
+
+</li>

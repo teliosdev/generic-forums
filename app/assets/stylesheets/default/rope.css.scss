@@ -1,0 +1,24 @@
+@import "variables";
+
+ul.ropes {
+  li {
+    span.size50 h2 {
+      font-size: 1em;
+      padding-bottom: 4px;
+    }
+
+    span.size20.set {
+      color: #9f9f9f;
+      .top, .bottom { display: block; }
+    }
+
+  }
+  li.header.pagination {
+    margin-bottom: 20px;
+    border-bottom: none;
+
+    &:empty {
+      display: none;
+    }
+  }
+}

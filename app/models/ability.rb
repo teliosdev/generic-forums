@@ -41,10 +41,16 @@ class Ability
     #  end
     #end
     user.permissions.includes(:meta).find_each do |permission|
-      can permission.type.to_sym, permission.meta
-      can permission.type.to_sym,
-        permission.meta.remote_type.constantize,
-        meta_id: permission.meta_id
+      meta = permission.meta
+      type = permission.type.to_sym
+      can type, meta
+      if meta.collection
+        can type, permission.meta.remote_type.constantize
+      else
+        can type,
+          permission.meta.remote_type.constantize,
+          meta_id: permission.meta_id
+      end
     end
   end
 

@@ -1,0 +1,12 @@
+<li>
+  <a name="{{post_anchor}}"></a>
+  <span class="user-info">
+    {{user_info}}
+  </span>
+  <span class="content">
+    {{post_body}}
+  </span>
+  <span class="footer">
+    {{footer}}
+  </span>
+</li>

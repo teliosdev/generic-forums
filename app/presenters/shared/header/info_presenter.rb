@@ -6,7 +6,7 @@ class Shared::Header::InfoPresenter < Curly::Presenter
   end
 
   def user_name
-    current_user.email.split('@').first
+    current_user.name
   end
 
   def link(to)

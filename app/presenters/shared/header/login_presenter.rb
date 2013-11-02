@@ -14,6 +14,10 @@ class Shared::Header::LoginPresenter < Curly::Presenter
     end
   end
 
+  def register
+    link_to "Register", new_user_registration_path
+  end
+
   def submit
     @form.submit "Log in"
   end

@@ -27,6 +27,7 @@ def seed_relationship(key, relation)
   keys = class_names.map(&:foreign_key)
 
   relation.data.each do |set|
+    puts "RELATION BETWEEN #{left_class} AND #{right_class}"
     inst = left_class.find(set[keys[0]])
     inst.send(relation.right) << right_class.find(set[keys[1]])
   end

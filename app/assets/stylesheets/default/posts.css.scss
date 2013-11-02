@@ -1,0 +1,87 @@
+@import "variables";
+
+ul.posts {
+  li {
+    span.user-info {
+      @include grid(3);
+      @include alpha;
+      text-align: center;
+
+      span.user-name, span.user-title, span.user-misc {
+        display: block;
+        text-align: left;
+      }
+
+      span.user-name a {
+        font-weight: bold;
+      }
+
+      span.user-name.online a {
+        border-bottom: 3px dotted $light-blue-color;
+      }
+
+      span.user-avatar {
+        display: inline-block;
+      }
+
+      span.user-title {
+        margin: 10px 0 {
+          top: 5px;
+        }
+      }
+
+      span.user-misc {
+        span.post-count, span.join-date {
+          display: block;
+          text-align: center;
+          color: #9f9f9f;
+          font-weight: normal;
+        }
+      }
+    }
+
+    span.content {
+      @include grid(13);
+      @include omega;
+    }
+
+    span.footer {
+      @include grid(16);
+      @include alpha;
+      @include omega;
+      padding: 10px {
+        bottom: 0;
+      }
+      margin-top: 10px;
+      border-top: 1px solid $light-blue-color;
+      color: #9f9f9f;
+
+    }
+  }
+
+  li.pagination {
+    color: #9f9f9f;
+    font-weight: normal;
+    padding: 10px;
+  }
+}
+
+ul.ropes, ul.posts {
+  li.pagination {
+    nav.pagination {
+      display: inline-block;
+
+      span.page, span.next, span.last, span.prev, span.first {
+        &:before {
+          content: " \b7 ";
+          margin-left: 3px;
+          margin-right: 1px;
+        }
+      }
+    }
+  }
+
+  li.footer {
+    margin-bottom: 10px;
+  }
+}

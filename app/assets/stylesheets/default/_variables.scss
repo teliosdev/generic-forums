@@ -3,8 +3,9 @@ $light-blue-color: lighten($blue-color, 40%);
 
 @mixin main-font {
   font-family: "Open Sans";
-  font-weight: 300;
+  //font-weight: 300;
   color: #444;
+  font-size: 13px;
 }
 
 @mixin header-font {

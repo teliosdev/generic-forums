@@ -8,3 +8,6 @@ users:
   default_groups:
     - guest
     - user
+
+threads:
+  per_page: 25

@@ -1,1 +1,14 @@
-<li><h2>{{name}}</h2><small>{{description}}</small></li>
+<li>
+  <a href="{{link}}">
+    <span class="size50">
+      <h2>{{name}}</h2>
+      <small>{{description}}</small>
+    </span>
+  </a>
+  <span class="size20 gray">
+    not available
+  </span>
+  <span class="size20 gray">
+    not available
+  </span>
+</li>

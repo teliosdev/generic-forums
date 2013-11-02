@@ -21,3 +21,24 @@
 
 en:
   hello: "Hello world"
+
+  boards:
+    posted:
+      "Posted by %{user} on %{date}"
+    latest:
+      none: "Nothing here but us chickens."
+      other: "Latest post by "
+      go: "Go &raquo;"
+
+  posts:
+    post_time: "Posted %{date} ago."
+
+  pages:
+    zero: 'Nothing here but us chickens.'
+    one: 'Page 1 of 1'
+    other: 'Page %{current} of %{total}'
+
+  time:
+    formats:
+      mini: "%b %-d '%y"
+      simple: "%B %-d"

@@ -1,0 +1,47 @@
+@import "variables";
+
+ul.categories, ul.ropes, ul.posts {
+  list-style-type: none;
+  border-top: 1px solid $light-blue-color;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  @include clearfix;
+  @include grid(16);
+
+  li.header {
+    span.item {
+      color: #9f9f9f;
+      font-size: 13px;
+      font-weight: normal;
+    }
+  }
+
+  li {
+    border-bottom: 1px solid $light-blue-color;
+    padding: 10px 0;
+    @include grid(16);
+    @include alpha;
+    @include omega;
+    color: #444;
+
+    span.size50 {
+      @include grid(8);
+      font-weight: 300;
+
+      h2 {
+        @include header-font;
+        font-size: 18px;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    span.size20 {
+      @include grid(16*(20/100));
+    }
+
+    .gray {
+      color: #9f9f9f;
+    }
+  }
+}

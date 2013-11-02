@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131029202129) do
+ActiveRecord::Schema.define(version: 20131102193727) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -38,6 +38,31 @@ ActiveRecord::Schema.define(version: 20131029202129) do
   add_index "groups_users", ["group_id"], name: "index_groups_users_on_group_id"
   add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id"
 
+  create_table "impressions", force: true do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index"
+  add_index "impressions", ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
+  add_index "impressions", ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
+  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
+  add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
+
   create_table "meta", force: true do |t|
     t.string   "remote_type"
     t.datetime "created_at"
@@ -56,6 +81,26 @@ ActiveRecord::Schema.define(version: 20131029202129) do
   add_index "permissions", ["group_id"], name: "index_permissions_on_group_id"
   add_index "permissions", ["meta_id"], name: "index_permissions_on_meta_id"
 
+  create_table "posts", force: true do |t|
+    t.integer  "rope_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "format",     default: "markdown"
+  end
+
+  create_table "ropes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "meta_id"
+    t.integer  "category_id"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "posts_count"
+    t.integer  "impressions_count"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -72,6 +117,8 @@ ActiveRecord::Schema.define(version: 20131029202129) do
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.integer  "posts_count"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

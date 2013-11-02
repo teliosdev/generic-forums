@@ -1,0 +1,12 @@
+<span class="user-name {{online}}">
+  {{name}}
+</span>
+<span class="user-title">
+  {{title}}
+</span>
+<span class="user-avatar">
+  {{avatar.80}}
+</span>
+<span class="user-misc">
+  {{misc}}
+</span>

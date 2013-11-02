@@ -1,0 +1,4 @@
+-I./lib
+-rgeneric_data_formatter
+--format Fuubar
+--color

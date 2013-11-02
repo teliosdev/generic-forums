@@ -1,0 +1,6 @@
+<span class="post-count">
+  <%= pluralize(user.posts.size, 'Post') %>
+</span>
+<span class="join-date">
+  <%= l user.created_at, format: :simple %>
+</span>

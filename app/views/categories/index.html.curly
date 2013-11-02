@@ -1,3 +1,14 @@
-<ul>
+<ul class="categories">
+  <li class="header">
+    <span class="item size50">
+      {{t.board_name}}
+    </span>
+    <span class="item size20">
+      {{t.last_post}}
+    </span>
+    <span class="item size20">
+      {{t.active_threads}}
+    </span>
+  </li>
   {{category_list}}
 </ul>

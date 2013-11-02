@@ -30,22 +30,25 @@ group :doc do
 end
 
 gem 'devise'
-
 gem 'cancan'
-
 gem 'curly-templates'
-
 gem 'sass-960gs'
-
 gem 'hashie'
-
 gem 'gravtastic'
+gem 'impressionist'
+gem 'kaminari'
+gem 'oj'
+gem 'rdiscount'
+gem 'grape'
+gem 'grape-entity'
+gem 'generic_data_formatter', path: 'vendor/gems/generic_data_formatter'
 
 group :development do
   gem 'sqlite3'
   gem 'thin'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'pry'
 end
 
 group :production do

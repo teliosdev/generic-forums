@@ -1,0 +1,13 @@
+<ul class="posts">
+  <li class="header pagination">
+    <span class="pagination-info">{{pagination_info}}</span>
+    {{pagination}}
+  </li>
+
+  {{post_list}}
+
+  <li class="footer pagination">
+    <span class="pagination-info">{{pagination_info}}</span>
+    {{pagination}}
+  </li>
+</ul>

@@ -1,11 +1,18 @@
 GenericForums::Application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'devise/custom_registrations'
+  }
 
-  resources :categories
+
+  resources :boards, as: :categories, controller: 'categories',
+    only: [:index, :show] do
+    resources :threads, as: :ropes, controller: 'ropes',
+      shallow: true, except: [:index] do
+      resources :posts, shallow: true, except: [:index]
+    end
+  end
 
   root to: "categories#index"
 
-  namespace :api, defaults: {format: :json} do
-    # our api stuff will go here...
-  end
+  mount GenericForums::API => "/api"
 end

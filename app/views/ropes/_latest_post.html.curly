@@ -1,0 +1,1 @@
+{{t.latest_post}} <a href="{{user_link}}">{{user_name}}</a> &#xb7; <a href="{{post_link}}">{{t.post_link}}</a>

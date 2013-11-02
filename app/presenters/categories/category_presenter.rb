@@ -8,4 +8,8 @@ class Categories::CategoryPresenter < Curly::Presenter
   def description
     @category.description
   end
+
+  def link
+    category_path @category
+  end
 end

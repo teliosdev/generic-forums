@@ -5,15 +5,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable
 
-  before_create :set_default_groups
-
   has_and_belongs_to_many :groups
   has_many :permissions, through: :groups
+  has_many :ropes
+  has_many :posts
+
+  validates :name, format: { with: /\A[A-Za-z0-9\-\_]+\z/ },
+    length: { within: 3..20 }, presence: true, uniqueness: true
 
   include Gravtastic
-  has_gravatar
-
-  private
+  has_gravatar filetype: :png, default: :identicon, rating: :pg,
+    secure: true
 
   def set_default_groups
     return unless groups.empty?
@@ -25,4 +27,14 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def online?
+    if current_sign_in_at and
+      current_sign_in_at.between?(Time.now.utc, 30.minutes.ago)
+      true
+    else
+      false
+    end
+  end
+
 end
