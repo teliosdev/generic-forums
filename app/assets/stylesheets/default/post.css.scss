@@ -1,0 +1,72 @@
+@import "variables";
+
+#post-content {
+  border: 1px solid $mid-blue-color;
+  padding: 0;
+  @include grid(16);
+  margin-bottom: 10px;
+
+  textarea {
+    display: block;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    min-height: 100px;
+    outline: none;
+    padding: 10px;
+  }
+
+  .reply-body {
+    display: none;
+  }
+
+  .header {
+    @include grid(16);
+    @include alpha;
+    @include omega;
+    padding: 6px 10px;
+    border-bottom: 1px solid $light-blue-color;
+
+    select {
+      float: right;
+      border: 1px solid $light-blue-color;
+      outline: none;
+      background-color: transparent;
+    }
+  }
+
+  .js-preview {
+    border-top: 1px dashed #999;
+    border-bottom: 1px dashed #999;
+    padding: 10px;
+    color: #444;
+
+    &:empty:after {
+      content: "(begin typing)";
+      color: #aaa;
+    }
+  }
+}
+
+#main ul.posts li span.content, #post-content .js-preview {
+  color: #666;
+
+  code:not(.deleted) {
+    background-color: #eee;
+    padding: 5px 7px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+
+  pre code {
+    display: block;
+  }
+
+  blockquote {
+    margin: 0;
+    margin-left: 10px;
+    border-left: 3px solid $light-blue-color;
+    padding-left: 10px;
+  }
+}

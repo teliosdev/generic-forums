@@ -1,3 +1,13 @@
 <span class="post-time">
   {{post_time}}
 </span>
+
+<span class="post-replies">
+  {{post_replies}}
+  {{post_parent}}
+  {{post_number}}
+</span>
+
+<span class="post-options">
+  {{post_options}}
+</span>

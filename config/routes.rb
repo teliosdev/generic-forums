@@ -8,7 +8,9 @@ GenericForums::Application.routes.draw do
     only: [:index, :show] do
     resources :threads, as: :ropes, controller: 'ropes',
       shallow: true, except: [:index] do
-      resources :posts, shallow: true, except: [:index]
+      resources :posts, shallow: true, except: [:index] do
+        get 'history', on: :member
+      end
     end
   end
 

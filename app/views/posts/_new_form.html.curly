@@ -1,5 +1,9 @@
-<span id="post-content">
-  {{format}}
+<div id="post-content">
+  <span class="header">
+    {{format}}
+    {{reply_to}}
+  </span>
+  {{quote}}
   {{body}}
   {{submit}}
-</span>
+</div>

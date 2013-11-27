@@ -60,7 +60,7 @@ GEM
     daemons (1.1.9)
     debug_inspector (0.0.2)
     descendants_tracker (0.0.3)
-    devise (3.1.1)
+    devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -99,7 +99,7 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
-    kaminari (0.14.1)
+    kaminari (0.15.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     libv8 (3.16.14.3)
@@ -107,19 +107,22 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.2)
-    mime-types (1.25)
+    mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.2)
     multi_xml (0.5.5)
     nokogiri (1.5.10)
-    oj (2.1.7)
-    orm_adapter (0.4.0)
+    oj (2.2.3)
+    orm_adapter (0.5.0)
     polyglot (0.3.3)
-    pry (0.9.6)
-      coderay (>= 0.9.8)
-      method_source (>= 0.6.5)
-      ruby_parser (>= 2.0.5)
-      slop (~> 2.1.0)
+    posix-spawn (0.3.6)
+    pry (0.9.12.4)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pygments.rb (0.5.4)
+      posix-spawn (~> 0.3.6)
+      yajl-ruby (~> 1.1.0)
     rack (1.5.2)
     rack-accept (0.4.5)
       rack (>= 0.4)
@@ -141,12 +144,10 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.1.0)
-    rdiscount (2.1.7)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (3.0.0)
     ref (1.0.5)
-    ruby_parser (3.2.2)
-      sexp_processor (~> 4.1)
     sass (3.2.12)
     sass-960gs (1.0.0)
     sass-rails (4.0.1)
@@ -156,9 +157,8 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
-    sexp_processor (4.4.0)
-    slop (2.1.0)
-    sprockets (2.10.0)
+    slop (3.4.7)
+    sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -171,10 +171,10 @@ GEM
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
-    thin (1.6.0)
+    thin (1.6.1)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
-      rack (>= 1.5.0)
+      rack (>= 1.0.0)
     thor (0.18.1)
     thread_safe (0.1.3)
       atomic
@@ -182,12 +182,12 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (1.3.0)
+    turbolinks (1.3.1)
       coffee-rails
     tzinfo (0.3.38)
-    uglifier (2.2.1)
+    uglifier (2.3.1)
       execjs (>= 0.3.0)
-      multi_json (~> 1.0, >= 1.0.2)
+      json (>= 1.8.0)
     virtus (1.0.0)
       axiom-types (~> 0.0.5)
       coercible (~> 0.2)
@@ -195,6 +195,7 @@ GEM
       equalizer (~> 0.0.7)
     warden (1.2.3)
       rack (>= 1.0)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
@@ -217,8 +218,9 @@ DEPENDENCIES
   kaminari
   oj
   pry
+  pygments.rb
   rails (= 4.0.0)
-  rdiscount
+  redcarpet
   sass-960gs
   sass-rails (~> 4.0.0)
   sdoc

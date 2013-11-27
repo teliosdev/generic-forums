@@ -1,0 +1,9 @@
+<% if can? :post_undelete, post.rope %>
+  <%= link_to "Undelete", post_path(post, undelete: true),
+    method: "DELETE" %>
+<% end %>
+
+<% if can? :post_destroy, post.rope %>
+  <%= link_to "Hard Delete", post_path(post, hard: true),
+    method: "DELETE" %>
+<% end %>

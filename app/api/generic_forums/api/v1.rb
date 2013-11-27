@@ -5,13 +5,14 @@ class GenericForums::API::V1 < Grape::API
 
   desc "Formats a string to show what it would look like."
   params do
-    optional :format, type: String, desc: "The formatting to use.",
+    optional :type, type: String, desc: "The formatting to use.",
       default: :markdown
     requires :body, type: String, desc: "The text to format."
   end
   post 'format' do
     {
-      body: GenericDataFormatter.format(params[:format], params[:body])
+      format: params[:type],
+      body: GenericDataFormatter.format(params[:type], params[:body])
     }
   end
 

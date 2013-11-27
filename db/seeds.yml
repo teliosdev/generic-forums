@@ -46,6 +46,9 @@ permissions:
     - type: post
       group_id: 1
       meta_id: 3
+    - type: post_delete
+      group_id: 1
+      meta_id: 3
 
 metas:
   type: model

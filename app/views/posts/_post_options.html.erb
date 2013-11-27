@@ -1,0 +1,20 @@
+<% if can? :post, post.rope %>
+  <%= link_to "Reply", new_rope_post_path(post.rope, reply: post) %>
+<% end %>
+
+<% if can? :post_delete, post.rope %>
+  <%= link_to "Soft Delete", post_path(post), method: "DELETE" %>
+<% end %>
+
+<% if can? :post_destroy, post.rope %>
+  <%= link_to "Hard Delete", post_path(post, hard: true),
+    method: "DELETE" %>
+<% end %>
+
+<% if can? :post_edit, post.rope %>
+  <%= link_to "Edit", edit_post_path(post) %>
+<% end %>
+
+<% if can? :post_history, post.rope %>
+  <%= link_to "History", history_post_path(post) %>
+<% end %>

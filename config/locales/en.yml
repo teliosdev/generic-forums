@@ -32,6 +32,14 @@ en:
 
   posts:
     post_time: "Posted %{date} ago."
+    replies_html: "Replies: %{links}."
+    parent_html: "Parent: %{link}."
+
+  post:
+    deleted:
+      other: "[deleted]"
+      content: "[this post has been deleted]"
+
 
   pages:
     zero: 'Nothing here but us chickens.'

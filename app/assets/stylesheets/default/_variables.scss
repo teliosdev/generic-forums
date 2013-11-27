@@ -1,10 +1,12 @@
 $blue-color: #2b8bb3;
+$mid-blue-color: lighten($blue-color, 20%);
 $light-blue-color: lighten($blue-color, 40%);
+$default-color: #444;
 
 @mixin main-font {
   font-family: "Open Sans";
   //font-weight: 300;
-  color: #444;
+  color: $default-color;
   font-size: 13px;
 }
 

@@ -1,6 +1,8 @@
 class Posts::UserInfoPresenter < Curly::Presenter
   presents :user
 
+  version 1
+
   def online
     if @user.online?
       'online'

@@ -21,6 +21,12 @@ a {
   font-weight: normal;
 }
 
+code {
+  font-family: "Andale Mono", Monaco, "Lucida Console", monospace;
+  padding: 0 2px;
+  color: #575757;
+}
+
 body:before {
 content: "";
 height: 100%;

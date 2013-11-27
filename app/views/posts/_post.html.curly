@@ -1,4 +1,4 @@
-<li>
+<li class="{{post_class}}">
   <a name="{{post_anchor}}"></a>
   <span class="user-info">
     {{user_info}}

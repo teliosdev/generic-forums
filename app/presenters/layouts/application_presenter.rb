@@ -13,6 +13,13 @@ class Layouts::ApplicationPresenter < Curly::Presenter
     javascript_include_tag "application"
   end
 
+  def mathjax
+    #mathjax_tag config: "TeX-AMS-MML_SVG"
+    javascript_include_tag "//cdn.mathjax.org/mathjax/latest/MathJax" \
+      ".js?config=TeX-AMS-MML_HTMLorMML,Safe&" \
+      "delayStartupUntil=configured"
+  end
+
   def csrf
     csrf_meta_tags
   end
