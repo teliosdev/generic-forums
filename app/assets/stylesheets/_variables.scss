@@ -1,0 +1,8 @@
+@import "neat-helpers";
+
+$max-width: em(1024);
+$mobile: new-breakpoint(max-width 680px 4);
+
+$visual-grid: true;
+$visual-grid-color: #E6F6FF;
+$visual-grid-opacity: 0.4;

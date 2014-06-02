@@ -1,0 +1,14 @@
+development: &default
+  adapter: postgresql
+  database: generic-forums_development
+  encoding: utf8
+  host: localhost
+  min_messages: warning
+  pool: 2
+  timeout: 5000
+  username: gf-app
+  password: VFR$%TGB
+
+test:
+  <<: *default
+  database: generic-forums_test

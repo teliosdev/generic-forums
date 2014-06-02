@@ -1,0 +1,113 @@
+@charset 'utf-8';
+
+///////////////////////////////////////////////////////////////////////////////
+
+@import 'bourbon';
+@import 'variables';
+@import 'neat';
+
+///////////////////////////////////////////////////////////////////////////////
+
+$main-color: #327ccb;
+
+html {
+  @include size(100% 100%);
+  display: block;
+}
+
+body {
+  @include margin(0 null 0 null);
+  @include outer-container;
+  background-color: #fefefe;
+  color: #444;
+  font-family: 'Lato', $verdana;
+  font-weight: 300;
+  z-index: 1;
+
+  header, .container, footer {
+    @include span-columns(12);
+
+    @include media($mobile) {
+      @include span-columns(4);
+    }
+  }
+
+  header {
+    $header-height: 60px;
+    $header-background: #fefefe; //#333;
+    $header-hover-color: #444; //white;
+    $header-main-color: lighten($main-color, 30%);
+    $header-color: mix($header-background, $header-hover-color, 30%);
+
+    background-color: $header-background;
+    color: $header-color;
+    height: $header-height;
+    border-bottom: 1px solid $header-main-color;
+    z-index: 10;
+
+
+    h1 {
+      margin: 0;
+      @include padding(0 0 0 10px);
+      @include span-columns(4);
+
+      a {
+        font-family: 'Bitter';
+        color: $header-hover-color;
+        line-height: $header-height;
+        text-decoration: none;
+
+        span { color: $main-color; }
+      }
+    }
+
+    ul.menu {
+      margin: 0;
+      padding: 0;
+      @include span-columns(6);
+      list-style-type: none;
+
+      li {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        a {
+          @include padding(null 5px null 5px);
+          color: $header-color;
+          line-height: $header-height;
+          text-decoration: none;
+
+          &:hover {
+            color: $header-hover-color;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+
+    @include media($mobile) {
+      height: auto;
+
+      h1 { @include span-columns(4); }
+
+      ul.menu {
+        @include span-columns(4);
+
+        li {
+          display: inline-block;
+          padding-bottom: 5px;
+          a {
+            line-height: inherit;
+            padding: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+section.text {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bitter', $georgia;
+  }
+}
